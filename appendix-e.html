@@ -557,7 +557,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#core-system-concepts" id="toc-core-system-concepts" class="nav-link active" data-scroll-target="#core-system-concepts"><span class="header-section-number">27</span> Core System Concepts</a>
+  <li><a href="#glossary-structure" id="toc-glossary-structure" class="nav-link active" data-scroll-target="#glossary-structure"><span class="header-section-number">26.1</span> Glossary Structure</a></li>
+  <li><a href="#core-system-concepts" id="toc-core-system-concepts" class="nav-link" data-scroll-target="#core-system-concepts"><span class="header-section-number">27</span> Core System Concepts</a>
   <ul class="collapse">
   <li><a href="#system" id="toc-system" class="nav-link" data-scroll-target="#system"><span class="header-section-number">27.1</span> System</a></li>
   <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="header-section-number">27.2</span> Goal</a></li>
@@ -595,7 +596,31 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#blueprint-graph" id="toc-blueprint-graph" class="nav-link" data-scroll-target="#blueprint-graph"><span class="header-section-number">31.2</span> Blueprint Graph</a></li>
   <li><a href="#constraint" id="toc-constraint" class="nav-link" data-scroll-target="#constraint"><span class="header-section-number">31.3</span> Constraint</a></li>
   </ul></li>
-  <li><a href="#closing-note" id="toc-closing-note" class="nav-link" data-scroll-target="#closing-note"><span class="header-section-number">32</span> Closing Note</a></li>
+  <li><a href="#quality-and-process-concepts" id="toc-quality-and-process-concepts" class="nav-link" data-scroll-target="#quality-and-process-concepts"><span class="header-section-number">32</span> Quality and Process Concepts</a>
+  <ul class="collapse">
+  <li><a href="#composability" id="toc-composability" class="nav-link" data-scroll-target="#composability"><span class="header-section-number">32.1</span> Composability</a></li>
+  <li><a href="#feasibility" id="toc-feasibility" class="nav-link" data-scroll-target="#feasibility"><span class="header-section-number">32.2</span> Feasibility</a></li>
+  <li><a href="#blueprint-discipline" id="toc-blueprint-discipline" class="nav-link" data-scroll-target="#blueprint-discipline"><span class="header-section-number">32.3</span> Blueprint Discipline</a></li>
+  </ul></li>
+  <li><a href="#system-type-concepts" id="toc-system-type-concepts" class="nav-link" data-scroll-target="#system-type-concepts"><span class="header-section-number">33</span> System Type Concepts</a>
+  <ul class="collapse">
+  <li><a href="#system-type" id="toc-system-type" class="nav-link" data-scroll-target="#system-type"><span class="header-section-number">33.1</span> System Type</a></li>
+  <li><a href="#complexity" id="toc-complexity" class="nav-link" data-scroll-target="#complexity"><span class="header-section-number">33.2</span> Complexity</a></li>
+  <li><a href="#hybrid-system" id="toc-hybrid-system" class="nav-link" data-scroll-target="#hybrid-system"><span class="header-section-number">33.3</span> Hybrid System</a></li>
+  </ul></li>
+  <li><a href="#projection-concepts" id="toc-projection-concepts" class="nav-link" data-scroll-target="#projection-concepts"><span class="header-section-number">34</span> Projection Concepts</a>
+  <ul class="collapse">
+  <li><a href="#architecture-view" id="toc-architecture-view" class="nav-link" data-scroll-target="#architecture-view"><span class="header-section-number">34.1</span> Architecture View</a></li>
+  <li><a href="#specification-view" id="toc-specification-view" class="nav-link" data-scroll-target="#specification-view"><span class="header-section-number">34.2</span> Specification View</a></li>
+  <li><a href="#operational-view" id="toc-operational-view" class="nav-link" data-scroll-target="#operational-view"><span class="header-section-number">34.3</span> Operational View</a></li>
+  </ul></li>
+  <li><a href="#closing-notes" id="toc-closing-notes" class="nav-link" data-scroll-target="#closing-notes"><span class="header-section-number">35</span> Closing Notes</a>
+  <ul class="collapse">
+  <li><a href="#terminology-stability" id="toc-terminology-stability" class="nav-link" data-scroll-target="#terminology-stability"><span class="header-section-number">35.1</span> Terminology Stability</a></li>
+  <li><a href="#version-information" id="toc-version-information" class="nav-link" data-scroll-target="#version-information"><span class="header-section-number">35.2</span> Version Information</a></li>
+  <li><a href="#usage-guidelines" id="toc-usage-guidelines" class="nav-link" data-scroll-target="#usage-guidelines"><span class="header-section-number">35.3</span> Usage Guidelines</a></li>
+  <li><a href="#cross-chapter-index" id="toc-cross-chapter-index" class="nav-link" data-scroll-target="#cross-chapter-index"><span class="header-section-number">35.4</span> Cross-Chapter Index</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -625,52 +650,92 @@ ul.task-list li input[type="checkbox"] {
 <p>A consistent terminology is essential for any structured engineering framework.</p>
 <p>In many software engineering discussions, key terms such as <em>system</em>, <em>architecture</em>, <em>design</em>, and <em>specification</em> are used with varying meanings depending on context. This ambiguity often leads to misunderstandings, especially when teams attempt to coordinate complex system designs.</p>
 <p>The blueprint framework therefore introduces a <strong>controlled vocabulary</strong>. Each term defined in this glossary carries a specific meaning within the context of blueprint-based system engineering.</p>
+<p>This appendix includes: - Precise definitions for all key terms - Usage examples showing terms in context - Relationships between related terms - Common misinterpretations to avoid - Cross-references to chapters where concepts are introduced - Version notes for evolution tracking</p>
 <p>Future volumes in this series will continue to use these definitions consistently.</p>
 <hr>
+<section id="glossary-structure" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="glossary-structure"><span class="header-section-number">26.1</span> Glossary Structure</h2>
+<p>Each term in this glossary is defined with:</p>
+<ul>
+<li><strong>Definition</strong>: Precise technical definition</li>
+<li><strong>Context</strong>: When and how the term is used</li>
+<li><strong>Usage Example</strong>: Example sentence showing proper usage</li>
+<li><strong>Related Terms</strong>: Related concepts and distinctions</li>
+<li><strong>Common Misinterpretations</strong>: How the term is often misunderstood</li>
+<li><strong>Introduced In</strong>: Chapter where term is first defined (if applicable)</li>
+</ul>
+<hr>
+</section>
 <section id="core-system-concepts" class="level1" data-number="27">
 <h1 data-number="27"><span class="header-section-number">27</span> Core System Concepts</h1>
 <section id="system" class="level2" data-number="27.1">
 <h2 data-number="27.1" class="anchored" data-anchor-id="system"><span class="header-section-number">27.1</span> System</h2>
-<p>A <strong>system</strong> is a bounded entity that maintains internal structure and state in order to achieve a defined goal through interactions with its environment.</p>
-<p>A system includes components, interfaces, data relationships, and workflows that collectively enable its capabilities.</p>
-<p>Systems are defined at an architectural level and may have multiple implementations.</p>
+<p><strong>Definition</strong>: A bounded entity that maintains internal structure and state in order to achieve a defined goal through interactions with its environment.</p>
+<p><strong>Context</strong>: The fundamental unit of analysis in blueprint-based engineering. Systems exist at an architectural level and may have multiple implementations.</p>
+<p><strong>Usage Example</strong>: “The task management system provides a web interface for teams to collaboratively manage tasks with real-time updates.”</p>
+<p><strong>Related Terms</strong>: - <strong>Goal</strong>: The system’s purpose - <strong>Component</strong>: Structural units within the system - <strong>Interface</strong>: Boundaries between system and environment - <strong>Implementation</strong>: Specific realization of the system</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing “system” with “code” or “application” (systems exist at architectural level, code is implementation) - ❌ Assuming systems must be software (systems can include people, processes, and hardware) - ❌ Treating systems as static (systems have state and behavior)</p>
+<p><strong>Introduced In</strong>: Chapter 4</p>
 <hr>
 </section>
 <section id="goal" class="level2" data-number="27.2">
 <h2 data-number="27.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">27.2</span> Goal</h2>
-<p>The <strong>goal</strong> of a system defines the purpose or outcome the system is intended to achieve.</p>
-<p>Goals provide the contextual motivation for system design and guide the selection of capabilities and architectural structures.</p>
+<p><strong>Definition</strong>: The purpose or outcome the system is intended to achieve. Goals provide the contextual motivation for system design and guide the selection of capabilities and architectural structures.</p>
+<p><strong>Context</strong>: The starting point for blueprint design. Goals are outcome-focused rather than feature-focused.</p>
+<p><strong>Usage Example</strong>: “The goal of the system is to enable teams to collaboratively manage tasks with real-time visibility, not to provide a task CRUD API.”</p>
+<p><strong>Related Terms</strong>: - <strong>System</strong>: Entity that achieves the goal - <strong>Capability</strong>: Functional abilities that achieve the goal - <strong>Success Metrics</strong>: Measurable indicators of goal achievement - <strong>Constraint</strong>: Limitations affecting goal achievement</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Writing feature lists instead of outcome statements - ❌ Including implementation details in goal statements - ❌ Omitting measurable success criteria</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="capability" class="level2" data-number="27.3">
 <h2 data-number="27.3" class="anchored" data-anchor-id="capability"><span class="header-section-number">27.3</span> Capability</h2>
-<p>A <strong>capability</strong> represents a functional ability of a system that contributes to achieving its goal.</p>
-<p>Capabilities translate system intent into functional requirements that can be implemented through architectural components.</p>
+<p><strong>Definition</strong>: A functional ability of a system that contributes to achieving its goal. Capabilities translate system intent into functional requirements that can be implemented through architectural components.</p>
+<p><strong>Context</strong>: Capabilities are the bridge between high-level goals and concrete implementation. They describe “what the system can do” without specifying “how it does it.”</p>
+<p><strong>Usage Example</strong>: “The system’s user authentication capability includes login, session management, and password recovery functions.”</p>
+<p><strong>Related Terms</strong>: - <strong>Goal</strong>: The purpose capabilities achieve - <strong>Component</strong>: Architectural elements that implement capabilities - <strong>Workflow</strong>: How capabilities are executed through component interactions</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing capabilities with components (capabilities are functions, components are structures) - ❌ Making capabilities too granular (should be coherent functional units) - ❌ Including implementation details in capability descriptions</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="component" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="component"><span class="header-section-number">27.4</span> Component</h2>
-<p>A <strong>component</strong> is a structural unit within a system that encapsulates a specific responsibility.</p>
-<p>Components interact with other components through defined interfaces and collaborate to implement system capabilities.</p>
-<p>Examples include services, modules, subsystems, or infrastructure elements.</p>
+<p><strong>Definition</strong>: A structural unit within a system that encapsulates a specific responsibility. Components interact with other components through defined interfaces and collaborate to implement system capabilities.</p>
+<p><strong>Context</strong>: Components are the structural building blocks of systems. Each component should have a single, well-defined responsibility.</p>
+<p><strong>Usage Example</strong>: “The authentication service component is responsible for user login, session management, and token validation.”</p>
+<p><strong>Related Terms</strong>: - <strong>Interface</strong>: Communication boundaries of components - <strong>Responsibility</strong>: What a component does - <strong>System</strong>: Entity composed of components - <strong>External Service</strong>: Components outside system boundary</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Making components too large (over-responsibility leads to complexity) - ❌ Making components too granular (over-fragmentation leads to coordination overhead) - ❌ Assuming components must be microservices (components can be modules, libraries, or services)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="interface" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="interface"><span class="header-section-number">27.5</span> Interface</h2>
-<p>An <strong>interface</strong> defines a communication boundary between components or between a system and its external environment.</p>
-<p>Interfaces specify interaction mechanisms such as APIs, message channels, command interfaces, or event streams.</p>
+<p><strong>Definition</strong>: A communication boundary between components or between a system and its external environment. Interfaces specify interaction mechanisms such as APIs, message channels, command interfaces, or event streams.</p>
+<p><strong>Context</strong>: Interfaces define how components interact. Clear interfaces enable composition and integration.</p>
+<p><strong>Usage Example</strong>: “The HTTP REST interface between the web frontend and API service defines request/response formats and authentication requirements.”</p>
+<p><strong>Related Terms</strong>: - <strong>Component</strong>: Entities connected by interfaces - <strong>Protocol</strong>: Communication mechanism specified by interface - <strong>Contract</strong>: Interface specification including behavior guarantees - <strong>External Dependency</strong>: Interfaces to systems outside boundary</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming interfaces are only APIs (interfaces can be any communication mechanism) - ❌ Defining interfaces without specifying protocols - ❌ Treating interfaces as implementation details (interfaces are architectural contracts)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="data" class="level2" data-number="27.6">
 <h2 data-number="27.6" class="anchored" data-anchor-id="data"><span class="header-section-number">27.6</span> Data</h2>
-<p><strong>Data</strong> refers to the information structures stored, processed, or transmitted by a system.</p>
-<p>Data definitions include entities, schemas, and ownership boundaries that determine how information flows through the architecture.</p>
+<p><strong>Definition</strong>: The information structures stored, processed, or transmitted by a system. Data definitions include entities, schemas, and ownership boundaries that determine how information flows through the architecture.</p>
+<p><strong>Context</strong>: Data represents the “information dimension” of systems. Clear data ownership and structure prevent inconsistencies.</p>
+<p><strong>Usage Example</strong>: “The user account data entity includes email, password hash, and profile information, owned by the authentication service.”</p>
+<p><strong>Related Terms</strong>: - <strong>Owner</strong>: Component responsible for data - <strong>Entity</strong>: Specific data structure or type - <strong>Sensitivity</strong>: Data classification (public, internal, confidential) - <strong>Data Flow</strong>: Movement of data through workflows</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Ignoring data ownership (ambiguous ownership leads to data quality issues) - ❌ Failing to classify data sensitivity (impacts security planning) - ❌ Treating data as implementation detail (data relationships are architectural concerns)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="workflow" class="level2" data-number="27.7">
 <h2 data-number="27.7" class="anchored" data-anchor-id="workflow"><span class="header-section-number">27.7</span> Workflow</h2>
-<p>A <strong>workflow</strong> describes the dynamic sequence of interactions and state transitions that occur when the system performs a capability.</p>
-<p>Workflows represent the operational behavior of the system across its components.</p>
+<p><strong>Definition</strong>: The dynamic sequence of interactions and state transitions that occur when the system performs a capability. Workflows represent the operational behavior of the system across its components.</p>
+<p><strong>Context</strong>: Workflows describe “how the system behaves” at the component interaction level, not internal function call details.</p>
+<p><strong>Usage Example</strong>: “The user registration workflow validates input, creates a user account, generates a session token, and sends a verification email.”</p>
+<p><strong>Related Terms</strong>: - <strong>Capability</strong>: Function the workflow implements - <strong>Component</strong>: Participants in the workflow - <strong>Interface</strong>: Communication channels used in workflow - <strong>Error Handling</strong>: How workflow handles failures</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Describing internal function calls (workflows should show component-level interactions) - ❌ Including only happy paths (error handling is essential) - ❌ Making workflows too detailed (stay at component coordination level)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 </section>
@@ -678,39 +743,42 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="28"><span class="header-section-number">28</span> Blueprint Framework Concepts</h1>
 <section id="blueprint" class="level2" data-number="28.1">
 <h2 data-number="28.1" class="anchored" data-anchor-id="blueprint"><span class="header-section-number">28.1</span> Blueprint</h2>
-<p>A <strong>blueprint</strong> is a structured representation of a system architecture.</p>
-<p>It captures the system’s goal, capabilities, components, interfaces, data relationships, workflows, and constraints in a form that is both human-readable and machine-usable.</p>
-<p>Blueprints function as reusable knowledge objects describing system structure.</p>
+<p><strong>Definition</strong>: A structured representation of a system architecture. It captures the system’s goal, capabilities, components, interfaces, data relationships, workflows, and constraints in a form that is both human-readable and machine-usable.</p>
+<p><strong>Context</strong>: Blueprints are reusable knowledge objects describing system structure. They exist at an architectural level, separate from specific implementations.</p>
+<p><strong>Usage Example</strong>: “The task management system blueprint provides a complete structural description that can guide implementation, enable reuse, and support automated analysis.”</p>
+<p><strong>Related Terms</strong>: - <strong>System</strong>: Entity represented by blueprint - <strong>Implementation</strong>: Specific realization of a blueprint - <strong>Blueprint Kernel</strong>: Minimal required structure - <strong>Projection</strong>: Derived views of a blueprint</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing blueprints with documentation (blueprints are structured models, not prose) - ❌ Assuming blueprints are static (blueprints evolve with understanding) - ❌ Treating blueprints as implementation specifications (blueprints are architectural, not code-level)</p>
+<p><strong>Introduced In</strong>: Chapter 5</p>
 <hr>
 </section>
 <section id="blueprint-kernel" class="level2" data-number="28.2">
 <h2 data-number="28.2" class="anchored" data-anchor-id="blueprint-kernel"><span class="header-section-number">28.2</span> Blueprint Kernel</h2>
-<p>The <strong>Blueprint Kernel</strong> is the minimal structural schema required to represent a system blueprint.</p>
-<p>The kernel defines six essential elements:</p>
-<p>Goal<br>
-Capabilities<br>
-Components<br>
-Interfaces<br>
-Data<br>
-Workflows</p>
-<p>These elements provide the minimal information necessary to describe a system architecture.</p>
+<p><strong>Definition</strong>: The minimal structural schema required to represent a system blueprint. The kernel defines six essential elements: Goal, Capabilities, Components, Interfaces, Data, and Workflows.</p>
+<p><strong>Context</strong>: The kernel ensures consistency across blueprints and provides a stable foundation for extensions. All valid blueprints must include kernel elements.</p>
+<p><strong>Usage Example</strong>: “The blueprint kernel requires that every blueprint include goal, capabilities, components, interfaces, data, and workflows sections.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint</strong>: Complete structural model including kernel and extensions - <strong>Kernel Element</strong>: One of the six required sections - <strong>Extension</strong>: Additional fields beyond kernel requirements</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming kernel is optional (kernel is required for valid blueprints) - ❌ Thinking kernel is sufficient for all use cases (kernel is minimal, not exhaustive) - ❌ Modifying kernel structure (kernel is stable foundation, extensions go beyond it)</p>
+<p><strong>Introduced In</strong>: Chapter 8</p>
 <hr>
 </section>
 <section id="projection" class="level2" data-number="28.3">
 <h2 data-number="28.3" class="anchored" data-anchor-id="projection"><span class="header-section-number">28.3</span> Projection</h2>
-<p>A <strong>projection</strong> is a derived representation of a blueprint that highlights a particular aspect of the system.</p>
-<p>Examples include architectural diagrams, interface specifications, operational views, and capability descriptions.</p>
-<p>Projections are views generated from the same underlying blueprint model.</p>
+<p><strong>Definition</strong>: A derived representation of a blueprint that highlights a particular aspect of the system. Examples include architectural diagrams, interface specifications, operational views, and capability descriptions.</p>
+<p><strong>Context</strong>: Projections are views generated from the same underlying blueprint model. Different projections serve different audiences and purposes.</p>
+<p><strong>Usage Example</strong>: “The architecture view projection generates a component diagram, while the specification view projection generates API documentation.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint</strong>: Source model for projections - <strong>Architecture View</strong>: Structural projection of blueprint - <strong>Spec View</strong>: Requirements projection of blueprint - <strong>Ops View</strong>: Runtime projection of blueprint</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Treating projections as independent documents (projections must be consistent with underlying blueprint) - ❌ Assuming projections are optional (projections are essential for different stakeholders) - ❌ Confusing projections with implementations (projections are views, not code)</p>
+<p><strong>Introduced In</strong>: Chapter 7</p>
 <hr>
 </section>
 <section id="blueprint-view" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="blueprint-view"><span class="header-section-number">28.4</span> Blueprint View</h2>
-<p>A <strong>blueprint view</strong> refers to the perspective emphasized in a particular projection of the blueprint.</p>
-<p>Common blueprint views include:</p>
-<p>Product View<br>
-Technical View<br>
-Operational View</p>
-<p>Each view highlights a different aspect of the system while remaining consistent with the underlying blueprint.</p>
+<p><strong>Definition</strong>: The perspective emphasized in a particular projection of the blueprint. Common blueprint views include Product View, Technical View, and Operational View.</p>
+<p><strong>Context</strong>: Views highlight different aspects of the system while remaining consistent with the underlying blueprint.</p>
+<p><strong>Usage Example</strong>: “The product view projection focuses on user-facing capabilities, while the technical view projection focuses on component structure and interfaces.”</p>
+<p><strong>Related Terms</strong>: - <strong>Projection</strong>: Derived representation emphasizing a view - <strong>Product View</strong>: User and capability-focused perspective - <strong>Technical View</strong>: Architecture and structure-focused perspective - <strong>Operational View</strong>: Runtime and behavior-focused perspective</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Creating independent documents for each view (views are projections of same blueprint) - ❌ Allowing views to diverge (views must be consistent with blueprint and each other) - ❌ Treating views as optional (different stakeholders need different views)</p>
+<p><strong>Introduced In</strong>: Chapter 7</p>
 <hr>
 </section>
 </section>
@@ -718,33 +786,52 @@ Operational View</p>
 <h1 data-number="29"><span class="header-section-number">29</span> Architectural Process Concepts</h1>
 <section id="intent" class="level2" data-number="29.1">
 <h2 data-number="29.1" class="anchored" data-anchor-id="intent"><span class="header-section-number">29.1</span> Intent</h2>
-<p><strong>Intent</strong> represents the purpose, goals, and motivations that lead to the creation of a system.</p>
-<p>Intent describes what the system should achieve but does not define how the system is structured.</p>
+<p><strong>Definition</strong>: The purpose, goals, and motivations that lead to the creation of a system. Intent describes what the system should achieve but does not define how the system is structured.</p>
+<p><strong>Context</strong>: Intent is the starting point for system design. It exists before any architectural decisions are made.</p>
+<p><strong>Usage Example</strong>: “The intent for this system is to improve team collaboration by providing real-time task visibility, not to implement a specific technology stack.”</p>
+<p><strong>Related Terms</strong>: - <strong>Goal</strong>: Formalized statement of intent - <strong>Blueprint</strong>: Structural realization of intent - <strong>Design</strong>: Process of translating intent into blueprint</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Including implementation details in intent (intent is “what,” not “how”) - ❌ Confusing intent with requirements (intent is motivation, requirements are derived) - ❌ Treating intent as static (intent can evolve with understanding)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 <section id="design" class="level2" data-number="29.2">
 <h2 data-number="29.2" class="anchored" data-anchor-id="design"><span class="header-section-number">29.2</span> Design</h2>
-<p><strong>Design</strong> is the process through which system intent is transformed into a blueprint.</p>
-<p>During design, architects define system capabilities, components, interfaces, and workflows required to achieve the system’s goals.</p>
+<p><strong>Definition</strong>: The process through which system intent is transformed into a blueprint. During design, architects define system capabilities, components, interfaces, and workflows required to achieve the system’s goals.</p>
+<p><strong>Context</strong>: Design is the creative and analytical process of creating blueprints from intent.</p>
+<p><strong>Usage Example</strong>: “The design process started with clarifying the system’s intent, then progressed through capability definition, component structure, and workflow design.”</p>
+<p><strong>Related Terms</strong>: - <strong>Intent</strong>: Input to design process - <strong>Blueprint</strong>: Output of design process - <strong>Architect</strong>: Person performing design</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Jumping directly to implementation (design precedes implementation) - ❌ Treating design as one-time activity (design is iterative) - ❌ Confusing design with coding (design produces blueprints, coding produces implementations)</p>
+<p><strong>Introduced In</strong>: Chapter 13</p>
 <hr>
 </section>
 <section id="architecture" class="level2" data-number="29.3">
 <h2 data-number="29.3" class="anchored" data-anchor-id="architecture"><span class="header-section-number">29.3</span> Architecture</h2>
-<p><strong>Architecture</strong> refers to the structural projection of the blueprint.</p>
-<p>It describes the relationships between system components and the interfaces through which they interact.</p>
-<p>Architecture diagrams typically represent this projection.</p>
+<p><strong>Definition</strong>: The structural projection of the blueprint. It describes the relationships between system components and the interfaces through which they interact.</p>
+<p><strong>Context</strong>: Architecture is what most people think of when they discuss system design. It’s the “structure” aspect of the blueprint.</p>
+<p><strong>Usage Example</strong>: “The system architecture consists of a web frontend, API service, and database, communicating through REST and SQL interfaces.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint</strong>: Complete model including architecture and more - <strong>Component</strong>: Structural units described by architecture - <strong>Architecture View</strong>: Projection focusing on structural relationships</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming architecture is the complete blueprint (architecture is one projection) - ❌ Including behavioral details in architecture (architecture is structural, behavior is workflows) - ❌ Treating architecture as static (architecture evolves with system understanding)</p>
+<p><strong>Introduced In</strong>: Chapter 7</p>
 <hr>
 </section>
 <section id="specification-spec" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="specification-spec"><span class="header-section-number">29.4</span> Specification (Spec)</h2>
-<p>A <strong>specification</strong> describes the expected behavior and acceptance criteria of a system.</p>
-<p>Within the blueprint framework, specifications correspond to a projection focused on requirements and verification conditions.</p>
+<p><strong>Definition</strong>: A description of the expected behavior and acceptance criteria of a system. Within the blueprint framework, specifications correspond to a projection focused on requirements and verification conditions.</p>
+<p><strong>Context</strong>: Specs define “how the system should behave” and “what constitutes correct operation.”</p>
+<p><strong>Usage Example</strong>: “The API specification defines endpoints, request/response formats, error codes, and rate limits for the user service.”</p>
+<p><strong>Related Terms</strong>: - <strong>Capability</strong>: Function specified - <strong>Interface</strong>: Contract specified - <strong>Acceptance Criteria</strong>: Conditions defining correct behavior</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Including implementation details in specifications (specs define behavior, not implementation) - ❌ Treating specs as optional (specs are essential for verification) - ❌ Confusing specs with architecture (specs are behavioral, architecture is structural)</p>
+<p><strong>Introduced In</strong>: Chapter 7</p>
 <hr>
 </section>
 <section id="implementation" class="level2" data-number="29.5">
 <h2 data-number="29.5" class="anchored" data-anchor-id="implementation"><span class="header-section-number">29.5</span> Implementation</h2>
-<p><strong>Implementation</strong> is the realization of the blueprint in executable artifacts such as source code, configuration files, and infrastructure deployments.</p>
-<p>Multiple implementations may correspond to the same blueprint.</p>
+<p><strong>Definition</strong>: The realization of the blueprint in executable artifacts such as source code, configuration files, and infrastructure deployments. Multiple implementations may correspond to the same blueprint.</p>
+<p><strong>Context</strong>: Implementation is where blueprints become running systems. A single blueprint can have multiple implementations.</p>
+<p><strong>Usage Example</strong>: “The task management blueprint has two implementations: a Node.js version and a Python version, both conforming to the same architectural structure.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint</strong>: Model guiding implementation - <strong>Code</strong>: Implementation artifact - <strong>Deployment</strong>: Running implementation</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing implementation with blueprint (implementation is one realization of blueprint) - ❌ Assuming blueprint equals implementation (blueprints exist at architectural level, implementation is code) - ❌ Treating implementation as final (implementations evolve, blueprints guide evolution)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 </section>
@@ -752,26 +839,42 @@ Operational View</p>
 <h1 data-number="30"><span class="header-section-number">30</span> Knowledge System Concepts</h1>
 <section id="blueprint-library" class="level2" data-number="30.1">
 <h2 data-number="30.1" class="anchored" data-anchor-id="blueprint-library"><span class="header-section-number">30.1</span> Blueprint Library</h2>
-<p>A <strong>blueprint library</strong> is a repository containing structured blueprint objects representing reusable system architectures.</p>
-<p>Blueprint libraries enable retrieval, comparison, and composition of architectural knowledge.</p>
+<p><strong>Definition</strong>: A repository containing structured blueprint objects representing reusable system architectures. Blueprint libraries enable retrieval, comparison, and composition of architectural knowledge.</p>
+<p><strong>Context</strong>: Blueprint libraries are collections of blueprints that teams can search, study, and reuse.</p>
+<p><strong>Usage Example</strong>: “The organization’s blueprint library contains 50 blueprints covering web applications, APIs, data pipelines, and agent systems.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint</strong>: Object stored in library - <strong>Retrieval</strong>: Finding relevant blueprints - <strong>Composition</strong>: Combining blueprints from library</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Treating library as code repository (blueprint library stores architectural models, not code) - ❌ Assuming blueprints in library must be used as-is (blueprints are adaptable patterns) - ❌ Ignoring library organization (effective taxonomy and search are essential)</p>
+<p><strong>Introduced In</strong>: Chapter 11</p>
 <hr>
 </section>
 <section id="blueprint-composition" class="level2" data-number="30.2">
 <h2 data-number="30.2" class="anchored" data-anchor-id="blueprint-composition"><span class="header-section-number">30.2</span> Blueprint Composition</h2>
-<p><strong>Blueprint composition</strong> is the process of combining multiple blueprints or subsystems into a larger architectural structure.</p>
-<p>Composition requires compatible interfaces, aligned data structures, and consistent system constraints.</p>
+<p><strong>Definition</strong>: The process of combining multiple blueprints or subsystems into a larger architectural structure. Composition requires compatible interfaces, aligned data structures, and consistent system constraints.</p>
+<p><strong>Context</strong>: Composition enables building complex systems from simpler, reusable blueprints.</p>
+<p><strong>Usage Example</strong>: “The e-commerce platform blueprint was composed from user authentication, payment processing, and inventory management blueprints.”</p>
+<p><strong>Related Terms</strong>: - <strong>Interface</strong>: Connection points for composition - <strong>Composability</strong>: Quality enabling composition - <strong>Subsystem</strong>: Blueprint used as part of larger system</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming any blueprints can be composed (composition requires compatibility) - ❌ Treating composition as simple aggregation (composition requires integration logic) - ❌ Ignoring interface compatibility (composing blueprints with incompatible interfaces fails)</p>
+<p><strong>Introduced In</strong>: Chapter 12</p>
 <hr>
 </section>
 <section id="blueprint-dataset" class="level2" data-number="30.3">
 <h2 data-number="30.3" class="anchored" data-anchor-id="blueprint-dataset"><span class="header-section-number">30.3</span> Blueprint Dataset</h2>
-<p>A <strong>blueprint dataset</strong> is a large collection of structured blueprints used for architectural analysis, pattern discovery, and computational reasoning.</p>
-<p>Such datasets form the foundation of architecture intelligence systems.</p>
+<p><strong>Definition</strong>: A large collection of structured blueprints used for architectural analysis, pattern discovery, and computational reasoning. Such datasets form the foundation of architecture intelligence systems.</p>
+<p><strong>Context</strong>: Blueprint datasets are to architecture what code datasets are to AI: training and analysis data.</p>
+<p><strong>Usage Example</strong>: “The architecture intelligence system was trained on a dataset of 10,000 blueprints covering diverse system types and industries.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint Library</strong>: Organized collection for human use - <strong>Architecture Intelligence</strong>: AI systems using blueprint datasets - <strong>Pattern Discovery</strong>: Finding architectural patterns in datasets</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing datasets with libraries (datasets are for analysis, libraries are for human use) - ❌ Assuming datasets require manual labeling (structured blueprints are self-describing) - ❌ Treating dataset size as primary quality indicator (quality and diversity matter more than size)</p>
+<p><strong>Introduced In</strong>: Chapter 15</p>
 <hr>
 </section>
 <section id="architecture-intelligence" class="level2" data-number="30.4">
 <h2 data-number="30.4" class="anchored" data-anchor-id="architecture-intelligence"><span class="header-section-number">30.4</span> Architecture Intelligence</h2>
-<p><strong>Architecture intelligence</strong> refers to computational capabilities that assist in system design by analyzing blueprint datasets.</p>
-<p>These capabilities include blueprint retrieval, structural comparison, architectural composition, and automated design generation.</p>
+<p><strong>Definition</strong>: Computational capabilities that assist in system design by analyzing blueprint datasets. These capabilities include blueprint retrieval, structural comparison, architectural composition, and automated design generation.</p>
+<p><strong>Context</strong>: Architecture intelligence applies AI and computational methods to architectural problems.</p>
+<p><strong>Usage Example</strong>: “The architecture intelligence system suggested three similar blueprints for reference and identified potential integration points.”</p>
+<p><strong>Related Terms</strong>: - <strong>Blueprint Dataset</strong>: Training data for architecture intelligence - <strong>Retrieval</strong>: Finding relevant blueprints - <strong>Design Generation</strong>: Automated blueprint creation</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming architecture intelligence replaces architects (intelligence assists, doesn’t replace) - ❌ Treating intelligence as magic (intelligence requires quality data and clear objectives) - ❌ Expecting perfect results (intelligence provides suggestions, architects make decisions)</p>
+<p><strong>Introduced In</strong>: Chapter 15</p>
 <hr>
 </section>
 </section>
@@ -779,30 +882,296 @@ Operational View</p>
 <h1 data-number="31"><span class="header-section-number">31</span> Structural Concepts</h1>
 <section id="ontology" class="level2" data-number="31.1">
 <h2 data-number="31.1" class="anchored" data-anchor-id="ontology"><span class="header-section-number">31.1</span> Ontology</h2>
-<p>An <strong>ontology</strong> defines the conceptual vocabulary used to describe system structures.</p>
-<p>It specifies entities, relationships, and categories used in blueprint representations.</p>
-<p>Ontology ensures consistency across blueprint datasets.</p>
+<p><strong>Definition</strong>: A conceptual vocabulary used to describe system structures. It specifies entities, relationships, and categories used in blueprint representations.</p>
+<p><strong>Context</strong>: Ontology ensures consistency across blueprint datasets and enables semantic understanding.</p>
+<p><strong>Usage Example</strong>: “The system ontology defines concepts like component, interface, and workflow, along with their relationships and constraints.”</p>
+<p><strong>Related Terms</strong>: - <strong>Taxonomy</strong>: Classification system based on ontology - <strong>Entity</strong>: Concept defined in ontology - <strong>Relationship</strong>: Connection between entities in ontology</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing ontology with taxonomy (ontology defines concepts, taxonomy classifies instances) - ❌ Assuming ontology is implementation detail (ontology is conceptual framework) - ❌ Treating ontology as static (ontology evolves with understanding)</p>
+<p><strong>Introduced In</strong>: Chapter 14</p>
 <hr>
 </section>
 <section id="blueprint-graph" class="level2" data-number="31.2">
 <h2 data-number="31.2" class="anchored" data-anchor-id="blueprint-graph"><span class="header-section-number">31.2</span> Blueprint Graph</h2>
-<p>A <strong>blueprint graph</strong> is a structural representation of a blueprint in graph form.</p>
-<p>Nodes represent architectural entities such as components or data structures, while edges represent relationships such as dependencies or communication paths.</p>
+<p><strong>Definition</strong>: A structural representation of a blueprint in graph form. Nodes represent architectural entities such as components or data structures, while edges represent relationships such as dependencies or communication paths.</p>
+<p><strong>Context</strong>: Blueprint graphs enable graph-based analysis, visualization, and algorithms.</p>
+<p><strong>Usage Example</strong>: “The blueprint graph visualization shows component dependencies and data flow, making it easy to identify critical paths.”</p>
+<p><strong>Related Terms</strong>: - <strong>Node</strong>: Entity in graph (component, data, etc.) - <strong>Edge</strong>: Relationship in graph (dependency, communication) - <strong>Graph Algorithm</strong>: Analysis method applied to blueprint graphs</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming graphs are only for visualization (graphs enable computational analysis) - ❌ Treating graph as complete representation (graph is one representation, not the only one) - ❌ Confusing graph with blueprint (graph is projection of blueprint)</p>
+<p><strong>Introduced In</strong>: Chapter 14</p>
 <hr>
 </section>
 <section id="constraint" class="level2" data-number="31.3">
 <h2 data-number="31.3" class="anchored" data-anchor-id="constraint"><span class="header-section-number">31.3</span> Constraint</h2>
-<p>A <strong>constraint</strong> represents a limitation or requirement that influences system design.</p>
-<p>Constraints may include performance targets, operational environments, resource limitations, or security requirements.</p>
+<p><strong>Definition</strong>: A limitation or requirement that influences system design. Constraints may include performance targets, operational environments, resource limitations, or security requirements.</p>
+<p><strong>Context</strong>: Constraints define boundaries and requirements that shape architectural decisions.</p>
+<p><strong>Usage Example</strong>: “The system must respond to 95% of requests within 200ms, which constrains the choice of caching strategy and database configuration.”</p>
+<p><strong>Related Terms</strong>: - <strong>Goal</strong>: Objective constrained by limitations - <strong>Requirement</strong>: Constraint expressed as must-have condition - <strong>Trade-off</strong>: Decision balancing competing constraints</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Ignoring constraints during design (constraints must drive architecture) - ❌ Treating constraints as optional (constraints are requirements, not suggestions) - ❌ Confusing constraints with goals (constraints are limitations, goals are objectives)</p>
+<p><strong>Introduced In</strong>: Chapter 6</p>
 <hr>
 </section>
 </section>
-<section id="closing-note" class="level1" data-number="32">
-<h1 data-number="32"><span class="header-section-number">32</span> Closing Note</h1>
-<p>The terminology defined in this glossary forms the <strong>shared language</strong> of the blueprint framework.</p>
+<section id="quality-and-process-concepts" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Quality and Process Concepts</h1>
+<section id="composability" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="composability"><span class="header-section-number">32.1</span> Composability</h2>
+<p><strong>Definition</strong>: The quality of a blueprint that enables it to be combined with other blueprints without ambiguity. Composability requires clear interfaces, well-defined boundaries, and consistent data structures.</p>
+<p><strong>Context</strong>: Composability is a key quality attribute that enables blueprint reuse and system integration.</p>
+<p><strong>Usage Example</strong>: “The payment processing blueprint has high composability because it defines clear interfaces and data contracts for integration.”</p>
+<p><strong>Related Terms</strong>: - <strong>Composition</strong>: Process of combining composable blueprints - <strong>Interface</strong>: Contract enabling composition - <strong>Boundary</strong>: System edge for composition</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming all blueprints are composable (composability must be designed) - ❌ Treating composition as simple concatenation (composition requires integration) - ❌ Ignoring interface compatibility (composability depends on well-defined interfaces)</p>
+<p><strong>Introduced In</strong>: Chapter 11</p>
+<hr>
+</section>
+<section id="feasibility" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="feasibility"><span class="header-section-number">32.2</span> Feasibility</h2>
+<p><strong>Definition</strong>: The quality of a blueprint describing a system that can be implemented realistically given technical, operational, and resource constraints.</p>
+<p><strong>Context</strong>: Feasibility ensures that blueprints represent achievable systems, not theoretical constructs.</p>
+<p><strong>Usage Example</strong>: “The blueprint review confirmed feasibility by verifying that all performance requirements were achievable with proposed architecture.”</p>
+<p><strong>Related Terms</strong>: - <strong>Constraint</strong>: Requirement affecting feasibility - <strong>Implementation</strong>: Realization testing feasibility - <strong>Technical Debt</strong>: Accumulated complexity affecting feasibility</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Assuming structural correctness implies feasibility (sound architecture may be infeasible) - ❌ Treating feasibility as binary (feasibility is a spectrum with risk levels) - ❌ Ignoring operational constraints (technical feasibility isn’t enough, must consider operations)</p>
+<p><strong>Introduced In</strong>: Chapter 16</p>
+<hr>
+</section>
+<section id="blueprint-discipline" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="blueprint-discipline"><span class="header-section-number">32.3</span> Blueprint Discipline</h2>
+<p><strong>Definition</strong>: The minimal set of practices and processes required to create and maintain high-quality blueprints. Discipline includes blueprint creation, review, version control, and integration with development workflows.</p>
+<p><strong>Context</strong>: Discipline ensures that blueprints remain useful, accurate, and consistent over time.</p>
+<p><strong>Usage Example</strong>: “The team adopted blueprint discipline including mandatory reviews, version control, and integration with the CI/CD pipeline.”</p>
+<p><strong>Related Terms</strong>: - <strong>Review</strong>: Quality validation process - <strong>Version Control</strong>: Tracking blueprint evolution - <strong>Workflow</strong>: Integration with development processes</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Treating discipline as optional (discipline is essential for quality) - ❌ Assuming discipline means bureaucracy (discipline can be lightweight and effective) - ❌ Focusing only on creation (discipline includes maintenance and evolution)</p>
+<p><strong>Introduced In</strong>: Chapter 17</p>
+<hr>
+</section>
+</section>
+<section id="system-type-concepts" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> System Type Concepts</h1>
+<section id="system-type" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="system-type"><span class="header-section-number">33.1</span> System Type</h2>
+<p><strong>Definition</strong>: A classification category based on the primary architectural purpose of a system. System types provide a taxonomy for organizing and searching blueprints.</p>
+<p><strong>Context</strong>: System types enable pattern discovery, retrieval, and comparison across similar systems.</p>
+<p><strong>Usage Example</strong>: “The task management system is classified as a Web Application because its primary purpose is providing a browser-based user interface.”</p>
+<p><strong>Related Terms</strong>: - <strong>Taxonomy</strong>: Classification system for system types - <strong>Appendix B</strong>: Complete system type taxonomy - <strong>Pattern</strong>: Common architectural approach for system type</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Classifying by technology instead of purpose (system types are architectural, not technological) - ❌ Assuming every system fits single type (systems can be hybrids with multiple characteristics) - ❌ Treating classification as rigid (classification is a tool, not a straitjacket)</p>
+<p><strong>Introduced In</strong>: Appendix B</p>
+<hr>
+</section>
+<section id="complexity" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="complexity"><span class="header-section-number">33.2</span> Complexity</h2>
+<p><strong>Definition</strong>: A classification of system scale based on component count, interface complexity, workflow complexity, and team requirements. Complexity levels are toy, small, medium, and large.</p>
+<p><strong>Context</strong>: Complexity classification guides blueprint detail level and architectural expectations.</p>
+<p><strong>Usage Example</strong>: “The system is classified as medium complexity because it has 12 components, 15 interfaces, and requires a 3-person team to maintain.”</p>
+<p><strong>Related Terms</strong>: - <strong>Component</strong>: Factor contributing to complexity - <strong>Interface</strong>: Factor contributing to complexity - <strong>Workflow</strong>: Factor contributing to complexity</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Confusing complexity with difficulty (complexity is scale, difficulty is subjective) - ❌ Assuming complexity is linear (complexity can grow non-linearly with additions) - ❌ Treating complexity as static (complexity can increase or decrease with changes)</p>
+<p><strong>Introduced In</strong>: Appendix B</p>
+<hr>
+</section>
+<section id="hybrid-system" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="hybrid-system"><span class="header-section-number">33.3</span> Hybrid System</h2>
+<p><strong>Definition</strong>: A system that combines characteristics from multiple system types. Hybrid systems have a primary type based on dominant purpose but also exhibit secondary characteristics from other types.</p>
+<p><strong>Context</strong>: Most real-world systems are hybrids. Proper classification acknowledges multi-type characteristics.</p>
+<p><strong>Usage Example</strong>: “The GitHub system is primarily a Web Application but also has Platform characteristics (APIs, services) and Data Pipeline characteristics (analytics processing).”</p>
+<p><strong>Related Terms</strong>: - <strong>Primary Type</strong>: Dominant system type - <strong>Secondary Characteristics</strong>: Features from other types - <strong>Tags</strong>: Labels indicating hybrid characteristics</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Forcing systems into single type (most systems are hybrids) - ❌ Ignoring secondary characteristics (secondary characteristics matter for search and analysis) - ❌ Treating hybrid as negative (hybrid is normal and expected)</p>
+<p><strong>Introduced In</strong>: Appendix B</p>
+<hr>
+</section>
+</section>
+<section id="projection-concepts" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> Projection Concepts</h1>
+<section id="architecture-view" class="level2" data-number="34.1">
+<h2 data-number="34.1" class="anchored" data-anchor-id="architecture-view"><span class="header-section-number">34.1</span> Architecture View</h2>
+<p><strong>Definition</strong>: A projection of the blueprint that focuses on structural relationships between system components. The architecture view emphasizes components, interfaces, dependencies, and structural boundaries.</p>
+<p><strong>Context</strong>: Architecture views are used by architects and engineers to understand system structure.</p>
+<p><strong>Usage Example</strong>: “The architecture view diagram shows the web frontend, API service, and database components with their REST and SQL interfaces.”</p>
+<p><strong>Related Terms</strong>: - <strong>Architecture</strong>: Structural aspect of blueprint - <strong>Component</strong>: Primary element in architecture view - <strong>Interface</strong>: Connection shown in architecture view</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Including behavioral details in architecture view (architecture view is structural) - ❌ Treating architecture view as complete blueprint (architecture view is one projection) - ❌ Assuming architecture view equals system design (design includes behavior, constraints, etc.)</p>
+<p><strong>Introduced In</strong>: Appendix F</p>
+<hr>
+</section>
+<section id="specification-view" class="level2" data-number="34.2">
+<h2 data-number="34.2" class="anchored" data-anchor-id="specification-view"><span class="header-section-number">34.2</span> Specification View</h2>
+<p><strong>Definition</strong>: A projection of the blueprint that focuses on system behavior and expected outcomes. The specification view emphasizes capabilities, interface contracts, input/output behavior, and acceptance conditions.</p>
+<p><strong>Context</strong>: Specification views are used by QA engineers, product managers, and integrators to understand expected behavior.</p>
+<p><strong>Usage Example</strong>: “The specification view defines the user login capability including input validation, success responses, and error codes.”</p>
+<p><strong>Related Terms</strong>: - <strong>Specification</strong>: Behavioral aspect of blueprint - <strong>Capability</strong>: Function specified - <strong>Acceptance Criteria</strong>: Success conditions defined</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Including implementation details in specification view (specification is behavioral, not implementation) - ❌ Treating specification view as test cases (specification defines behavior, tests verify it) - ❌ Assuming specification view is only for QA (specifications guide implementation and integration)</p>
+<p><strong>Introduced In</strong>: Appendix F</p>
+<hr>
+</section>
+<section id="operational-view" class="level2" data-number="34.3">
+<h2 data-number="34.3" class="anchored" data-anchor-id="operational-view"><span class="header-section-number">34.3</span> Operational View</h2>
+<p><strong>Definition</strong>: A projection of the blueprint that focuses on runtime behavior and operational processes. The operational view emphasizes workflows, execution sequences, monitoring points, and operational procedures.</p>
+<p><strong>Context</strong>: Operational views are used by DevOps engineers, SREs, and operators to understand how the system runs.</p>
+<p><strong>Usage Example</strong>: “The operational view shows the request handling workflow including authentication, processing, and response generation steps.”</p>
+<p><strong>Related Terms</strong>: - <strong>Workflow</strong>: Primary element in operational view - <strong>Monitoring</strong>: Operational consideration in operational view - <strong>Procedure</strong>: Operational process described</p>
+<p><strong>Common Misinterpretations</strong>: - ❌ Including architectural details in operational view (operational view is behavioral, not structural) - ❌ Treating operational view as runbook (operational view describes behavior, runbooks provide procedures) - ❌ Assuming operational view is only for operators (operational view guides design for operations)</p>
+<p><strong>Introduced In</strong>: Appendix F</p>
+<hr>
+</section>
+</section>
+<section id="closing-notes" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> Closing Notes</h1>
+<section id="terminology-stability" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="terminology-stability"><span class="header-section-number">35.1</span> Terminology Stability</h2>
+<p>The terminology defined in this glossary forms the <strong>shared language</strong> of the blueprint framework. These definitions are stable across volumes and will be used consistently in future publications.</p>
+</section>
+<section id="version-information" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="version-information"><span class="header-section-number">35.2</span> Version Information</h2>
+<p>This is <strong>Glossary v0.1</strong>. Future versions may: - Add new terms as concepts are introduced - Refine definitions for clarity - Add more usage examples and relationships - Track term evolution and deprecation</p>
+</section>
+<section id="usage-guidelines" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="usage-guidelines"><span class="header-section-number">35.3</span> Usage Guidelines</h2>
+<p>When using this terminology:</p>
+<ol type="1">
+<li><strong>Use Definitions Consistently</strong>: Refer to this glossary for precise meaning</li>
+<li><strong>Avoid Ambiguity</strong>: Clarify which definition you’re using if multiple exist</li>
+<li><strong>Document Deviations</strong>: If you must use terms differently, document the deviation</li>
+<li><strong>Propose Improvements</strong>: Suggest additions or refinements to maintain glossary quality</li>
+</ol>
+</section>
+<section id="cross-chapter-index" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="cross-chapter-index"><span class="header-section-number">35.4</span> Cross-Chapter Index</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Introduced In</th>
+<th>Key Chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>System</td>
+<td>Chapter 4</td>
+<td>4, 6, 8</td>
+</tr>
+<tr class="even">
+<td>Goal</td>
+<td>Chapter 6</td>
+<td>6, 8, 16</td>
+</tr>
+<tr class="odd">
+<td>Capability</td>
+<td>Chapter 6</td>
+<td>6, 8</td>
+</tr>
+<tr class="even">
+<td>Component</td>
+<td>Chapter 6</td>
+<td>6, 8, 9</td>
+</tr>
+<tr class="odd">
+<td>Interface</td>
+<td>Chapter 6</td>
+<td>6, 8, 12</td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td>Chapter 6</td>
+<td>6, 8</td>
+</tr>
+<tr class="odd">
+<td>Workflow</td>
+<td>Chapter 6</td>
+<td>6, 8</td>
+</tr>
+<tr class="even">
+<td>Blueprint</td>
+<td>Chapter 5</td>
+<td>5, 6, 8, 11, 14</td>
+</tr>
+<tr class="odd">
+<td>Blueprint Kernel</td>
+<td>Chapter 8</td>
+<td>8, 12, 14</td>
+</tr>
+<tr class="even">
+<td>Projection</td>
+<td>Chapter 7</td>
+<td>7, 14, 15</td>
+</tr>
+<tr class="odd">
+<td>Intent</td>
+<td>Chapter 6</td>
+<td>6, 13</td>
+</tr>
+<tr class="even">
+<td>Design</td>
+<td>Chapter 13</td>
+<td>13, 17</td>
+</tr>
+<tr class="odd">
+<td>Architecture</td>
+<td>Chapter 7</td>
+<td>7, 9</td>
+</tr>
+<tr class="even">
+<td>Specification</td>
+<td>Chapter 7</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Implementation</td>
+<td>Chapter 6</td>
+<td>6, 14</td>
+</tr>
+<tr class="even">
+<td>Blueprint Library</td>
+<td>Chapter 11</td>
+<td>11, 12, 15</td>
+</tr>
+<tr class="odd">
+<td>Blueprint Composition</td>
+<td>Chapter 12</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>Blueprint Dataset</td>
+<td>Chapter 15</td>
+<td>14, 15</td>
+</tr>
+<tr class="odd">
+<td>Architecture Intelligence</td>
+<td>Chapter 15</td>
+<td>14, 15</td>
+</tr>
+<tr class="even">
+<td>Ontology</td>
+<td>Chapter 14</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Blueprint Graph</td>
+<td>Chapter 14</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>Constraint</td>
+<td>Chapter 6</td>
+<td>6, 16</td>
+</tr>
+<tr class="odd">
+<td>Composability</td>
+<td>Chapter 11</td>
+<td>11, 12</td>
+</tr>
+<tr class="even">
+<td>Feasibility</td>
+<td>Chapter 16</td>
+<td>16, 17</td>
+</tr>
+<tr class="odd">
+<td>Blueprint Discipline</td>
+<td>Chapter 17</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
 <p>Maintaining consistent usage of these terms across engineering discussions, blueprint repositories, and future volumes of this series is essential for building a coherent architecture knowledge system.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -557,19 +592,55 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#principles-of-the-taxonomy" id="toc-principles-of-the-taxonomy" class="nav-link active" data-scroll-target="#principles-of-the-taxonomy"><span class="header-section-number">23.1</span> Principles of the Taxonomy</a></li>
+  <li><a href="#taxonomy-design-principles" id="toc-taxonomy-design-principles" class="nav-link active" data-scroll-target="#taxonomy-design-principles"><span class="header-section-number">23.1</span> Taxonomy Design Principles</a>
+  <ul class="collapse">
+  <li><a href="#architectural-purpose-over-implementation" id="toc-architectural-purpose-over-implementation" class="nav-link" data-scroll-target="#architectural-purpose-over-implementation"><span class="header-section-number">23.1.1</span> 1. Architectural Purpose Over Implementation</a></li>
+  <li><a href="#architectural-behavior-focus" id="toc-architectural-behavior-focus" class="nav-link" data-scroll-target="#architectural-behavior-focus"><span class="header-section-number">23.1.2</span> 2. Architectural Behavior Focus</a></li>
+  <li><a href="#stability-across-technology-changes" id="toc-stability-across-technology-changes" class="nav-link" data-scroll-target="#stability-across-technology-changes"><span class="header-section-number">23.1.3</span> 3. Stability Across Technology Changes</a></li>
+  <li><a href="#practical-classification-clarity" id="toc-practical-classification-clarity" class="nav-link" data-scroll-target="#practical-classification-clarity"><span class="header-section-number">23.1.4</span> 4. Practical Classification Clarity</a></li>
+  </ul></li>
   <li><a href="#core-system-types" id="toc-core-system-types" class="nav-link" data-scroll-target="#core-system-types"><span class="header-section-number">23.2</span> Core System Types</a>
   <ul class="collapse">
-  <li><a href="#cli-tools" id="toc-cli-tools" class="nav-link" data-scroll-target="#cli-tools"><span class="header-section-number">23.2.1</span> CLI Tools</a></li>
-  <li><a href="#web-applications" id="toc-web-applications" class="nav-link" data-scroll-target="#web-applications"><span class="header-section-number">23.2.2</span> Web Applications</a></li>
-  <li><a href="#apis-and-services" id="toc-apis-and-services" class="nav-link" data-scroll-target="#apis-and-services"><span class="header-section-number">23.2.3</span> APIs and Services</a></li>
-  <li><a href="#workflow-engines" id="toc-workflow-engines" class="nav-link" data-scroll-target="#workflow-engines"><span class="header-section-number">23.2.4</span> Workflow Engines</a></li>
-  <li><a href="#data-pipelines" id="toc-data-pipelines" class="nav-link" data-scroll-target="#data-pipelines"><span class="header-section-number">23.2.5</span> Data Pipelines</a></li>
-  <li><a href="#agent-systems" id="toc-agent-systems" class="nav-link" data-scroll-target="#agent-systems"><span class="header-section-number">23.2.6</span> Agent Systems</a></li>
-  <li><a href="#platforms" id="toc-platforms" class="nav-link" data-scroll-target="#platforms"><span class="header-section-number">23.2.7</span> Platforms</a></li>
+  <li><a href="#cli-tools" id="toc-cli-tools" class="nav-link" data-scroll-target="#cli-tools"><span class="header-section-number">23.2.1</span> 1. CLI Tools</a></li>
+  <li><a href="#web-applications" id="toc-web-applications" class="nav-link" data-scroll-target="#web-applications"><span class="header-section-number">23.2.2</span> 2. Web Applications</a></li>
+  <li><a href="#apis-and-services" id="toc-apis-and-services" class="nav-link" data-scroll-target="#apis-and-services"><span class="header-section-number">23.2.3</span> 3. APIs and Services</a></li>
+  <li><a href="#workflow-engines" id="toc-workflow-engines" class="nav-link" data-scroll-target="#workflow-engines"><span class="header-section-number">23.2.4</span> 4. Workflow Engines</a></li>
+  <li><a href="#data-pipelines" id="toc-data-pipelines" class="nav-link" data-scroll-target="#data-pipelines"><span class="header-section-number">23.2.5</span> 5. Data Pipelines</a></li>
+  <li><a href="#agent-systems" id="toc-agent-systems" class="nav-link" data-scroll-target="#agent-systems"><span class="header-section-number">23.2.6</span> 6. Agent Systems</a></li>
+  <li><a href="#platforms" id="toc-platforms" class="nav-link" data-scroll-target="#platforms"><span class="header-section-number">23.2.7</span> 7. Platforms</a></li>
   </ul></li>
-  <li><a href="#hybrid-systems" id="toc-hybrid-systems" class="nav-link" data-scroll-target="#hybrid-systems"><span class="header-section-number">23.3</span> Hybrid Systems</a></li>
-  <li><a href="#role-in-blueprint-repositories" id="toc-role-in-blueprint-repositories" class="nav-link" data-scroll-target="#role-in-blueprint-repositories"><span class="header-section-number">23.4</span> Role in Blueprint Repositories</a></li>
+  <li><a href="#classification-decision-framework" id="toc-classification-decision-framework" class="nav-link" data-scroll-target="#classification-decision-framework"><span class="header-section-number">23.3</span> Classification Decision Framework</a>
+  <ul class="collapse">
+  <li><a href="#step-1-identify-primary-purpose" id="toc-step-1-identify-primary-purpose" class="nav-link" data-scroll-target="#step-1-identify-primary-purpose"><span class="header-section-number">23.3.1</span> Step 1: Identify Primary Purpose</a></li>
+  <li><a href="#step-2-apply-decision-trees" id="toc-step-2-apply-decision-trees" class="nav-link" data-scroll-target="#step-2-apply-decision-trees"><span class="header-section-number">23.3.2</span> Step 2: Apply Decision Trees</a></li>
+  <li><a href="#step-3-check-key-characteristics" id="toc-step-3-check-key-characteristics" class="nav-link" data-scroll-target="#step-3-check-key-characteristics"><span class="header-section-number">23.3.3</span> Step 3: Check Key Characteristics</a></li>
+  <li><a href="#step-4-handle-ambiguity" id="toc-step-4-handle-ambiguity" class="nav-link" data-scroll-target="#step-4-handle-ambiguity"><span class="header-section-number">23.3.4</span> Step 4: Handle Ambiguity</a></li>
+  <li><a href="#step-5-validate-with-examples" id="toc-step-5-validate-with-examples" class="nav-link" data-scroll-target="#step-5-validate-with-examples"><span class="header-section-number">23.3.5</span> Step 5: Validate with Examples</a></li>
+  </ul></li>
+  <li><a href="#hybrid-systems" id="toc-hybrid-systems" class="nav-link" data-scroll-target="#hybrid-systems"><span class="header-section-number">23.4</span> Hybrid Systems</a>
+  <ul class="collapse">
+  <li><a href="#common-hybrid-patterns" id="toc-common-hybrid-patterns" class="nav-link" data-scroll-target="#common-hybrid-patterns"><span class="header-section-number">23.4.1</span> Common Hybrid Patterns</a></li>
+  <li><a href="#hybrid-system-documentation" id="toc-hybrid-system-documentation" class="nav-link" data-scroll-target="#hybrid-system-documentation"><span class="header-section-number">23.4.2</span> Hybrid System Documentation</a></li>
+  </ul></li>
+  <li><a href="#complexity-classification" id="toc-complexity-classification" class="nav-link" data-scroll-target="#complexity-classification"><span class="header-section-number">23.5</span> Complexity Classification</a>
+  <ul class="collapse">
+  <li><a href="#complexity-definitions" id="toc-complexity-definitions" class="nav-link" data-scroll-target="#complexity-definitions"><span class="header-section-number">23.5.1</span> Complexity Definitions</a></li>
+  <li><a href="#complexity-indicators" id="toc-complexity-indicators" class="nav-link" data-scroll-target="#complexity-indicators"><span class="header-section-number">23.5.2</span> Complexity Indicators</a></li>
+  <li><a href="#complexity-adjustment" id="toc-complexity-adjustment" class="nav-link" data-scroll-target="#complexity-adjustment"><span class="header-section-number">23.5.3</span> Complexity Adjustment</a></li>
+  </ul></li>
+  <li><a href="#taxonomy-usage-guidelines" id="toc-taxonomy-usage-guidelines" class="nav-link" data-scroll-target="#taxonomy-usage-guidelines"><span class="header-section-number">23.6</span> Taxonomy Usage Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#for-blueprint-authors" id="toc-for-blueprint-authors" class="nav-link" data-scroll-target="#for-blueprint-authors"><span class="header-section-number">23.6.1</span> For Blueprint Authors</a></li>
+  <li><a href="#for-blueprint-consumers" id="toc-for-blueprint-consumers" class="nav-link" data-scroll-target="#for-blueprint-consumers"><span class="header-section-number">23.6.2</span> For Blueprint Consumers</a></li>
+  <li><a href="#for-blueprint-curators" id="toc-for-blueprint-curators" class="nav-link" data-scroll-target="#for-blueprint-curators"><span class="header-section-number">23.6.3</span> For Blueprint Curators</a></li>
+  </ul></li>
+  <li><a href="#cross-references-to-examples" id="toc-cross-references-to-examples" class="nav-link" data-scroll-target="#cross-references-to-examples"><span class="header-section-number">23.7</span> Cross-References to Examples</a></li>
+  <li><a href="#taxonomy-evolution-roadmap" id="toc-taxonomy-evolution-roadmap" class="nav-link" data-scroll-target="#taxonomy-evolution-roadmap"><span class="header-section-number">23.8</span> Taxonomy Evolution Roadmap</a>
+  <ul class="collapse">
+  <li><a href="#planned-revisions" id="toc-planned-revisions" class="nav-link" data-scroll-target="#planned-revisions"><span class="header-section-number">23.8.1</span> Planned Revisions</a></li>
+  <li><a href="#contribution-guidelines" id="toc-contribution-guidelines" class="nav-link" data-scroll-target="#contribution-guidelines"><span class="header-section-number">23.8.2</span> Contribution Guidelines</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">23.9</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -598,87 +669,795 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Architectural knowledge becomes significantly more useful when systems can be classified according to recognizable categories.</p>
 <p>Without classification, blueprint repositories quickly become difficult to navigate. Engineers searching for architectural examples must manually inspect large numbers of unrelated systems, reducing the efficiency of blueprint retrieval and reuse.</p>
-<p>This appendix introduces <strong>System Type Taxonomy v0.1</strong>, a preliminary classification of common software system categories. The taxonomy provides a consistent way to label blueprints according to the primary type of system they represent.</p>
-<p>The purpose of this taxonomy is not to produce an exhaustive list of all possible system types. Instead, it establishes a practical set of categories that capture the majority of architectures encountered in modern software engineering.</p>
-<p>Future revisions of this taxonomy may expand or refine these categories as blueprint repositories grow.</p>
+<p>This appendix presents <strong>System Type Taxonomy v0.1</strong>, a comprehensive classification system for common software system categories. The taxonomy provides a consistent way to label blueprints according to the primary type of system they represent.</p>
+<p>This appendix includes: - The complete taxonomy with 7 core system types - Detailed characteristics and patterns for each type - Typical complexity ranges and common technologies - Classification decision guidelines - Hybrid system handling strategies - Examples and cross-references to Appendix D</p>
 <hr>
-<section id="principles-of-the-taxonomy" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="principles-of-the-taxonomy"><span class="header-section-number">23.1</span> Principles of the Taxonomy</h2>
-<p>The classification system follows several guiding principles.</p>
-<p>First, system types are defined according to their <strong>primary architectural purpose</strong>, not the technologies used to implement them. The same technology stack may be used to build multiple types of systems.</p>
-<p>Second, the taxonomy emphasizes <strong>architectural behavior</strong> rather than implementation details. System types are distinguished by how they process inputs, coordinate components, and manage data flows.</p>
-<p>Third, the taxonomy aims to remain <strong>stable across technological changes</strong>. New programming languages and infrastructure tools appear frequently, but the fundamental categories of systems evolve more slowly.</p>
+<section id="taxonomy-design-principles" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="taxonomy-design-principles"><span class="header-section-number">23.1</span> Taxonomy Design Principles</h2>
+<p>The classification system follows several guiding principles that ensure stability and usefulness across technological changes.</p>
+<section id="architectural-purpose-over-implementation" class="level3" data-number="23.1.1">
+<h3 data-number="23.1.1" class="anchored" data-anchor-id="architectural-purpose-over-implementation"><span class="header-section-number">23.1.1</span> 1. Architectural Purpose Over Implementation</h3>
+<p>System types are defined according to their <strong>primary architectural purpose</strong>, not the technologies used to implement them.</p>
+<p><strong>Example</strong>: Both a Python Flask application and a Node.js Express application can be classified as “Web Applications” if they serve similar architectural purposes. The technology stack is implementation detail, not type-defining characteristic.</p>
+</section>
+<section id="architectural-behavior-focus" class="level3" data-number="23.1.2">
+<h3 data-number="23.1.2" class="anchored" data-anchor-id="architectural-behavior-focus"><span class="header-section-number">23.1.2</span> 2. Architectural Behavior Focus</h3>
+<p>The taxonomy emphasizes <strong>architectural behavior</strong>—how systems process inputs, coordinate components, and manage data flows.</p>
+<p><strong>Example</strong>: Workflow Engines and Data Pipelines may both process sequences of operations, but they differ in architectural behavior—Workflow Engines coordinate and control, while Data Pipelines transform and transport.</p>
+</section>
+<section id="stability-across-technology-changes" class="level3" data-number="23.1.3">
+<h3 data-number="23.1.3" class="anchored" data-anchor-id="stability-across-technology-changes"><span class="header-section-number">23.1.3</span> 3. Stability Across Technology Changes</h3>
+<p>The taxonomy aims to remain <strong>stable across technological changes</strong>. New programming languages and infrastructure tools appear frequently, but fundamental architectural categories evolve more slowly.</p>
+<p><strong>Example</strong>: The concept of “API” has remained stable despite shifts from REST to GraphQL to gRPC. Systems exposing programmable interfaces remain “APIs and Services” regardless of protocol evolution.</p>
+</section>
+<section id="practical-classification-clarity" class="level3" data-number="23.1.4">
+<h3 data-number="23.1.4" class="anchored" data-anchor-id="practical-classification-clarity"><span class="header-section-number">23.1.4</span> 4. Practical Classification Clarity</h3>
+<p>The taxonomy balances comprehensiveness with practical clarity. Categories should be distinct enough to enable confident classification without excessive ambiguity.</p>
+<p><strong>Example</strong>: Rather than creating separate categories for “Microservices” and “Monoliths,” both are classified based on their architectural purpose (e.g., Web Application, API System). Deployment patterns are secondary characteristics.</p>
 <hr>
+</section>
 </section>
 <section id="core-system-types" class="level2" data-number="23.2">
 <h2 data-number="23.2" class="anchored" data-anchor-id="core-system-types"><span class="header-section-number">23.2</span> Core System Types</h2>
-<p>The following system types form the initial classification set for Blueprint Taxonomy v0.1.</p>
-<section id="cli-tools" class="level3" data-number="23.2.1">
-<h3 data-number="23.2.1" class="anchored" data-anchor-id="cli-tools"><span class="header-section-number">23.2.1</span> CLI Tools</h3>
-<p>Command-line tools are systems designed to be executed through textual command interfaces.</p>
-<p>Their architecture typically includes command parsing, task execution modules, and input/output processing. CLI systems are commonly used for automation, system administration, and developer tooling.</p>
-<p>Despite their relative simplicity, CLI tools often exhibit well-defined workflows and modular structures that benefit from blueprint representation.</p>
+<p>The following system types form the initial classification set for Blueprint Taxonomy v0.1. Each type includes:</p>
+<ul>
+<li><strong>Definition</strong>: Core architectural purpose</li>
+<li><strong>Typical Components</strong>: Common structural elements</li>
+<li><strong>Key Characteristics</strong>: Distinguishing features</li>
+<li><strong>Complexity Range</strong>: Typical size/scale</li>
+<li><strong>Common Patterns</strong>: Recurring architectural approaches</li>
+<li><strong>Example Technologies</strong>: Representative implementations</li>
+</ul>
 <hr>
+<section id="cli-tools" class="level3" data-number="23.2.1">
+<h3 data-number="23.2.1" class="anchored" data-anchor-id="cli-tools"><span class="header-section-number">23.2.1</span> 1. CLI Tools</h3>
+<section id="definition" class="level4" data-number="23.2.1.1">
+<h4 data-number="23.2.1.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">23.2.1.1</span> Definition</h4>
+<p>Command-line tools are systems designed to be executed through textual command interfaces. They typically process command-line arguments, perform operations, and output results to stdout or files.</p>
+</section>
+<section id="typical-components" class="level4" data-number="23.2.1.2">
+<h4 data-number="23.2.1.2" class="anchored" data-anchor-id="typical-components"><span class="header-section-number">23.2.1.2</span> Typical Components</h4>
+<ul>
+<li><strong>Command Parser</strong>: Interprets command-line arguments and options</li>
+<li><strong>Task Executor</strong>: Performs the primary operations</li>
+<li><strong>Input/Output Handler</strong>: Manages stdin, stdout, stderr, and file I/O</li>
+<li><strong>Configuration Manager</strong>: Loads and manages configuration files</li>
+<li><strong>Error Handler</strong>: Manages error conditions and exit codes</li>
+</ul>
+</section>
+<section id="key-characteristics" class="level4" data-number="23.2.1.3">
+<h4 data-number="23.2.1.3" class="anchored" data-anchor-id="key-characteristics"><span class="header-section-number">23.2.1.3</span> Key Characteristics</h4>
+<ul>
+<li>Single execution context (no long-running processes)</li>
+<li>Text-based input and output</li>
+<li>Exit code-based success/failure signaling</li>
+<li>Often focused on single-purpose operations</li>
+<li>Minimal runtime state</li>
+<li>Composable via pipes and shell scripting</li>
+</ul>
+</section>
+<section id="complexity-range" class="level4" data-number="23.2.1.4">
+<h4 data-number="23.2.1.4" class="anchored" data-anchor-id="complexity-range"><span class="header-section-number">23.2.1.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Simple single-command utilities (e.g., <code>hello</code>, <code>echo</code>)</li>
+<li><strong>small</strong>: Multi-command tools with basic configuration (e.g., <code>git</code>, <code>npm</code>)</li>
+<li><strong>medium</strong>: Complex tools with plugins and extensibility (e.g., <code>kubectl</code>, <code>docker</code>)</li>
+<li><strong>large</strong>: Full-featured development environments (rare for CLI)</li>
+</ul>
+</section>
+<section id="common-patterns" class="level4" data-number="23.2.1.5">
+<h4 data-number="23.2.1.5" class="anchored" data-anchor-id="common-patterns"><span class="header-section-number">23.2.1.5</span> Common Patterns</h4>
+<ul>
+<li><strong>Command Pattern</strong>: Each command is a separate handler</li>
+<li><strong>Flag-Based Configuration</strong>: Options and flags control behavior</li>
+<li><strong>Pipeline Integration</strong>: Designed for use in shell pipelines</li>
+<li><strong>Plugin Architecture</strong>: Extensible via plugins (e.g., VSCode CLI)</li>
+</ul>
+</section>
+<section id="example-technologies" class="level4" data-number="23.2.1.6">
+<h4 data-number="23.2.1.6" class="anchored" data-anchor-id="example-technologies"><span class="header-section-number">23.2.1.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Rust</strong>: <code>clap</code>, <code>structopt</code> for argument parsing</li>
+<li><strong>Go</strong>: <code>cobra</code>, <code>urfave/cli</code> for CLI frameworks</li>
+<li><strong>Python</strong>: <code>argparse</code>, <code>click</code>, <code>typer</code></li>
+<li><strong>Node.js</strong>: <code>commander</code>, <code>yargs</code></li>
+</ul>
+</section>
+<section id="classification-decision-tree" class="level4" data-number="23.2.1.7">
+<h4 data-number="23.2.1.7" class="anchored" data-anchor-id="classification-decision-tree"><span class="header-section-number">23.2.1.7</span> Classification Decision Tree</h4>
+<pre><code>Is the system primarily executed via command line?
+├─ Yes → Is it a long-running daemon/service?
+│   ├─ Yes → May be "APIs and Services" or "Platform"
+│   └─ No → CLI Tool ✓
+└─ No → Consider other types</code></pre>
+<hr>
+</section>
 </section>
 <section id="web-applications" class="level3" data-number="23.2.2">
-<h3 data-number="23.2.2" class="anchored" data-anchor-id="web-applications"><span class="header-section-number">23.2.2</span> Web Applications</h3>
-<p>Web applications provide user-facing functionality through web interfaces.</p>
-<p>Their architecture typically includes frontend components, backend application services, and persistent storage systems. Communication between components is often handled through HTTP-based APIs.</p>
-<p>Web applications frequently combine multiple architectural patterns, including layered architectures and service-oriented designs.</p>
+<h3 data-number="23.2.2" class="anchored" data-anchor-id="web-applications"><span class="header-section-number">23.2.2</span> 2. Web Applications</h3>
+<section id="definition-1" class="level4" data-number="23.2.2.1">
+<h4 data-number="23.2.2.1" class="anchored" data-anchor-id="definition-1"><span class="header-section-number">23.2.2.1</span> Definition</h4>
+<p>Web applications provide user-facing functionality through web interfaces. They typically combine frontend components, backend application services, and persistent storage systems.</p>
+</section>
+<section id="typical-components-1" class="level4" data-number="23.2.2.2">
+<h4 data-number="23.2.2.2" class="anchored" data-anchor-id="typical-components-1"><span class="header-section-number">23.2.2.2</span> Typical Components</h4>
+<ul>
+<li><strong>Frontend Application</strong>: Browser-based user interface</li>
+<li><strong>API Layer</strong>: HTTP-based API for client-server communication</li>
+<li><strong>Application Services</strong>: Backend business logic</li>
+<li><strong>Authentication/Authorization</strong>: User identity and access control</li>
+<li><strong>Database</strong>: Persistent storage</li>
+<li><strong>Static Asset Server</strong>: Serves CSS, JavaScript, images</li>
+<li><strong>CDN</strong>: Content delivery for performance</li>
+</ul>
+</section>
+<section id="key-characteristics-1" class="level4" data-number="23.2.2.3">
+<h4 data-number="23.2.2.3" class="anchored" data-anchor-id="key-characteristics-1"><span class="header-section-number">23.2.2.3</span> Key Characteristics</h4>
+<ul>
+<li>HTTP-based client-server communication</li>
+<li>Browser-based user interface</li>
+<li>Session management and state persistence</li>
+<li>Multi-user concurrent access</li>
+<li>Responsive/adaptive UI design</li>
+<li>SEO considerations for public-facing apps</li>
+</ul>
+</section>
+<section id="complexity-range-1" class="level4" data-number="23.2.2.4">
+<h4 data-number="23.2.2.4" class="anchored" data-anchor-id="complexity-range-1"><span class="header-section-number">23.2.2.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Single-page static websites</li>
+<li><strong>small</strong>: Simple CRUD applications (e.g., blog, portfolio)</li>
+<li><strong>medium</strong>: Multi-user applications with collaboration features (e.g., project management)</li>
+<li><strong>large</strong>: Enterprise applications with complex workflows (e.g., ERP, CRM)</li>
+</ul>
+</section>
+<section id="common-patterns-1" class="level4" data-number="23.2.2.5">
+<h4 data-number="23.2.2.5" class="anchored" data-anchor-id="common-patterns-1"><span class="header-section-number">23.2.2.5</span> Common Patterns</h4>
+<ul>
+<li><strong>Layered Architecture</strong>: Frontend → API → Service → Database</li>
+<li><strong>Single Page Application (SPA)</strong>: React/Vue/Angular with REST/GraphQL API</li>
+<li><strong>Server-Side Rendering (SSR)</strong>: Next.js, Nuxt.js for SEO and performance</li>
+<li><strong>Microfrontend</strong>: Multiple teams developing independent frontend modules</li>
+<li><strong>CQRS</strong>: Separate read and write models for complex domains</li>
+</ul>
+</section>
+<section id="example-technologies-1" class="level4" data-number="23.2.2.6">
+<h4 data-number="23.2.2.6" class="anchored" data-anchor-id="example-technologies-1"><span class="header-section-number">23.2.2.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Frontend</strong>: React, Vue, Angular, Svelte</li>
+<li><strong>Backend</strong>: Node.js (Express), Python (Django/FastAPI), Ruby (Rails), Java (Spring Boot)</li>
+<li><strong>API</strong>: REST, GraphQL, gRPC-Web</li>
+<li><strong>Database</strong>: PostgreSQL, MySQL, MongoDB, PostgreSQL</li>
+</ul>
+</section>
+<section id="classification-decision-tree-1" class="level4" data-number="23.2.2.7">
+<h4 data-number="23.2.2.7" class="anchored" data-anchor-id="classification-decision-tree-1"><span class="header-section-number">23.2.2.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system provide a browser-based user interface?
+├─ Yes → Web Application ✓
+└─ No → Consider other types</code></pre>
 <hr>
+</section>
 </section>
 <section id="apis-and-services" class="level3" data-number="23.2.3">
-<h3 data-number="23.2.3" class="anchored" data-anchor-id="apis-and-services"><span class="header-section-number">23.2.3</span> APIs and Services</h3>
-<p>API systems expose functionality through programmable interfaces that allow other systems to interact with them.</p>
-<p>Such systems emphasize clearly defined interface contracts, request processing logic, and service boundaries. They often operate within distributed environments and communicate through protocols such as HTTP, gRPC, or messaging frameworks.</p>
-<p>Service-oriented architectures and microservice systems commonly fall within this category.</p>
+<h3 data-number="23.2.3" class="anchored" data-anchor-id="apis-and-services"><span class="header-section-number">23.2.3</span> 3. APIs and Services</h3>
+<section id="definition-2" class="level4" data-number="23.2.3.1">
+<h4 data-number="23.2.3.1" class="anchored" data-anchor-id="definition-2"><span class="header-section-number">23.2.3.1</span> Definition</h4>
+<p>API systems expose functionality through programmable interfaces that allow other systems to interact with them. They emphasize clearly defined interface contracts and service boundaries.</p>
+</section>
+<section id="typical-components-2" class="level4" data-number="23.2.3.2">
+<h4 data-number="23.2.3.2" class="anchored" data-anchor-id="typical-components-2"><span class="header-section-number">23.2.3.2</span> Typical Components</h4>
+<ul>
+<li><strong>API Gateway</strong>: Request routing, authentication, rate limiting</li>
+<li><strong>Service Endpoints</strong>: Business logic exposed via API</li>
+<li><strong>Authentication Service</strong>: Token issuance and validation</li>
+<li><strong>Rate Limiting Engine</strong>: Protects against abuse</li>
+<li><strong>Documentation Generator</strong>: API specification and interactive docs</li>
+<li><strong>Monitoring/Logging</strong>: Request tracking and performance metrics</li>
+</ul>
+</section>
+<section id="key-characteristics-2" class="level4" data-number="23.2.3.3">
+<h4 data-number="23.2.3.3" class="anchored" data-anchor-id="key-characteristics-2"><span class="header-section-number">23.2.3.3</span> Key Characteristics</h4>
+<ul>
+<li>Programmatic interface (not UI-focused)</li>
+<li>Well-defined API contracts (OpenAPI, gRPC, GraphQL schemas)</li>
+<li>Service-oriented boundaries</li>
+<li>Often stateless or limited state</li>
+<li>Designed for integration by other systems</li>
+<li>Emphasis on interface stability and versioning</li>
+</ul>
+</section>
+<section id="complexity-range-2" class="level4" data-number="23.2.3.4">
+<h4 data-number="23.2.3.4" class="anchored" data-anchor-id="complexity-range-2"><span class="header-section-number">23.2.3.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Simple REST API with 1-2 endpoints</li>
+<li><strong>small</strong>: REST API with authentication and basic CRUD operations</li>
+<li><strong>medium</strong>: Comprehensive API with multiple services, caching, rate limiting</li>
+<li><strong>large</strong>: Complex service ecosystem with microservices, API mesh, multiple protocols</li>
+</ul>
+</section>
+<section id="common-patterns-2" class="level4" data-number="23.2.3.5">
+<h4 data-number="23.2.3.5" class="anchored" data-anchor-id="common-patterns-2"><span class="header-section-number">23.2.3.5</span> Common Patterns</h4>
+<ul>
+<li><strong>REST API</strong>: Resource-based HTTP endpoints</li>
+<li><strong>GraphQL</strong>: Query language with flexible data fetching</li>
+<li><strong>gRPC</strong>: High-performance RPC with protocol buffers</li>
+<li><strong>Event-Driven API</strong>: Asynchronous communication via events</li>
+<li><strong>API Versioning</strong>: Versioning strategies (URL versioning, header versioning)</li>
+</ul>
+</section>
+<section id="example-technologies-2" class="level4" data-number="23.2.3.6">
+<h4 data-number="23.2.3.6" class="anchored" data-anchor-id="example-technologies-2"><span class="header-section-number">23.2.3.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Frameworks</strong>: Express.js, FastAPI, Spring Boot, ASP.NET Core</li>
+<li><strong>API Gateways</strong>: Kong, Apigee, AWS API Gateway</li>
+<li><strong>Documentation</strong>: Swagger/OpenAPI, GraphQL Playground</li>
+<li><strong>Protocols</strong>: HTTP/REST, WebSocket, gRPC, GraphQL</li>
+</ul>
+</section>
+<section id="classification-decision-tree-2" class="level4" data-number="23.2.3.7">
+<h4 data-number="23.2.3.7" class="anchored" data-anchor-id="classification-decision-tree-2"><span class="header-section-number">23.2.3.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system expose a programmable interface for other systems?
+├─ Yes → Is it primarily UI-driven (Web App)?
+│   ├─ Yes → Web Application
+│   └─ No → APIs and Services ✓
+└─ No → Consider other types</code></pre>
 <hr>
+</section>
 </section>
 <section id="workflow-engines" class="level3" data-number="23.2.4">
-<h3 data-number="23.2.4" class="anchored" data-anchor-id="workflow-engines"><span class="header-section-number">23.2.4</span> Workflow Engines</h3>
-<p>Workflow systems coordinate sequences of tasks across multiple components or services.</p>
-<p>Their architecture typically includes orchestration logic, task scheduling mechanisms, and state management components. Workflow engines are widely used in automation platforms, job schedulers, and business process management systems.</p>
-<p>These systems emphasize coordination and control flow rather than direct data processing.</p>
+<h3 data-number="23.2.4" class="anchored" data-anchor-id="workflow-engines"><span class="header-section-number">23.2.4</span> 4. Workflow Engines</h3>
+<section id="definition-3" class="level4" data-number="23.2.4.1">
+<h4 data-number="23.2.4.1" class="anchored" data-anchor-id="definition-3"><span class="header-section-number">23.2.4.1</span> Definition</h4>
+<p>Workflow systems coordinate sequences of tasks across multiple components or services. They emphasize orchestration logic, state management, and control flow rather than direct data processing.</p>
+</section>
+<section id="typical-components-3" class="level4" data-number="23.2.4.2">
+<h4 data-number="23.2.4.2" class="anchored" data-anchor-id="typical-components-3"><span class="header-section-number">23.2.4.2</span> Typical Components</h4>
+<ul>
+<li><strong>Orchestrator</strong>: Manages workflow execution and state</li>
+<li><strong>Task Scheduler</strong>: Schedules and executes tasks</li>
+<li><strong>State Store</strong>: Maintains workflow state and history</li>
+<li><strong>Task Registry</strong>: Available tasks and their definitions</li>
+<li><strong>Event Bus</strong>: Handles workflow events and triggers</li>
+<li><strong>Retry/Backoff Handler</strong>: Manages task failure recovery</li>
+<li><strong>Timeout Manager</strong>: Enforces time limits</li>
+</ul>
+</section>
+<section id="key-characteristics-3" class="level4" data-number="23.2.4.3">
+<h4 data-number="23.2.4.3" class="anchored" data-anchor-id="key-characteristics-3"><span class="header-section-number">23.2.4.3</span> Key Characteristics</h4>
+<ul>
+<li>Coordinated task execution across components</li>
+<li>Stateful workflow tracking (running, completed, failed)</li>
+<li>Conditional branching and parallel execution</li>
+<li>Error handling and retry mechanisms</li>
+<li>Long-running processes (hours to days)</li>
+<li>Human-in-the-loop workflows (approvals, reviews)</li>
+</ul>
+</section>
+<section id="complexity-range-3" class="level4" data-number="23.2.4.4">
+<h4 data-number="23.2.4.4" class="anchored" data-anchor-id="complexity-range-3"><span class="header-section-number">23.2.4.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Simple sequential task execution</li>
+<li><strong>small</strong>: Conditional workflows with basic error handling</li>
+<li><strong>medium</strong>: Complex workflows with parallel execution, retries, timeouts</li>
+<li><strong>large</strong>: Enterprise workflow systems with human workflows, SLA management</li>
+</ul>
+</section>
+<section id="common-patterns-3" class="level4" data-number="23.2.4.5">
+<h4 data-number="23.2.4.5" class="anchored" data-anchor-id="common-patterns-3"><span class="header-section-number">23.2.4.5</span> Common Patterns</h4>
+<ul>
+<li><strong>Sequential Workflow</strong>: Tasks execute in order</li>
+<li><strong>Parallel Workflow</strong>: Multiple tasks execute simultaneously</li>
+<li><strong>Conditional Workflow</strong>: Branching based on conditions</li>
+<li><strong>Sub-Workflow</strong>: Nested workflow definitions</li>
+<li><strong>Saga Pattern</strong>: Compensating transactions for distributed workflows</li>
+</ul>
+</section>
+<section id="example-technologies-3" class="level4" data-number="23.2.4.6">
+<h4 data-number="23.2.4.6" class="anchored" data-anchor-id="example-technologies-3"><span class="header-section-number">23.2.4.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Workflow Engines</strong>: Apache Airflow, Prefect, Temporal, Camunda</li>
+<li><strong>Orchestration</strong>: Kubernetes Operators, Argo Workflows</li>
+<li><strong>Business Process</strong>: jBPM, Activiti, Camunda</li>
+</ul>
+</section>
+<section id="classification-decision-tree-3" class="level4" data-number="23.2.4.7">
+<h4 data-number="23.2.4.7" class="anchored" data-anchor-id="classification-decision-tree-3"><span class="header-section-number">23.2.4.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system primarily coordinate and sequence tasks across components?
+├─ Yes → Workflow Engine ✓
+└─ No → Consider other types</code></pre>
 <hr>
+</section>
 </section>
 <section id="data-pipelines" class="level3" data-number="23.2.5">
-<h3 data-number="23.2.5" class="anchored" data-anchor-id="data-pipelines"><span class="header-section-number">23.2.5</span> Data Pipelines</h3>
-<p>Data pipeline systems process and transform data across multiple stages.</p>
-<p>Their architecture often includes ingestion components, transformation stages, storage layers, and analytics modules. Data pipelines frequently operate in batch or streaming modes and require mechanisms for ensuring data reliability and lineage.</p>
-<p>These systems are central to modern data platforms and analytics infrastructures.</p>
+<h3 data-number="23.2.5" class="anchored" data-anchor-id="data-pipelines"><span class="header-section-number">23.2.5</span> 5. Data Pipelines</h3>
+<section id="definition-4" class="level4" data-number="23.2.5.1">
+<h4 data-number="23.2.5.1" class="anchored" data-anchor-id="definition-4"><span class="header-section-number">23.2.5.1</span> Definition</h4>
+<p>Data pipeline systems process and transform data across multiple stages. They typically include ingestion, transformation, and storage components for data movement and processing.</p>
+</section>
+<section id="typical-components-4" class="level4" data-number="23.2.5.2">
+<h4 data-number="23.2.5.2" class="anchored" data-anchor-id="typical-components-4"><span class="header-section-number">23.2.5.2</span> Typical Components</h4>
+<ul>
+<li><strong>Ingestion Layer</strong>: Data collection from sources</li>
+<li><strong>Message Queue/Stream</strong>: Buffer for data movement</li>
+<li><strong>Transformation Engine</strong>: Data processing and enrichment</li>
+<li><strong>Validation/Quality Checks</strong>: Data quality enforcement</li>
+<li><strong>Storage Layer</strong>: Data persistence (data lake, warehouse)</li>
+<li><strong>Orchestration</strong>: Pipeline scheduling and dependency management</li>
+<li><strong>Monitoring</strong>: Pipeline health and data quality monitoring</li>
+</ul>
+</section>
+<section id="key-characteristics-4" class="level4" data-number="23.2.5.3">
+<h4 data-number="23.2.5.3" class="anchored" data-anchor-id="key-characteristics-4"><span class="header-section-number">23.2.5.3</span> Key Characteristics</h4>
+<ul>
+<li>Batch or streaming data processing</li>
+<li>Data transformation and enrichment</li>
+<li>Data quality validation</li>
+<li>Schema evolution handling</li>
+<li>Large-scale data volumes</li>
+<li>Often time-series or event-based</li>
+</ul>
+</section>
+<section id="complexity-range-4" class="level4" data-number="23.2.5.4">
+<h4 data-number="23.2.5.4" class="anchored" data-anchor-id="complexity-range-4"><span class="header-section-number">23.2.5.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Single transformation script</li>
+<li><strong>small</strong>: ETL pipeline with 2-3 stages</li>
+<li><strong>medium</strong>: Multi-source data integration with quality checks</li>
+<li><strong>large</strong>: Enterprise data platform with real-time streaming, ML integration</li>
+</ul>
+</section>
+<section id="common-patterns-4" class="level4" data-number="23.2.5.5">
+<h4 data-number="23.2.5.5" class="anchored" data-anchor-id="common-patterns-4"><span class="header-section-number">23.2.5.5</span> Common Patterns</h4>
+<ul>
+<li><strong>Batch Processing</strong>: Scheduled ETL jobs (e.g., nightly)</li>
+<li><strong>Stream Processing</strong>: Real-time event processing (e.g., Kafka, Kinesis)</li>
+<li><strong>Lambda Architecture</strong>: Batch + stream processing layers</li>
+<li><strong>Delta Lake</strong>: ACID transactions on data lake storage</li>
+<li><strong>Change Data Capture (CDC)</strong>: Track database changes in real-time</li>
+</ul>
+</section>
+<section id="example-technologies-4" class="level4" data-number="23.2.5.6">
+<h4 data-number="23.2.5.6" class="anchored" data-anchor-id="example-technologies-4"><span class="header-section-number">23.2.5.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Ingestion</strong>: Kafka, Kinesis, SQS, Pub/Sub</li>
+<li><strong>Processing</strong>: Apache Spark, Apache Flink, dbt, Pandas</li>
+<li><strong>Orchestration</strong>: Airflow, Dagster, Prefect</li>
+<li><strong>Storage</strong>: Snowflake, BigQuery, Redshift, Delta Lake, S3</li>
+</ul>
+</section>
+<section id="classification-decision-tree-4" class="level4" data-number="23.2.5.7">
+<h4 data-number="23.2.5.7" class="anchored" data-anchor-id="classification-decision-tree-4"><span class="header-section-number">23.2.5.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system primarily process, transform, and move data?
+├─ Yes → Data Pipeline ✓
+└─ No → Consider other types</code></pre>
 <hr>
+</section>
 </section>
 <section id="agent-systems" class="level3" data-number="23.2.6">
-<h3 data-number="23.2.6" class="anchored" data-anchor-id="agent-systems"><span class="header-section-number">23.2.6</span> Agent Systems</h3>
-<p>Agent systems consist of autonomous components capable of performing tasks, making decisions, and interacting with external environments.</p>
-<p>Agent architectures often include planning modules, memory systems, communication protocols, and execution mechanisms.</p>
-<p>Recent developments in artificial intelligence have increased interest in agent-based systems capable of coordinating complex workflows and interacting with human users.</p>
+<h3 data-number="23.2.6" class="anchored" data-anchor-id="agent-systems"><span class="header-section-number">23.2.6</span> 6. Agent Systems</h3>
+<section id="definition-5" class="level4" data-number="23.2.6.1">
+<h4 data-number="23.2.6.1" class="anchored" data-anchor-id="definition-5"><span class="header-section-number">23.2.6.1</span> Definition</h4>
+<p>Agent systems consist of autonomous components capable of performing tasks, making decisions, and interacting with external environments. They emphasize planning, memory, and tool execution for complex task completion.</p>
+</section>
+<section id="typical-components-5" class="level4" data-number="23.2.6.2">
+<h4 data-number="23.2.6.2" class="anchored" data-anchor-id="typical-components-5"><span class="header-section-number">23.2.6.2</span> Typical Components</h4>
+<ul>
+<li><strong>Planner</strong>: Determines action sequences to achieve goals</li>
+<li><strong>Execution Engine</strong>: Invokes tools and performs actions</li>
+<li><strong>Memory Store</strong>: Maintains context and history</li>
+<li><strong>Tool Adapter</strong>: Interfaces with external tools and APIs</li>
+<li><strong>Perception Module</strong>: Interprets environment and inputs</li>
+<li><strong>Decision Engine</strong>: Makes choices based on context and goals</li>
+<li><strong>Communication Protocol</strong>: Coordinates multiple agents</li>
+</ul>
+</section>
+<section id="key-characteristics-5" class="level4" data-number="23.2.6.3">
+<h4 data-number="23.2.6.3" class="anchored" data-anchor-id="key-characteristics-5"><span class="header-section-number">23.2.6.3</span> Key Characteristics</h4>
+<ul>
+<li>Autonomous decision-making</li>
+<li>Goal-directed behavior</li>
+<li>Stateful memory and context management</li>
+<li>Tool use and external environment interaction</li>
+<li>Iterative planning and execution cycles</li>
+<li>Often multi-agent coordination</li>
+</ul>
+</section>
+<section id="complexity-range-5" class="level4" data-number="23.2.6.4">
+<h4 data-number="23.2.6.4" class="anchored" data-anchor-id="complexity-range-5"><span class="header-section-number">23.2.6.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Simple single-tool agent</li>
+<li><strong>small</strong>: Agent with basic planning and tool use</li>
+<li><strong>medium</strong>: Multi-agent system with coordination and memory</li>
+<li><strong>large</strong>: Complex agent swarms with hierarchical organization</li>
+</ul>
+</section>
+<section id="common-patterns-5" class="level4" data-number="23.2.6.5">
+<h4 data-number="23.2.6.5" class="anchored" data-anchor-id="common-patterns-5"><span class="header-section-number">23.2.6.5</span> Common Patterns</h4>
+<ul>
+<li><strong>ReAct Pattern</strong>: Reason + Act iteration loop</li>
+<li><strong>Tool Use</strong>: External API and function calling</li>
+<li><strong>Multi-Agent Coordination</strong>: Specialized agents collaborating</li>
+<li><strong>Memory Architectures</strong>: Short-term and long-term memory</li>
+<li><strong>Plan-and-Execute</strong>: Separate planning and execution phases</li>
+</ul>
+</section>
+<section id="example-technologies-5" class="level4" data-number="23.2.6.6">
+<h4 data-number="23.2.6.6" class="anchored" data-anchor-id="example-technologies-5"><span class="header-section-number">23.2.6.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Agent Frameworks</strong>: LangChain, AutoGPT, BabyAGI</li>
+<li><strong>Orchestration</strong>: LangGraph, Temporal (for agent workflows)</li>
+<li><strong>LLM Integration</strong>: OpenAI API, Anthropic API, local models</li>
+</ul>
+</section>
+<section id="classification-decision-tree-5" class="level4" data-number="23.2.6.7">
+<h4 data-number="23.2.6.7" class="anchored" data-anchor-id="classification-decision-tree-5"><span class="header-section-number">23.2.6.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system include autonomous components that make decisions and take actions?
+├─ Yes → Agent System ✓
+└─ No → Consider other types</code></pre>
 <hr>
+</section>
 </section>
 <section id="platforms" class="level3" data-number="23.2.7">
-<h3 data-number="23.2.7" class="anchored" data-anchor-id="platforms"><span class="header-section-number">23.2.7</span> Platforms</h3>
-<p>Platform systems provide infrastructure and services that support other applications.</p>
-<p>Examples include cloud platforms, developer platforms, and large-scale data infrastructure systems. Platform architectures typically emphasize extensibility, resource management, and service integration.</p>
-<p>Platforms often operate as foundational layers upon which other systems are built.</p>
+<h3 data-number="23.2.7" class="anchored" data-anchor-id="platforms"><span class="header-section-number">23.2.7</span> 7. Platforms</h3>
+<section id="definition-6" class="level4" data-number="23.2.7.1">
+<h4 data-number="23.2.7.1" class="anchored" data-anchor-id="definition-6"><span class="header-section-number">23.2.7.1</span> Definition</h4>
+<p>Platform systems provide infrastructure and services that support other applications. They emphasize extensibility, resource management, and service integration as foundational layers.</p>
+</section>
+<section id="typical-components-6" class="level4" data-number="23.2.7.2">
+<h4 data-number="23.2.7.2" class="anchored" data-anchor-id="typical-components-6"><span class="header-section-number">23.2.7.2</span> Typical Components</h4>
+<ul>
+<li><strong>Resource Manager</strong>: Manages compute, storage, network resources</li>
+<li><strong>Service Catalog</strong>: Available services and capabilities</li>
+<li><strong>Tenant Management</strong>: Multi-tenancy and isolation</li>
+<li><strong>API Gateway</strong>: Platform-wide API routing</li>
+<li><strong>Authentication Service</strong>: Identity provider for platform users</li>
+<li><strong>Billing/Metering</strong>: Usage tracking and cost allocation</li>
+<li><strong>Developer Portal</strong>: Documentation and tools for platform users</li>
+</ul>
+</section>
+<section id="key-characteristics-6" class="level4" data-number="23.2.7.3">
+<h4 data-number="23.2.7.3" class="anchored" data-anchor-id="key-characteristics-6"><span class="header-section-number">23.2.7.3</span> Key Characteristics</h4>
+<ul>
+<li>Multi-tenant support</li>
+<li>Self-service resource provisioning</li>
+<li>Developer-focused user experience</li>
+<li>Extensibility via plugins/add-ons</li>
+<li>Service marketplace or catalog</li>
+<li>Resource quotas and limits</li>
+</ul>
+</section>
+<section id="complexity-range-6" class="level4" data-number="23.2.7.4">
+<h4 data-number="23.2.7.4" class="anchored" data-anchor-id="complexity-range-6"><span class="header-section-number">23.2.7.4</span> Complexity Range</h4>
+<ul>
+<li><strong>toy</strong>: Simple development environment</li>
+<li><strong>small</strong>: PaaS with basic service offerings</li>
+<li><strong>medium</strong>: Full-featured cloud platform with multiple services</li>
+<li><strong>large</strong>: Major cloud provider (AWS, GCP, Azure scale)</li>
+</ul>
+</section>
+<section id="common-patterns-6" class="level4" data-number="23.2.7.5">
+<h4 data-number="23.2.7.5" class="anchored" data-anchor-id="common-patterns-6"><span class="header-section-number">23.2.7.5</span> Common Patterns</h4>
+<ul>
+<li><strong>Multi-Tenancy</strong>: Shared infrastructure with tenant isolation</li>
+<li><strong>Service Mesh</strong>: Inter-service communication and security</li>
+<li><strong>Plugin Architecture</strong>: Extensible platform via plugins</li>
+<li><strong>Marketplace</strong>: Third-party services available through platform</li>
+<li><strong>DevOps Integration</strong>: CI/CD, monitoring, logging built-in</li>
+</ul>
+</section>
+<section id="example-technologies-6" class="level4" data-number="23.2.7.6">
+<h4 data-number="23.2.7.6" class="anchored" data-anchor-id="example-technologies-6"><span class="header-section-number">23.2.7.6</span> Example Technologies</h4>
+<ul>
+<li><strong>Cloud Platforms</strong>: AWS, Google Cloud, Azure</li>
+<li><strong>PaaS</strong>: Heroku, Render, Railway</li>
+<li><strong>Container Platforms</strong>: Kubernetes, OpenShift, Docker Swarm</li>
+<li><strong>Developer Platforms</strong>: Vercel, Netlify, Cloudflare Workers</li>
+</ul>
+</section>
+<section id="classification-decision-tree-6" class="level4" data-number="23.2.7.7">
+<h4 data-number="23.2.7.7" class="anchored" data-anchor-id="classification-decision-tree-6"><span class="header-section-number">23.2.7.7</span> Classification Decision Tree</h4>
+<pre><code>Does the system provide infrastructure/services that other applications build upon?
+├─ Yes → Platform ✓
+└─ No → Consider other types</code></pre>
 <hr>
 </section>
 </section>
-<section id="hybrid-systems" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="hybrid-systems"><span class="header-section-number">23.3</span> Hybrid Systems</h2>
-<p>In practice, many real-world systems combine characteristics from multiple categories.</p>
-<p>For example, a modern web platform may include a web application interface, an API service layer, and internal data pipelines for analytics processing.</p>
-<p>In such cases, a blueprint may assign multiple system type labels or identify a <strong>primary system type</strong> accompanied by secondary characteristics.</p>
-<p>This flexibility allows the taxonomy to accommodate complex architectures without forcing them into overly rigid categories.</p>
+</section>
+<section id="classification-decision-framework" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="classification-decision-framework"><span class="header-section-number">23.3</span> Classification Decision Framework</h2>
+<p>When classifying a system, follow this systematic approach:</p>
+<section id="step-1-identify-primary-purpose" class="level3" data-number="23.3.1">
+<h3 data-number="23.3.1" class="anchored" data-anchor-id="step-1-identify-primary-purpose"><span class="header-section-number">23.3.1</span> Step 1: Identify Primary Purpose</h3>
+<p>What is the <strong>main architectural purpose</strong> of the system? Consider:</p>
+<ul>
+<li>What problem does it solve?</li>
+<li>Who are its primary consumers?</li>
+<li>What is its primary mode of interaction?</li>
+</ul>
+</section>
+<section id="step-2-apply-decision-trees" class="level3" data-number="23.3.2">
+<h3 data-number="23.3.2" class="anchored" data-anchor-id="step-2-apply-decision-trees"><span class="header-section-number">23.3.2</span> Step 2: Apply Decision Trees</h3>
+<p>Use the decision trees provided for each system type to narrow down possibilities.</p>
+</section>
+<section id="step-3-check-key-characteristics" class="level3" data-number="23.3.3">
+<h3 data-number="23.3.3" class="anchored" data-anchor-id="step-3-check-key-characteristics"><span class="header-section-number">23.3.3</span> Step 3: Check Key Characteristics</h3>
+<p>Verify that the system matches the <strong>key characteristics</strong> of the candidate type:</p>
+<ul>
+<li>Component structure</li>
+<li>Communication patterns</li>
+<li>State management</li>
+<li>Interaction mode</li>
+</ul>
+</section>
+<section id="step-4-handle-ambiguity" class="level3" data-number="23.3.4">
+<h3 data-number="23.3.4" class="anchored" data-anchor-id="step-4-handle-ambiguity"><span class="header-section-number">23.3.4</span> Step 4: Handle Ambiguity</h3>
+<p>If multiple types seem applicable:</p>
+<ol type="1">
+<li><strong>Choose Primary Type</strong>: What is the dominant architectural pattern?</li>
+<li><strong>Add Secondary Type Tags</strong>: Note secondary characteristics</li>
+<li><strong>Document Hybrid Nature</strong>: Explain the hybrid composition</li>
+</ol>
+</section>
+<section id="step-5-validate-with-examples" class="level3" data-number="23.3.5">
+<h3 data-number="23.3.5" class="anchored" data-anchor-id="step-5-validate-with-examples"><span class="header-section-number">23.3.5</span> Step 5: Validate with Examples</h3>
+<p>Compare with example blueprints in Appendix D to validate the classification.</p>
 <hr>
 </section>
-<section id="role-in-blueprint-repositories" class="level2" data-number="23.4">
-<h2 data-number="23.4" class="anchored" data-anchor-id="role-in-blueprint-repositories"><span class="header-section-number">23.4</span> Role in Blueprint Repositories</h2>
-<p>System type classification serves several functions within blueprint repositories.</p>
-<p>First, it supports <strong>retrieval</strong>. Engineers can search for blueprints belonging to a specific system category when designing new architectures.</p>
-<p>Second, it enables <strong>pattern discovery</strong>. By grouping similar systems together, architectural patterns common to a particular system type become easier to identify.</p>
-<p>Third, it supports <strong>comparative analysis</strong>. Engineers can compare multiple blueprints representing similar systems to evaluate alternative architectural approaches.</p>
-<p>As blueprint repositories grow, taxonomy-based classification becomes an essential mechanism for organizing architectural knowledge.</p>
-<p>Future volumes in this series will build upon this taxonomy when introducing pattern libraries and architecture datasets.</p>
+</section>
+<section id="hybrid-systems" class="level2" data-number="23.4">
+<h2 data-number="23.4" class="anchored" data-anchor-id="hybrid-systems"><span class="header-section-number">23.4</span> Hybrid Systems</h2>
+<p>In practice, many real-world systems combine characteristics from multiple categories. This section provides guidance for handling hybrid systems.</p>
+<section id="common-hybrid-patterns" class="level3" data-number="23.4.1">
+<h3 data-number="23.4.1" class="anchored" data-anchor-id="common-hybrid-patterns"><span class="header-section-number">23.4.1</span> Common Hybrid Patterns</h3>
+<section id="web-platform" class="level4" data-number="23.4.1.1">
+<h4 data-number="23.4.1.1" class="anchored" data-anchor-id="web-platform"><span class="header-section-number">23.4.1.1</span> 1. Web Platform</h4>
+<p><strong>Composition</strong>: Web Application + Platform</p>
+<p><strong>Characteristics</strong>: - Web application interface for users - Platform services for developers/customers - API layer supporting both UI and third-party integrations</p>
+<p><strong>Classification</strong>: Primary type based on dominant purpose, with secondary tag</p>
+<p><strong>Example</strong>: GitHub (Web Application for code hosting, Platform for developer tools)</p>
+</section>
+<section id="api-first-web-application" class="level4" data-number="23.4.1.2">
+<h4 data-number="23.4.1.2" class="anchored" data-anchor-id="api-first-web-application"><span class="header-section-number">23.4.1.2</span> 2. API-First Web Application</h4>
+<p><strong>Composition</strong>: Web Application + API System</p>
+<p><strong>Characteristics</strong>: - Well-defined API used by both web frontend and external consumers - API design drives architecture, not an afterthought - Often serves mobile clients alongside web UI</p>
+<p><strong>Classification</strong>: Web Application (if UI is primary) or API System (if API is primary)</p>
+<p><strong>Example</strong>: Stripe (API-first with web dashboard as secondary interface)</p>
+</section>
+<section id="data-driven-web-application" class="level4" data-number="23.4.1.3">
+<h4 data-number="23.4.1.3" class="anchored" data-anchor-id="data-driven-web-application"><span class="header-section-number">23.4.1.3</span> 3. Data-Driven Web Application</h4>
+<p><strong>Composition</strong>: Web Application + Data Pipeline</p>
+<p><strong>Characteristics</strong>: - Web application for user interaction - Internal data pipelines for analytics and reporting - Real-time dashboards and data visualization</p>
+<p><strong>Classification</strong>: Web Application with internal Data Pipeline components</p>
+<p><strong>Example</strong>: Analytics dashboard platforms (Mixpanel, Amplitude)</p>
+</section>
+<section id="orchestration-platform" class="level4" data-number="23.4.1.4">
+<h4 data-number="23.4.1.4" class="anchored" data-anchor-id="orchestration-platform"><span class="header-section-number">23.4.1.4</span> 4. Orchestration Platform</h4>
+<p><strong>Composition</strong>: Platform + Workflow Engine</p>
+<p><strong>Characteristics</strong>: - Platform infrastructure for resource management - Workflow engine capabilities for task coordination - User workflows managed on top of platform resources</p>
+<p><strong>Classification</strong>: Platform with integrated Workflow Engine</p>
+<p><strong>Example</strong>: Kubernetes (Platform for container orchestration with workflow capabilities)</p>
+</section>
+</section>
+<section id="hybrid-system-documentation" class="level3" data-number="23.4.2">
+<h3 data-number="23.4.2" class="anchored" data-anchor-id="hybrid-system-documentation"><span class="header-section-number">23.4.2</span> Hybrid System Documentation</h3>
+<p>When documenting a hybrid system:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blueprint</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">id</span><span class="kw">:</span><span class="at"> com.example.hybrid.v1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">system_type</span><span class="kw">:</span><span class="at"> Web Application</span><span class="co">  # Primary type</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">complexity</span><span class="kw">:</span><span class="at"> large</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> platform</span><span class="co">  # Secondary characteristic</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> data_pipeline</span><span class="co">  # Secondary characteristic</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">  # ... rest of blueprint</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Include additional context in the Markdown body:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># System Classification</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>This system is classified as a **Web Application** (primary type) with **Platform** and **Data Pipeline** characteristics:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Web Application**: Primary user interface is browser-based for task management</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Platform**: Exposes APIs and services for third-party integrations and extensions</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Data Pipeline**: Internal ETL processes for analytics and reporting</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>The architecture combines elements from all three system types while maintaining a cohesive user experience.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="complexity-classification" class="level2" data-number="23.5">
+<h2 data-number="23.5" class="anchored" data-anchor-id="complexity-classification"><span class="header-section-number">23.5</span> Complexity Classification</h2>
+<p>Each system type should be classified by complexity to guide blueprint detail level and architectural expectations.</p>
+<section id="complexity-definitions" class="level3" data-number="23.5.1">
+<h3 data-number="23.5.1" class="anchored" data-anchor-id="complexity-definitions"><span class="header-section-number">23.5.1</span> Complexity Definitions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Complexity</th>
+<th>Scale</th>
+<th>Team Size</th>
+<th>Typical Users</th>
+<th>Blueprint Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>toy</strong></td>
+<td>Proof-of-concept</td>
+<td>1 person</td>
+<td>Developer testing</td>
+<td>Minimal, focus on structure</td>
+</tr>
+<tr class="even">
+<td><strong>small</strong></td>
+<td>Production system</td>
+<td>1-3 people</td>
+<td>Single team</td>
+<td>Complete with key workflows</td>
+</tr>
+<tr class="odd">
+<td><strong>medium</strong></td>
+<td>Multi-team system</td>
+<td>3-10 people</td>
+<td>Multiple teams</td>
+<td>Comprehensive with all details</td>
+</tr>
+<tr class="even">
+<td><strong>large</strong></td>
+<td>Enterprise system</td>
+<td>10+ people</td>
+<td>Organization-wide</td>
+<td>Exhaustive with edge cases</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="complexity-indicators" class="level3" data-number="23.5.2">
+<h3 data-number="23.5.2" class="anchored" data-anchor-id="complexity-indicators"><span class="header-section-number">23.5.2</span> Complexity Indicators</h3>
+<p>Consider these factors when determining complexity:</p>
+<p><strong>Component Count</strong>: - toy: 1-3 components - small: 3-10 components - medium: 10-30 components - large: 30+ components</p>
+<p><strong>Interface Count</strong>: - toy: 1-3 interfaces - small: 3-10 interfaces - medium: 10-30 interfaces - large: 30+ interfaces</p>
+<p><strong>Workflow Complexity</strong>: - toy: 1-2 simple workflows - small: 3-5 workflows with some branching - medium: 5-15 workflows with error handling - large: 15+ workflows with complex orchestration</p>
+<p><strong>Team Requirements</strong>: - toy: Single developer can build and maintain - small: Small team, limited specialization - medium: Multiple teams with clear boundaries - large: Multiple teams with extensive coordination</p>
+</section>
+<section id="complexity-adjustment" class="level3" data-number="23.5.3">
+<h3 data-number="23.5.3" class="anchored" data-anchor-id="complexity-adjustment"><span class="header-section-number">23.5.3</span> Complexity Adjustment</h3>
+<p>If a system spans multiple dimensions (e.g., many components but simple workflows), use the <strong>dominant dimension</strong> to determine complexity.</p>
+<p><strong>Example</strong>: A data pipeline with 20 components but only 2 sequential stages might be classified as <strong>medium</strong> rather than <strong>large</strong> because workflow complexity is low.</p>
+<hr>
+</section>
+</section>
+<section id="taxonomy-usage-guidelines" class="level2" data-number="23.6">
+<h2 data-number="23.6" class="anchored" data-anchor-id="taxonomy-usage-guidelines"><span class="header-section-number">23.6</span> Taxonomy Usage Guidelines</h2>
+<section id="for-blueprint-authors" class="level3" data-number="23.6.1">
+<h3 data-number="23.6.1" class="anchored" data-anchor-id="for-blueprint-authors"><span class="header-section-number">23.6.1</span> For Blueprint Authors</h3>
+<ol type="1">
+<li><strong>Choose Primary Type</strong>: Select the single best match for architectural purpose</li>
+<li><strong>Add Tags</strong>: Use tags for secondary characteristics</li>
+<li><strong>Document Hybrid Nature</strong>: Explain if combining multiple types</li>
+<li><strong>Reference Examples</strong>: Check Appendix D for similar system types</li>
+</ol>
+</section>
+<section id="for-blueprint-consumers" class="level3" data-number="23.6.2">
+<h3 data-number="23.6.2" class="anchored" data-anchor-id="for-blueprint-consumers"><span class="header-section-number">23.6.2</span> For Blueprint Consumers</h3>
+<ol type="1">
+<li><strong>Search by Type</strong>: Use system type to find relevant blueprints</li>
+<li><strong>Filter by Complexity</strong>: Narrow to appropriate scale</li>
+<li><strong>Study Patterns</strong>: Understand common patterns for the type</li>
+<li><strong>Adapt Appropriately</strong>: Adapt patterns to specific context</li>
+</ol>
+</section>
+<section id="for-blueprint-curators" class="level3" data-number="23.6.3">
+<h3 data-number="23.6.3" class="anchored" data-anchor-id="for-blueprint-curators"><span class="header-section-number">23.6.3</span> For Blueprint Curators</h3>
+<ol type="1">
+<li><strong>Validate Classifications</strong>: Ensure consistent application of taxonomy</li>
+<li><strong>Tag Hybrids</strong>: Identify systems with multiple type characteristics</li>
+<li><strong>Maintain Examples</strong>: Keep representative examples for each type</li>
+<li><strong>Evolve Taxonomy</strong>: Review and refine as new patterns emerge</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="cross-references-to-examples" class="level2" data-number="23.7">
+<h2 data-number="23.7" class="anchored" data-anchor-id="cross-references-to-examples"><span class="header-section-number">23.7</span> Cross-References to Examples</h2>
+<p>Appendix D provides complete example blueprints for each system type:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>System Type</th>
+<th>Example Blueprint</th>
+<th>Appendix D Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CLI Tool</td>
+<td>CLI Todo Manager</td>
+<td>Example 1</td>
+</tr>
+<tr class="even">
+<td>Web Application</td>
+<td>Blog Web Platform</td>
+<td>Example 2</td>
+</tr>
+<tr class="odd">
+<td>APIs and Services</td>
+<td><em>(not in Appendix D, see main text)</em></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Workflow Engine</td>
+<td><em>(not in Appendix D, see main text)</em></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Data Pipeline</td>
+<td>Analytics ETL Pipeline</td>
+<td>Example 3</td>
+</tr>
+<tr class="even">
+<td>Agent System</td>
+<td>Autonomous Task Agent</td>
+<td>Example 4</td>
+</tr>
+<tr class="odd">
+<td>Platform</td>
+<td><em>(not in Appendix D, see main text)</em></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Appendix D provides representative examples for 4 of the 7 system types. Complete examples for all types may be added in future revisions or as separate documentation.</p>
+<hr>
+</section>
+<section id="taxonomy-evolution-roadmap" class="level2" data-number="23.8">
+<h2 data-number="23.8" class="anchored" data-anchor-id="taxonomy-evolution-roadmap"><span class="header-section-number">23.8</span> Taxonomy Evolution Roadmap</h2>
+<p>This taxonomy is v0.1 and will evolve based on:</p>
+<ol type="1">
+<li><strong>Blueprint Repository Growth</strong>: New patterns emerging from practice</li>
+<li><strong>Technology Shifts</strong>: New architectural paradigms (e.g., serverless, edge computing)</li>
+<li><strong>Community Feedback</strong>: Classification challenges and edge cases</li>
+<li><strong>Research Findings</strong>: Architectural research and pattern discovery</li>
+</ol>
+<section id="planned-revisions" class="level3" data-number="23.8.1">
+<h3 data-number="23.8.1" class="anchored" data-anchor-id="planned-revisions"><span class="header-section-number">23.8.1</span> Planned Revisions</h3>
+<p><strong>v0.2</strong> (Expected): - Add “Serverless Functions” as distinct type or subcategory - Refine “Agent Systems” based on emerging patterns - Add complexity indicators for each type</p>
+<p><strong>v1.0</strong> (Expected): - Stable taxonomy with comprehensive type coverage - Formal classification schema - Automated classification heuristics</p>
+</section>
+<section id="contribution-guidelines" class="level3" data-number="23.8.2">
+<h3 data-number="23.8.2" class="anchored" data-anchor-id="contribution-guidelines"><span class="header-section-number">23.8.2</span> Contribution Guidelines</h3>
+<p>When proposing taxonomy changes:</p>
+<ol type="1">
+<li><strong>Document Need</strong>: Explain why current taxonomy is insufficient</li>
+<li><strong>Provide Examples</strong>: Show real-world systems that need new classification</li>
+<li><strong>Propose Structure</strong>: Define new type with characteristics and patterns</li>
+<li><strong>Validate</strong>: Test against existing blueprints</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2" data-number="23.9">
+<h2 data-number="23.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">23.9</span> Summary</h2>
+<p>The System Type Taxonomy v0.1 provides:</p>
+<p>✓ <strong>7 Core System Types</strong>: CLI Tools, Web Applications, APIs and Services, Workflow Engines, Data Pipelines, Agent Systems, Platforms</p>
+<p>✓ <strong>Clear Classification Guidelines</strong>: Decision trees and characteristics for confident classification</p>
+<p>✓ <strong>Hybrid System Support</strong>: Framework for documenting multi-type systems</p>
+<p>✓ <strong>Complexity Classification</strong>: Scale indicators to guide blueprint detail</p>
+<p>✓ <strong>Practical Utility</strong>: Searchable, retrievable, and comparable system architectures</p>
+<p>By using this taxonomy consistently, teams can:</p>
+<ul>
+<li>Organize blueprint repositories effectively</li>
+<li>Find relevant architectural examples quickly</li>
+<li>Identify patterns across similar systems</li>
+<li>Enable automated analysis and composition</li>
+<li>Build a shared architectural vocabulary</li>
+</ul>
+<p>This foundation supports the broader goals of blueprint-based system engineering: reusable, composable, and computable architectural knowledge.</p>
 
 
 </section>

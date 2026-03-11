@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -557,11 +592,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-lifecycle-of-a-blueprint" id="toc-the-lifecycle-of-a-blueprint" class="nav-link active" data-scroll-target="#the-lifecycle-of-a-blueprint"><span class="header-section-number">20.1</span> The Lifecycle of a Blueprint</a></li>
-  <li><a href="#a-minimal-toolchain" id="toc-a-minimal-toolchain" class="nav-link" data-scroll-target="#a-minimal-toolchain"><span class="header-section-number">20.2</span> A Minimal Toolchain</a></li>
+  <li><a href="#the-lifecycle-of-a-blueprint" id="toc-the-lifecycle-of-a-blueprint" class="nav-link active" data-scroll-target="#the-lifecycle-of-a-blueprint"><span class="header-section-number">20.1</span> The Lifecycle of a Blueprint</a>
+  <ul class="collapse">
+  <li><a href="#stage-1-draft" id="toc-stage-1-draft" class="nav-link" data-scroll-target="#stage-1-draft"><span class="header-section-number">20.1.1</span> Stage 1: Draft</a></li>
+  <li><a href="#stage-2-review" id="toc-stage-2-review" class="nav-link" data-scroll-target="#stage-2-review"><span class="header-section-number">20.1.2</span> Stage 2: Review</a></li>
+  <li><a href="#stage-3-store" id="toc-stage-3-store" class="nav-link" data-scroll-target="#stage-3-store"><span class="header-section-number">20.1.3</span> Stage 3: Store</a></li>
+  <li><a href="#stage-4-retrieve" id="toc-stage-4-retrieve" class="nav-link" data-scroll-target="#stage-4-retrieve"><span class="header-section-number">20.1.4</span> Stage 4: Retrieve</a></li>
+  <li><a href="#stage-5-evolve" id="toc-stage-5-evolve" class="nav-link" data-scroll-target="#stage-5-evolve"><span class="header-section-number">20.1.5</span> Stage 5: Evolve</a></li>
+  </ul></li>
+  <li><a href="#a-minimal-toolchain" id="toc-a-minimal-toolchain" class="nav-link" data-scroll-target="#a-minimal-toolchain"><span class="header-section-number">20.2</span> A Minimal Toolchain</a>
+  <ul class="collapse">
+  <li><a href="#element-1-markdown" id="toc-element-1-markdown" class="nav-link" data-scroll-target="#element-1-markdown"><span class="header-section-number">20.2.1</span> Element 1: Markdown</a></li>
+  <li><a href="#element-2-schema" id="toc-element-2-schema" class="nav-link" data-scroll-target="#element-2-schema"><span class="header-section-number">20.2.2</span> Element 2: Schema</a></li>
+  <li><a href="#element-3-index" id="toc-element-3-index" class="nav-link" data-scroll-target="#element-3-index"><span class="header-section-number">20.2.3</span> Element 3: Index</a></li>
+  </ul></li>
   <li><a href="#integration-with-version-control" id="toc-integration-with-version-control" class="nav-link" data-scroll-target="#integration-with-version-control"><span class="header-section-number">20.3</span> Integration with Version Control</a></li>
   <li><a href="#human-readable-knowledge-layers" id="toc-human-readable-knowledge-layers" class="nav-link" data-scroll-target="#human-readable-knowledge-layers"><span class="header-section-number">20.4</span> Human-Readable Knowledge Layers</a></li>
   <li><a href="#discipline-as-the-foundation-of-reuse" id="toc-discipline-as-the-foundation-of-reuse" class="nav-link" data-scroll-target="#discipline-as-the-foundation-of-reuse"><span class="header-section-number">20.5</span> Discipline as the Foundation of Reuse</a></li>
+  <li><a href="#summary-the-minimal-blueprint-discipline" id="toc-summary-the-minimal-blueprint-discipline" class="nav-link" data-scroll-target="#summary-the-minimal-blueprint-discipline"><span class="header-section-number">20.6</span> Summary: The Minimal Blueprint Discipline</a></li>
   </ul>
 </nav>
     </div>
@@ -597,58 +645,669 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="20.1" class="anchored" data-anchor-id="the-lifecycle-of-a-blueprint"><span class="header-section-number">20.1</span> The Lifecycle of a Blueprint</h2>
 <p>Like software artifacts, blueprints evolve over time.</p>
 <p>To manage this evolution effectively, blueprints should follow a simple lifecycle consisting of five stages.</p>
-<p>Draft<br>
-Review<br>
-Store<br>
-Retrieve<br>
-Evolve</p>
-<p>The lifecycle begins with <strong>drafting</strong>, where engineers construct an initial blueprint describing the system’s architecture. At this stage, the blueprint may contain incomplete or provisional elements as the design takes shape.</p>
-<p>The draft is then subject to <strong>review</strong>. Experienced engineers or architects examine the blueprint to verify its structural completeness, consistency, and feasibility. The review process ensures that the blueprint accurately represents the system’s architecture before it becomes part of the architectural knowledge base.</p>
-<p>Once reviewed, the blueprint is <strong>stored</strong> within a blueprint repository. At this stage, it becomes a reusable knowledge object that can be referenced by future projects.</p>
-<p>When engineers design new systems, they can <strong>retrieve</strong> relevant blueprints from the repository. Retrieved blueprints may serve as starting points or reference models for new designs.</p>
-<p>Finally, as systems evolve, blueprints must also <strong>evolve</strong>. Updates to architecture, interfaces, or workflows should be reflected in new blueprint versions, preserving a historical record of architectural changes.</p>
+<p><strong>The Five Stages</strong>:</p>
+<ol type="1">
+<li><strong>Draft</strong></li>
+<li><strong>Review</strong></li>
+<li><strong>Store</strong></li>
+<li><strong>Retrieve</strong></li>
+<li><strong>Evolve</strong></li>
+</ol>
 <p>This lifecycle ensures that blueprint knowledge remains synchronized with the systems it describes.</p>
+<section id="stage-1-draft" class="level3" data-number="20.1.1">
+<h3 data-number="20.1.1" class="anchored" data-anchor-id="stage-1-draft"><span class="header-section-number">20.1.1</span> Stage 1: Draft</h3>
+<p><strong>Purpose</strong>: Create an initial blueprint describing the system’s architecture.</p>
+<p><strong>Activities</strong>:</p>
+<ul>
+<li><strong>Analyze requirements</strong>: Understand goals, capabilities, and constraints</li>
+<li><strong>Define structure</strong>: Specify components, interfaces, data, and workflows</li>
+<li><strong>Document decisions</strong>: Capture the rationale for architectural choices</li>
+<li><strong>Validate internally</strong>: Self-check for completeness and consistency</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>At this stage, the blueprint may contain incomplete or provisional elements as the design takes shape</li>
+<li>Drafts are often iterative, with multiple versions created as understanding improves</li>
+<li>Drafts may be informal initially, with structure becoming more formal over time</li>
+</ul>
+<p><strong>Draft Artifacts</strong>:</p>
+<ul>
+<li>Initial blueprint document</li>
+<li>Rough diagrams and sketches</li>
+<li>Notes on design decisions</li>
+<li>Questions and open issues</li>
+</ul>
+<p><strong>Draft Completion Criteria</strong>:</p>
+<p>A draft is ready for review when:</p>
+<ul>
+<li>All six kernel elements are present</li>
+<li>The blueprint describes a coherent architecture</li>
+<li>Open questions are documented</li>
+<li>The blueprint is readable and understandable</li>
+</ul>
+</section>
+<section id="stage-2-review" class="level3" data-number="20.1.2">
+<h3 data-number="20.1.2" class="anchored" data-anchor-id="stage-2-review"><span class="header-section-number">20.1.2</span> Stage 2: Review</h3>
+<p><strong>Purpose</strong>: Verify the blueprint’s structural quality and architectural soundness.</p>
+<p><strong>Activities</strong>:</p>
+<ul>
+<li><strong>Completeness check</strong>: Verify all kernel elements are specified</li>
+<li><strong>Consistency check</strong>: Verify relationships are coherent</li>
+<li><strong>Composability check</strong>: Verify the blueprint can be integrated with other systems</li>
+<li><strong>Feasibility check</strong>: Verify the architecture can be implemented</li>
+<li><strong>Architectural assessment</strong>: Evaluate the quality of architectural decisions</li>
+</ul>
+<p><strong>Review Participants</strong>:</p>
+<ul>
+<li><strong>Author</strong>: The engineer who created the draft</li>
+<li><strong>Reviewer(s)</strong>: Experienced architects or engineers</li>
+<li><strong>Stakeholders</strong>: Product managers, operations engineers, or other affected parties (as appropriate)</li>
+</ul>
+<p><strong>Review Outcomes</strong>:</p>
+<ul>
+<li><strong>Approved</strong>: Blueprint meets quality criteria and is ready for storage</li>
+<li><strong>Approved with changes</strong>: Blueprint requires minor modifications before approval</li>
+<li><strong>Rejected</strong>: Blueprint has significant issues that require major revision</li>
+<li><strong>Deferred</strong>: Blueprint requires additional information or analysis before review can be completed</li>
+</ul>
+<p><strong>Review Artifacts</strong>:</p>
+<ul>
+<li>Review comments and feedback</li>
+<li>Change requests</li>
+<li>Approval decision</li>
+<li>Updated blueprint (if changes were required)</li>
+</ul>
+<p><strong>Review Completion Criteria</strong>:</p>
+<p>A review is complete when:</p>
+<ul>
+<li>All requested changes have been addressed or a decision has been made to defer</li>
+<li>The blueprint meets quality criteria</li>
+<li>Approval has been documented</li>
+</ul>
+</section>
+<section id="stage-3-store" class="level3" data-number="20.1.3">
+<h3 data-number="20.1.3" class="anchored" data-anchor-id="stage-3-store"><span class="header-section-number">20.1.3</span> Stage 3: Store</h3>
+<p><strong>Purpose</strong>: Archive the approved blueprint in a repository where it can be accessed and reused.</p>
+<p><strong>Activities</strong>:</p>
+<ul>
+<li><strong>Assign metadata</strong>: Add classification information (system type, complexity, view)</li>
+<li><strong>Create index entry</strong>: Add the blueprint to search indexes</li>
+<li><strong>Archive version</strong>: Store the blueprint in the version history</li>
+<li><strong>Publish access</strong>: Make the blueprint available to appropriate audiences</li>
+</ul>
+<p><strong>Storage Requirements</strong>:</p>
+<ul>
+<li><strong>Persistent storage</strong>: Blueprints must be stored durably</li>
+<li><strong>Version control</strong>: All versions must be preserved</li>
+<li><strong>Searchability</strong>: Blueprints must be indexable and searchable</li>
+<li><strong>Access control</strong>: Appropriate access permissions must be enforced</li>
+</ul>
+<p><strong>Storage Artifacts</strong>:</p>
+<ul>
+<li>Blueprint document in repository</li>
+<li>Metadata record</li>
+<li>Version history entry</li>
+<li>Search index entry</li>
+</ul>
+<p><strong>Storage Completion Criteria</strong>:</p>
+<p>Storage is complete when:</p>
+<ul>
+<li>The blueprint is archived in a persistent repository</li>
+<li>Metadata and classification are recorded</li>
+<li>The blueprint is searchable</li>
+<li>Access is properly configured</li>
+</ul>
+</section>
+<section id="stage-4-retrieve" class="level3" data-number="20.1.4">
+<h3 data-number="20.1.4" class="anchored" data-anchor-id="stage-4-retrieve"><span class="header-section-number">20.1.4</span> Stage 4: Retrieve</h3>
+<p><strong>Purpose</strong>: Locate and access blueprints when designing new systems or understanding existing ones.</p>
+<p><strong>Activities</strong>:</p>
+<ul>
+<li><strong>Formulate query</strong>: Specify search criteria based on requirements</li>
+<li><strong>Search repository</strong>: Query the blueprint library for matching blueprints</li>
+<li><strong>Evaluate results</strong>: Review candidate blueprints for relevance</li>
+<li><strong>Select blueprint</strong>: Choose the most appropriate blueprint(s) for the task</li>
+</ul>
+<p><strong>Retrieval Use Cases</strong>:</p>
+<ul>
+<li><strong>New system design</strong>: Find similar systems to use as starting points</li>
+<li><strong>System understanding</strong>: Retrieve blueprints to understand existing systems</li>
+<li><strong>Integration planning</strong>: Find blueprints of systems to be integrated</li>
+<li><strong>Pattern discovery</strong>: Search for architectural patterns across the library</li>
+</ul>
+<p><strong>Retrieval Artifacts</strong>:</p>
+<ul>
+<li>Search query</li>
+<li>Search results</li>
+<li>Selected blueprint(s)</li>
+<li>Retrieval notes (context and purpose)</li>
+</ul>
+<p><strong>Retrieval Completion Criteria</strong>:</p>
+<p>Retrieval is complete when:</p>
+<ul>
+<li>Relevant blueprints have been identified</li>
+<li>Selected blueprints have been accessed</li>
+<li>The purpose of retrieval is documented</li>
+</ul>
+</section>
+<section id="stage-5-evolve" class="level3" data-number="20.1.5">
+<h3 data-number="20.1.5" class="anchored" data-anchor-id="stage-5-evolve"><span class="header-section-number">20.1.5</span> Stage 5: Evolve</h3>
+<p><strong>Purpose</strong>: Update blueprints as systems change and architectural understanding improves.</p>
+<p><strong>Activities</strong>:</p>
+<ul>
+<li><strong>Identify need</strong>: Determine when blueprint updates are required</li>
+<li><strong>Create new version</strong>: Create a new version of the blueprint with changes</li>
+<li><strong>Document changes</strong>: Record what changed and why</li>
+<li><strong>Validate updates</strong>: Verify updated blueprint meets quality criteria</li>
+<li><strong>Archive new version</strong>: Store the updated version in the repository</li>
+</ul>
+<p><strong>Evolution Triggers</strong>:</p>
+<ul>
+<li><strong>System changes</strong>: Components, interfaces, or workflows change in the implementation</li>
+<li><strong>New requirements</strong>: Capabilities or constraints are added or modified</li>
+<li><strong>Architectural improvements</strong>: Better designs are discovered or new patterns emerge</li>
+<li><strong>Integration needs</strong>: Interfaces must change to integrate with other systems</li>
+<li><strong>Operational feedback</strong>: Production experience reveals architectural issues</li>
+</ul>
+<p><strong>Evolution Artifacts</strong>:</p>
+<ul>
+<li>New version of the blueprint</li>
+<li>Change log (what changed and why)</li>
+<li>Diff between versions</li>
+<li>Review documentation (if review is required)</li>
+</ul>
+<p><strong>Evolution Completion Criteria</strong>:</p>
+<p>Evolution is complete when:</p>
+<ul>
+<li>The new version accurately reflects system changes</li>
+<li>Changes are documented in the version history</li>
+<li>The new version is archived in the repository</li>
+<li>The old version remains accessible for reference</li>
+</ul>
+<p><strong>The Continuous Cycle</strong></p>
+<p>These five stages form a continuous cycle. Blueprints are created, reviewed, stored, retrieved, and evolved repeatedly throughout the system’s lifecycle.</p>
 <hr>
+</section>
 </section>
 <section id="a-minimal-toolchain" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="a-minimal-toolchain"><span class="header-section-number">20.2</span> A Minimal Toolchain</h2>
 <p>The blueprint framework deliberately avoids dependence on specialized tools.</p>
 <p>Instead, it proposes a minimal toolchain that can be adopted easily in most engineering environments.</p>
-<p>The essential elements of this toolchain are:</p>
-<p>Markdown<br>
-Schema<br>
-Index</p>
-<p>Markdown provides a human-readable format for describing blueprint structures. Engineers can inspect and edit blueprints using familiar text-based workflows.</p>
-<p>A schema defines the structural rules governing blueprint representations. It specifies required elements such as goals, components, interfaces, data relationships, and workflows. The schema ensures that blueprints follow a consistent structure.</p>
-<p>An index enables efficient retrieval of blueprints. Indexing systems may classify blueprints according to system type, architectural characteristics, and complexity levels.</p>
-<p>Together, these elements provide a lightweight infrastructure for managing blueprint knowledge.</p>
+<p><strong>The Essential Elements</strong>:</p>
+<ol type="1">
+<li><strong>Markdown</strong></li>
+<li><strong>Schema</strong></li>
+<li><strong>Index</strong></li>
+</ol>
+<section id="element-1-markdown" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="element-1-markdown"><span class="header-section-number">20.2.1</span> Element 1: Markdown</h3>
+<p><strong>Purpose</strong>: Provide a human-readable format for describing blueprint structures.</p>
+<p><strong>Why Markdown</strong>:</p>
+<ul>
+<li><strong>Ubiquitous</strong>: Most engineers already know Markdown</li>
+<li><strong>Simple</strong>: Easy to write and edit without specialized tools</li>
+<li><strong>Portable</strong>: Works with version control systems and text editors</li>
+<li><strong>Readable</strong>: Easy for humans to read and understand</li>
+</ul>
+<p><strong>Markdown Blueprint Structure</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Blueprint: [Name]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Goal</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Goal description</span><span class="co">]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Capabilities</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Capability 1</span><span class="co">]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Capability 2</span><span class="co">]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Components</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Component 1</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Description</span><span class="co">]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Component 2</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Description</span><span class="co">]</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interfaces</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Interface 1</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Protocol, operations</span><span class="co">]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Interface 2</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Protocol, operations</span><span class="co">]</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data structure 1</span><span class="co">]</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data structure 2</span><span class="co">]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflows</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Workflow 1</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Steps</span><span class="co">]</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Workflow 2</span><span class="co">]</span>: <span class="co">[</span><span class="ot">Steps</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Markdown Advantages</strong>:</p>
+<ul>
+<li>Engineers can inspect and edit blueprints using familiar text-based workflows</li>
+<li>Blueprints can be versioned alongside code using Git</li>
+<li>Blueprints can be reviewed using standard code review tools</li>
+<li>Blueprints can be converted to other formats (HTML, PDF) for presentation</li>
+</ul>
+</section>
+<section id="element-2-schema" class="level3" data-number="20.2.2">
+<h3 data-number="20.2.2" class="anchored" data-anchor-id="element-2-schema"><span class="header-section-number">20.2.2</span> Element 2: Schema</h3>
+<p><strong>Purpose</strong>: Define the structural rules governing blueprint representations.</p>
+<p><strong>What a Schema Specifies</strong>:</p>
+<ul>
+<li><strong>Required elements</strong>: Which kernel elements must be present</li>
+<li><strong>Element structure</strong>: What fields each element must contain</li>
+<li><strong>Relationships</strong>: How elements relate to each other</li>
+<li><strong>Constraints</strong>: What rules must be satisfied</li>
+</ul>
+<p><strong>Example Schema (YAML)</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blueprint</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">required</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> goal</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> capabilities</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> components</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> interfaces</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> workflows</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">goal</span><span class="kw">:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> object</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">required</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> description</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> success_criteria</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">properties</span><span class="kw">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">description</span><span class="kw">:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">success_criteria</span><span class="kw">:</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">type</span><span class="kw">:</span><span class="at"> array</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> array</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> object</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> name</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> responsibility</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">properties</span><span class="kw">:</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">responsibility</span><span class="kw">:</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">interfaces</span><span class="kw">:</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">type</span><span class="kw">:</span><span class="at"> array</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Schema Advantages</strong>:</p>
+<ul>
+<li>Ensures blueprints follow a consistent structure</li>
+<li>Enables automated validation</li>
+<li>Guides blueprint creation</li>
+<li>Supports tool development</li>
+</ul>
+</section>
+<section id="element-3-index" class="level3" data-number="20.2.3">
+<h3 data-number="20.2.3" class="anchored" data-anchor-id="element-3-index"><span class="header-section-number">20.2.3</span> Element 3: Index</h3>
+<p><strong>Purpose</strong>: Enable efficient retrieval of blueprints.</p>
+<p><strong>What an Index Provides</strong>:</p>
+<ul>
+<li><strong>Search capability</strong>: Find blueprints by keywords, categories, or attributes</li>
+<li><strong>Classification</strong>: Organize blueprints by system type, complexity, and view</li>
+<li><strong>Metadata</strong>: Track creation dates, versions, authors, and other metadata</li>
+<li><strong>Links</strong>: Connect blueprints to related resources (code, documentation, issues)</li>
+</ul>
+<p><strong>Index Implementation</strong>:</p>
+<p>An index can be as simple as:</p>
+<ul>
+<li>A directory structure with naming conventions</li>
+<li>A spreadsheet or database tracking metadata</li>
+<li>A search engine (e.g., Elasticsearch, full-text search)</li>
+<li>A dedicated blueprint management tool</li>
+</ul>
+<p><strong>Index Example</strong>:</p>
+<pre><code>blueprint_index.csv:
+id,name,system_type,complexity,created,author,tags
+bp-001,Web Application,web_app,medium,2026-03-06,Alice,web,crud
+bp-002,Payment Service,api,medium,2026-03-10,Bob,payment,financial
+bp-003,Data Pipeline,pipeline,large,2026-03-15,Carol,data,etl</code></pre>
+<p><strong>Index Advantages</strong>:</p>
+<ul>
+<li>Enables efficient search and retrieval</li>
+<li>Supports browsing and exploration</li>
+<li>Tracks metadata for organization and management</li>
+<li>Scales to large blueprint collections</li>
+</ul>
+<p><strong>The Minimal Toolchain Summary</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Purpose</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Markdown</strong></td>
+<td>Human-readable format</td>
+<td>Markdown files</td>
+</tr>
+<tr class="even">
+<td><strong>Schema</strong></td>
+<td>Structural rules</td>
+<td>YAML/JSON schema</td>
+</tr>
+<tr class="odd">
+<td><strong>Index</strong></td>
+<td>Efficient retrieval</td>
+<td>Directory, database, or search engine</td>
+</tr>
+</tbody>
+</table>
+<p>Together, these elements provide a lightweight infrastructure for managing blueprint knowledge without requiring specialized or expensive tools.</p>
 <hr>
+</section>
 </section>
 <section id="integration-with-version-control" class="level2" data-number="20.3">
 <h2 data-number="20.3" class="anchored" data-anchor-id="integration-with-version-control"><span class="header-section-number">20.3</span> Integration with Version Control</h2>
 <p>Because blueprints represent system architecture, they should be treated as <strong>first-class engineering artifacts</strong>.</p>
 <p>Version control systems such as Git provide an effective mechanism for managing blueprint evolution.</p>
-<p>By storing blueprints alongside source code repositories, teams can track architectural changes in the same way they track code modifications.</p>
-<p>Each update to the system architecture can be reflected in a corresponding blueprint revision. Commit histories record the evolution of the system’s structural design, enabling engineers to examine how architectural decisions have changed over time.</p>
-<p>This integration ensures that blueprint knowledge remains synchronized with the system’s implementation.</p>
+<p><strong>Why Version Control Matters</strong></p>
+<p>Version control enables:</p>
+<ul>
+<li><strong>History tracking</strong>: All changes to blueprints are preserved</li>
+<li><strong>Collaboration</strong>: Multiple engineers can work on blueprints simultaneously</li>
+<li><strong>Review</strong>: Changes can be reviewed before being merged</li>
+<li><strong>Rollback</strong>: Previous versions can be restored if needed</li>
+<li><strong>Branching</strong>: Experimental designs can be explored in branches</li>
+</ul>
+<p><strong>Integration Strategies</strong></p>
+<p><strong>Strategy 1: Blueprint in Code Repository</strong></p>
+<p>Store blueprints alongside code in the same repository:</p>
+<pre><code>my-system/
+├── src/
+│   ├── frontend/
+│   ├── backend/
+│   └── database/
+├── docs/
+│   ├── blueprint.md
+│   ├── api-spec.md
+│   └── architecture-diagram.png
+└── tests/</code></pre>
+<p><strong>Advantages</strong>: - Blueprints are always with the code they describe - Changes to code and architecture can be tracked together - Single repository for all system artifacts</p>
+<p><strong>Disadvantages</strong>: - Repository size may grow with blueprint history - Blueprints may not be easily shared across projects</p>
+<p><strong>Strategy 2: Separate Blueprint Repository</strong></p>
+<p>Store blueprints in a dedicated repository:</p>
+<pre><code>blueprints/
+├── bp-001-web-app/
+│   ├── v1.0/
+│   │   └── blueprint.md
+│   └── v1.1/
+│       └── blueprint.md
+├── bp-002-payment-service/
+│   └── v1.0/
+│       └── blueprint.md
+└── index.csv</code></pre>
+<p><strong>Advantages</strong>: - Blueprints are shared across projects - Blueprint repository can grow independently - Clear separation of concerns</p>
+<p><strong>Disadvantages</strong>: - Blueprints may diverge from code - Synchronization between repositories required</p>
+<p><strong>Strategy 3: Monorepo with Blueprint Subdirectory</strong></p>
+<p>Store all blueprints in a monorepo with a dedicated blueprints subdirectory:</p>
+<pre><code>monorepo/
+├── systems/
+│   ├── system-a/
+│   └── system-b/
+├── blueprints/
+│   ├── system-a/
+│   └── system-b/
+└── shared/</code></pre>
+<p><strong>Advantages</strong>: - Centralized blueprint management - Easy to share blueprints across systems - Version control for all artifacts</p>
+<p><strong>Disadvantages</strong>: - Monorepo complexity - May require access controls for different teams</p>
+<p><strong>Best Practices for Version Control</strong></p>
+<p><strong>1. Atomic Commits</strong></p>
+<p>Make each commit represent a single logical change to the blueprint:</p>
+<ul>
+<li>One commit per component addition</li>
+<li>One commit per interface modification</li>
+<li>One commit per workflow change</li>
+</ul>
+<p><strong>2. Descriptive Commit Messages</strong></p>
+<p>Use commit messages that explain what changed and why:</p>
+<pre><code>Add payment processing component
+
+This commit adds a new Payment Service component to handle
+payment processing. The component exposes a gRPC interface
+and integrates with the Transaction Service.
+
+Resolves issue #123</code></pre>
+<p><strong>3. Branching for Experimentation</strong></p>
+<p>Use branches for experimental architectural changes:</p>
+<pre><code>feature/microservice-refactoring
+experiment/event-driven-architecture</code></pre>
+<p><strong>4. Code Review for Blueprints</strong></p>
+<p>Treat blueprint changes like code changes:</p>
+<ul>
+<li>Require review for significant blueprint modifications</li>
+<li>Use pull requests to discuss and approve changes</li>
+<li>Track review comments and decisions</li>
+</ul>
+<p><strong>5. Tagging for Releases</strong></p>
+<p>Tag blueprint versions that correspond to system releases:</p>
+<pre><code>v1.0.0 - Initial release
+v1.1.0 - Added caching layer
+v2.0.0 - Microservice refactoring</code></pre>
+<p><strong>Integration Benefits</strong></p>
+<p>By storing blueprints alongside source code repositories, teams can:</p>
+<ul>
+<li>Track architectural changes in the same way they track code modifications</li>
+<li>Maintain a single history for both architecture and implementation</li>
+<li>Use the same tools and processes for both blueprints and code</li>
+<li>Ensure synchronization between architectural descriptions and implementations</li>
+</ul>
 <hr>
 </section>
 <section id="human-readable-knowledge-layers" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="human-readable-knowledge-layers"><span class="header-section-number">20.4</span> Human-Readable Knowledge Layers</h2>
 <p>Although blueprints are designed to be structured and machine-usable, they must also remain accessible to human engineers.</p>
 <p>Tools designed for knowledge organization can therefore play an important role in blueprint workflows.</p>
-<p>For example, knowledge management environments such as Obsidian provide effective platforms for browsing and exploring blueprint repositories.</p>
-<p>Within such environments, blueprints can be linked, annotated, and organized through navigable knowledge graphs. Engineers can move easily between high-level system descriptions, component structures, and operational workflows.</p>
-<p>This human-readable layer complements the structured blueprint representation by supporting exploration and understanding.</p>
+<p><strong>The Challenge: Making Structure Human-Accessible</strong></p>
+<p>Structured data is great for machines but can be challenging for humans to navigate and understand. Engineers need:</p>
+<ul>
+<li><strong>Easy navigation</strong>: Ability to move between related concepts</li>
+<li><strong>Context</strong>: Understanding of how concepts relate</li>
+<li><strong>Exploration</strong>: Ability to discover related information</li>
+<li><strong>Annotation</strong>: Ability to add notes and context</li>
+</ul>
+<p><strong>Knowledge Organization Tools</strong></p>
+<p>Tools such as Obsidian, Roam Research, and similar knowledge management environments provide effective platforms for browsing and exploring blueprint repositories.</p>
+<p><strong>Knowledge Graph Visualization</strong></p>
+<p>These tools can represent blueprints as knowledge graphs:</p>
+<ul>
+<li>Nodes represent blueprint elements (components, interfaces, workflows)</li>
+<li>Edges represent relationships between elements</li>
+<li>Visual layouts help engineers understand structure</li>
+</ul>
+<p><strong>Example Knowledge Graph</strong>:</p>
+<pre><code>[Authentication Service]
+        |
+        | exposes
+        ↓
+[Authentication API]
+        |
+        | called by
+        ↓
+[Order Service] ←→ [Payment Service]
+        |
+        | uses
+        ↓
+[Database]</code></pre>
+<p><strong>Linking and Cross-Reference</strong></p>
+<p>Knowledge tools enable:</p>
+<ul>
+<li><strong>Internal links</strong>: Link between related elements within a blueprint</li>
+<li><strong>Cross-blueprint links</strong>: Link between blueprints</li>
+<li><strong>Backlinks</strong>: See which blueprints reference a given blueprint</li>
+<li><strong>Bidirectional navigation</strong>: Navigate forwards and backwards through relationships</li>
+</ul>
+<p><strong>Annotations and Notes</strong></p>
+<p>Engineers can add:</p>
+<ul>
+<li><strong>Design rationale</strong>: Why specific decisions were made</li>
+<li><strong>Lessons learned</strong>: What worked and what didn’t</li>
+<li><strong>Questions</strong>: Open issues or concerns</li>
+<li><strong>Examples</strong>: Concrete examples of how elements work</li>
+</ul>
+<p><strong>Example Annotation</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Component: Payment Service</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Responsibility</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Process payments and manage transactions.</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">### Design Rationale</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>We chose to separate payment processing into a dedicated service</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>because:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Payment processing has distinct security requirements</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Payment provider integrations change frequently</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Payment failures require specialized handling</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lessons Learned</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Initial implementation didn't handle payment retries well</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Added retry logic in v1.1</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Considered using a message queue for async processing (deferred to v2.0)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Open Issues</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Should we support multiple payment providers simultaneously?</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do we handle payment provider outages?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>The Human-Readable Layer Complements the Structural Layer</strong></p>
+<p>This human-readable layer complements the structured blueprint representation by:</p>
+<ul>
+<li><strong>Enhancing understanding</strong>: Annotations and links provide context</li>
+<li><strong>Supporting exploration</strong>: Knowledge graphs enable navigation</li>
+<li><strong>Preserving knowledge</strong>: Notes capture experience and lessons</li>
+<li><strong>Facilitating communication</strong>: Shared annotations enable discussion</li>
+</ul>
+<p><strong>Tool Integration</strong></p>
+<p>The human-readable layer can be integrated with the structural layer:</p>
+<ul>
+<li>Markdown files contain both structure and annotations</li>
+<li>Knowledge tools parse Markdown to extract structure</li>
+<li>Automated tools read the structured elements</li>
+<li>Human tools present the human-readable elements</li>
+</ul>
+<p>This integration ensures that blueprints serve both machines and humans effectively.</p>
 <hr>
 </section>
 <section id="discipline-as-the-foundation-of-reuse" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="discipline-as-the-foundation-of-reuse"><span class="header-section-number">20.5</span> Discipline as the Foundation of Reuse</h2>
 <p>The blueprint framework emphasizes that architectural reuse does not emerge automatically.</p>
-<p>Reusable architectural knowledge requires <strong>discipline</strong>.</p>
-<p>Blueprints must be created using consistent structures. They must be reviewed for quality and stored in repositories where they can be retrieved and reused. Architectural updates must be reflected in blueprint revisions so that the knowledge base remains accurate.</p>
-<p>Without such discipline, blueprint repositories would quickly become outdated or inconsistent, reducing their usefulness.</p>
-<p>With disciplined practices, however, blueprint knowledge can accumulate across projects and organizations.</p>
+<p><strong>The Illusion of Automatic Reuse</strong></p>
+<p>Without explicit processes:</p>
+<ul>
+<li>Blueprints may be created but not maintained</li>
+<li>Blueprints may be stored but not indexed</li>
+<li>Blueprints may exist but not be found when needed</li>
+<li>Blueprints may be retrieved but not adapted successfully</li>
+</ul>
+<p>Reuse requires <strong>discipline</strong>.</p>
+<p><strong>The Four Disciplines</strong></p>
+<p><strong>1. Creation Discipline</strong></p>
+<ul>
+<li>Create blueprints using consistent structures</li>
+<li>Follow the schema and kernel conventions</li>
+<li>Include all required elements</li>
+<li>Document decisions and rationale</li>
+</ul>
+<p><strong>2. Quality Discipline</strong></p>
+<ul>
+<li>Review blueprints for quality before storage</li>
+<li>Apply quality criteria (completeness, consistency, composability, feasibility)</li>
+<li>Use both automated checks and human review</li>
+<li>Iterate on drafts until quality standards are met</li>
+</ul>
+<p><strong>3. Storage Discipline</strong></p>
+<ul>
+<li>Store blueprints in accessible repositories</li>
+<li>Apply consistent classification and metadata</li>
+<li>Index blueprints for search and retrieval</li>
+<li>Maintain version history</li>
+</ul>
+<p><strong>4. Evolution Discipline</strong></p>
+<ul>
+<li>Update blueprints as systems evolve</li>
+<li>Document changes and their rationale</li>
+<li>Maintain version history</li>
+<li>Keep blueprints synchronized with implementations</li>
+</ul>
+<p><strong>The Cost of Undisciplined Blueprints</strong></p>
+<p>Without discipline, blueprint repositories would:</p>
+<ul>
+<li><strong>Become outdated</strong>: Blueprints don’t keep pace with system changes</li>
+<li><strong>Become inconsistent</strong>: Different teams use different structures</li>
+<li><strong>Become inaccessible</strong>: Blueprints cannot be found when needed</li>
+<li><strong>Become useless</strong>: Blueprints cannot be reused effectively</li>
+</ul>
+<p><strong>The Benefit of Disciplined Blueprints</strong></p>
+<p>With disciplined practices, blueprint knowledge can:</p>
+<ul>
+<li><strong>Accumulate across projects</strong>: Each project contributes to the knowledge base</li>
+<li><strong>Improve over time</strong>: Feedback and iteration improve blueprint quality</li>
+<li><strong>Scale to large collections</strong>: Consistent practices enable large repositories</li>
+<li><strong>Support organization-wide reuse</strong>: All teams benefit from shared knowledge</li>
+</ul>
+<p><strong>Investing in Discipline</strong></p>
+<p>Discipline requires investment:</p>
+<ul>
+<li><strong>Time</strong>: Creating and maintaining blueprints takes time</li>
+<li><strong>Training</strong>: Teams need to learn blueprint practices</li>
+<li><strong>Tools</strong>: Some tooling is required (even minimal tooling)</li>
+<li><strong>Process</strong>: Processes must be established and followed</li>
+</ul>
+<p>However, the return on investment includes:</p>
+<ul>
+<li><strong>Faster development</strong>: Reuse accelerates future projects</li>
+<li><strong>Better quality</strong>: Proven architectures improve system quality</li>
+<li><strong>Reduced risk</strong>: Avoiding mistakes by learning from past designs</li>
+<li><strong>Organizational learning</strong>: Knowledge accumulates rather than dissipating</li>
+</ul>
+<hr>
+</section>
+<section id="summary-the-minimal-blueprint-discipline" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="summary-the-minimal-blueprint-discipline"><span class="header-section-number">20.6</span> Summary: The Minimal Blueprint Discipline</h2>
+<p>This chapter has introduced a minimal process discipline for creating, maintaining, and evolving blueprints.</p>
+<p><strong>The Blueprint Lifecycle</strong>:</p>
+<p>Five stages ensure blueprints remain synchronized with systems:</p>
+<ol type="1">
+<li><strong>Draft</strong>: Create initial blueprint</li>
+<li><strong>Review</strong>: Verify quality and architectural soundness</li>
+<li><strong>Store</strong>: Archive in repository with metadata</li>
+<li><strong>Retrieve</strong>: Find and access when needed</li>
+<li><strong>Evolve</strong>: Update as systems change</li>
+</ol>
+<p><strong>The Minimal Toolchain</strong>:</p>
+<p>Three elements provide lightweight infrastructure:</p>
+<ol type="1">
+<li><strong>Markdown</strong>: Human-readable format for blueprints</li>
+<li><strong>Schema</strong>: Structural rules for consistency</li>
+<li><strong>Index</strong>: Efficient search and retrieval</li>
+</ol>
+<p><strong>Integration with Version Control</strong>:</p>
+<ul>
+<li>Treat blueprints as first-class artifacts</li>
+<li>Use version control for history and collaboration</li>
+<li>Maintain synchronization with code</li>
+</ul>
+<p><strong>Human-Readable Knowledge Layers</strong>:</p>
+<ul>
+<li>Use knowledge tools for exploration and understanding</li>
+<li>Add annotations and links for context</li>
+<li>Complement structural representation with human-accessible layers</li>
+</ul>
+<p><strong>Discipline Enables Reuse</strong>:</p>
+<ul>
+<li>Creation discipline ensures consistent structures</li>
+<li>Quality discipline ensures reliable blueprints</li>
+<li>Storage discipline ensures accessibility</li>
+<li>Evolution discipline ensures currency</li>
+</ul>
+<p><strong>The Ultimate Value</strong>:</p>
+<p>With disciplined practices, blueprint knowledge can accumulate across projects and organizations.</p>
 <p>Over time, this accumulation forms the foundation of an architectural knowledge system capable of supporting large-scale system design.</p>
 <p>The next chapter concludes this volume by summarizing the principles of blueprint-based engineering and outlining the broader vision for blueprint-driven system architecture.</p>
 
@@ -1071,7 +1730,7 @@ Index</p>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter-16.html" class="pagination-link" aria-label="Blueprint Quality: What “Good” Means">
+      <a href="./chapter-16.html" class="pagination-link" aria-label="Blueprint Quality: What &quot;Good&quot; Means">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Blueprint Quality: What “Good” Means</span></span>
       </a>          
   </div>

@@ -557,11 +557,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#common-artifacts-in-engineering-practice" id="toc-common-artifacts-in-engineering-practice" class="nav-link active" data-scroll-target="#common-artifacts-in-engineering-practice"><span class="header-section-number">10.1</span> Common Artifacts in Engineering Practice</a></li>
+  <li><a href="#common-artifacts-in-engineering-practice" id="toc-common-artifacts-in-engineering-practice" class="nav-link active" data-scroll-target="#common-artifacts-in-engineering-practice"><span class="header-section-number">10.1</span> Common Artifacts in Engineering Practice</a>
+  <ul class="collapse">
+  <li><a href="#product-requirement-documents-prd" id="toc-product-requirement-documents-prd" class="nav-link" data-scroll-target="#product-requirement-documents-prd"><span class="header-section-number">10.1.1</span> Product Requirement Documents (PRD)</a></li>
+  <li><a href="#architecture-decision-records-adr" id="toc-architecture-decision-records-adr" class="nav-link" data-scroll-target="#architecture-decision-records-adr"><span class="header-section-number">10.1.2</span> Architecture Decision Records (ADR)</a></li>
+  <li><a href="#requests-for-comments-rfc" id="toc-requests-for-comments-rfc" class="nav-link" data-scroll-target="#requests-for-comments-rfc"><span class="header-section-number">10.1.3</span> Requests for Comments (RFC)</a></li>
+  <li><a href="#unified-modeling-language-uml-diagrams" id="toc-unified-modeling-language-uml-diagrams" class="nav-link" data-scroll-target="#unified-modeling-language-uml-diagrams"><span class="header-section-number">10.1.4</span> Unified Modeling Language (UML) Diagrams</a></li>
+  <li><a href="#api-specifications" id="toc-api-specifications" class="nav-link" data-scroll-target="#api-specifications"><span class="header-section-number">10.1.5</span> API Specifications</a></li>
+  <li><a href="#operational-runbooks" id="toc-operational-runbooks" class="nav-link" data-scroll-target="#operational-runbooks"><span class="header-section-number">10.1.6</span> Operational Runbooks</a></li>
+  <li><a href="#summary-of-common-artifacts" id="toc-summary-of-common-artifacts" class="nav-link" data-scroll-target="#summary-of-common-artifacts"><span class="header-section-number">10.1.7</span> Summary of Common Artifacts</a></li>
+  </ul></li>
   <li><a href="#why-these-artifacts-cannot-be-automatically-combined" id="toc-why-these-artifacts-cannot-be-automatically-combined" class="nav-link" data-scroll-target="#why-these-artifacts-cannot-be-automatically-combined"><span class="header-section-number">10.2</span> Why These Artifacts Cannot Be Automatically Combined</a></li>
   <li><a href="#blueprint-as-the-parent-structure" id="toc-blueprint-as-the-parent-structure" class="nav-link" data-scroll-target="#blueprint-as-the-parent-structure"><span class="header-section-number">10.3</span> Blueprint as the Parent Structure</a></li>
   <li><a href="#transformations-between-artifacts" id="toc-transformations-between-artifacts" class="nav-link" data-scroll-target="#transformations-between-artifacts"><span class="header-section-number">10.4</span> Transformations Between Artifacts</a></li>
-  <li><a href="#blueprint-as-the-primary-model" id="toc-blueprint-as-the-primary-model" class="nav-link" data-scroll-target="#blueprint-as-the-primary-model"><span class="header-section-number">10.5</span> Blueprint as the Primary Model</a></li>
+  <li><a href="#the-artifact-taxonomy" id="toc-the-artifact-taxonomy" class="nav-link" data-scroll-target="#the-artifact-taxonomy"><span class="header-section-number">10.5</span> The Artifact Taxonomy</a></li>
+  <li><a href="#the-shift-to-artifact-integration" id="toc-the-shift-to-artifact-integration" class="nav-link" data-scroll-target="#the-shift-to-artifact-integration"><span class="header-section-number">10.6</span> The Shift to Artifact Integration</a></li>
+  <li><a href="#blueprint-as-the-primary-model" id="toc-blueprint-as-the-primary-model" class="nav-link" data-scroll-target="#blueprint-as-the-primary-model"><span class="header-section-number">10.7</span> Blueprint as the Primary Model</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.8</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -597,75 +609,538 @@ ul.task-list li input[type="checkbox"] {
 <section id="common-artifacts-in-engineering-practice" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="common-artifacts-in-engineering-practice"><span class="header-section-number">10.1</span> Common Artifacts in Engineering Practice</h2>
 <p>Most software projects produce a diverse set of documentation and structural descriptions. Some artifacts originate from product management, while others are produced by architects, developers, or operations teams.</p>
-<p>Examples include:</p>
-<p>Product Requirement Documents (PRD) describe user needs, product goals, and feature requirements.</p>
-<p>Architecture Decision Records (ADR) capture the reasoning behind particular technical decisions, such as technology selection or system decomposition strategies.</p>
-<p>Requests for Comments (RFC) are proposals used to introduce and discuss architectural changes before they are implemented.</p>
-<p>Unified Modeling Language (UML) diagrams represent structural or behavioral aspects of a system using standardized graphical notation.</p>
+<p>Understanding these artifacts is the first step toward organizing them into a coherent system knowledge model.</p>
+<section id="product-requirement-documents-prd" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="product-requirement-documents-prd"><span class="header-section-number">10.1.1</span> Product Requirement Documents (PRD)</h3>
+<p>Product Requirement Documents describe user needs, product goals, and feature requirements.</p>
+<p>PRDs typically include:</p>
+<ul>
+<li>Problem statements and user pain points</li>
+<li>Functional requirements and feature descriptions</li>
+<li>User personas and use cases</li>
+<li>Success metrics and acceptance criteria</li>
+</ul>
+<p>PRDs serve as the primary artifact for capturing <strong>intent</strong>. They describe what a system should accomplish but do not specify how it should be structured.</p>
+</section>
+<section id="architecture-decision-records-adr" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="architecture-decision-records-adr"><span class="header-section-number">10.1.2</span> Architecture Decision Records (ADR)</h3>
+<p>Architecture Decision Records capture the reasoning behind particular technical decisions, such as technology selection or system decomposition strategies.</p>
+<p>ADRs typically include:</p>
+<ul>
+<li>The context and problem being addressed</li>
+<li>The decision that was made</li>
+<li>The consequences and trade-offs of the decision</li>
+<li>Alternatives that were considered</li>
+</ul>
+<p>ADRs serve as historical records of architectural reasoning. They preserve the <em>why</em> behind structural choices, helping future engineers understand the rationale behind current designs.</p>
+</section>
+<section id="requests-for-comments-rfc" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="requests-for-comments-rfc"><span class="header-section-number">10.1.3</span> Requests for Comments (RFC)</h3>
+<p>Requests for Comments are proposals used to introduce and discuss architectural changes before they are implemented.</p>
+<p>RFCs typically include:</p>
+<ul>
+<li>Motivation for the proposed change</li>
+<li>Technical details of the proposed design</li>
+<li>Impact analysis and risk assessment</li>
+<li>Discussion and feedback from stakeholders</li>
+</ul>
+<p>RFCs facilitate collaborative decision-making by allowing teams to review and refine architectural proposals before implementation begins.</p>
+</section>
+<section id="unified-modeling-language-uml-diagrams" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="unified-modeling-language-uml-diagrams"><span class="header-section-number">10.1.4</span> Unified Modeling Language (UML) Diagrams</h3>
+<p>UML diagrams represent structural or behavioral aspects of a system using standardized graphical notation.</p>
+<p>Common UML diagram types include:</p>
+<ul>
+<li>Class diagrams: Show static structure and relationships</li>
+<li>Sequence diagrams: Show interaction sequences</li>
+<li>Component diagrams: Show system components and their connections</li>
+<li>Deployment diagrams: Show physical deployment structures</li>
+</ul>
+<p>UML diagrams provide visual representations of system structure, making architectural relationships easier to understand. However, they often operate as standalone artifacts rather than being integrated into a broader knowledge model.</p>
+</section>
+<section id="api-specifications" class="level3" data-number="10.1.5">
+<h3 data-number="10.1.5" class="anchored" data-anchor-id="api-specifications"><span class="header-section-number">10.1.5</span> API Specifications</h3>
 <p>API specifications define external interfaces and communication protocols between services.</p>
+<p>API specifications typically include:</p>
+<ul>
+<li>Endpoint definitions and methods</li>
+<li>Request and response schemas</li>
+<li>Authentication and authorization requirements</li>
+<li>Error handling and status codes</li>
+</ul>
+<p>API specifications serve as contracts between services, defining how components should interact. They are critical for integration but typically describe only the interface layer of a system.</p>
+</section>
+<section id="operational-runbooks" class="level3" data-number="10.1.6">
+<h3 data-number="10.1.6" class="anchored" data-anchor-id="operational-runbooks"><span class="header-section-number">10.1.6</span> Operational Runbooks</h3>
 <p>Operational runbooks describe the procedures required to deploy, maintain, and troubleshoot systems in production environments.</p>
+<p>Runbooks typically include:</p>
+<ul>
+<li>Deployment procedures and configurations</li>
+<li>Monitoring and alerting setup</li>
+<li>Troubleshooting guides and diagnostic procedures</li>
+<li>Disaster recovery and failover procedures</li>
+</ul>
+<p>Operational runbooks capture the <strong>operational layer</strong> of system knowledge, focusing on runtime behavior rather than structural design.</p>
+</section>
+<section id="summary-of-common-artifacts" class="level3" data-number="10.1.7">
+<h3 data-number="10.1.7" class="anchored" data-anchor-id="summary-of-common-artifacts"><span class="header-section-number">10.1.7</span> Summary of Common Artifacts</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 36%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Primary Focus</th>
+<th>Typical Audience</th>
+<th>Layer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRD</td>
+<td>Goals and capabilities</td>
+<td>Product managers, stakeholders</td>
+<td>Intent</td>
+</tr>
+<tr class="even">
+<td>ADR</td>
+<td>Architectural reasoning</td>
+<td>Architects, engineers</td>
+<td>Blueprint</td>
+</tr>
+<tr class="odd">
+<td>RFC</td>
+<td>Proposed changes</td>
+<td>All stakeholders</td>
+<td>Blueprint</td>
+</tr>
+<tr class="even">
+<td>UML Diagrams</td>
+<td>Visual structure</td>
+<td>Architects, engineers</td>
+<td>Blueprint</td>
+</tr>
+<tr class="odd">
+<td>API Specifications</td>
+<td>Interface contracts</td>
+<td>Developers, integrators</td>
+<td>Blueprint</td>
+</tr>
+<tr class="even">
+<td>Runbooks</td>
+<td>Operational procedures</td>
+<td>Operations teams</td>
+<td>Blueprint</td>
+</tr>
+</tbody>
+</table>
 <p>Each of these artifacts contributes valuable information about the system. However, they are typically created independently, using different formats, assumptions, and conceptual models.</p>
 <p>Consequently, they describe <strong>different slices of system knowledge</strong>, rather than a unified architectural structure.</p>
 <hr>
+</section>
 </section>
 <section id="why-these-artifacts-cannot-be-automatically-combined" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="why-these-artifacts-cannot-be-automatically-combined"><span class="header-section-number">10.2</span> Why These Artifacts Cannot Be Automatically Combined</h2>
 <p>Although the artifacts listed above contain useful information, they are difficult to combine into a coherent system model.</p>
 <p>The fundamental reason is the absence of a shared <strong>ontology</strong>.</p>
-<p>An ontology defines the set of concepts and relationships used to describe a domain. Without a shared ontology, different artifacts may refer to similar ideas using different terminology or levels of abstraction.</p>
-<p>For example, a PRD may describe a capability such as “order processing,” while an architecture diagram may represent this capability as a service, and a codebase may implement it as a collection of modules and APIs.</p>
-<p>Each artifact refers to the same conceptual element, but there is no consistent representation linking these descriptions together.</p>
-<p>As a result, integrating information across artifacts requires manual interpretation. Engineers must mentally map the relationships between requirements, architectural structures, and implementation components.</p>
-<p>This manual mapping process does not scale well as systems grow in size and complexity.</p>
+<p><strong>The Ontology Problem</strong></p>
+<p>An ontology defines the set of concepts and relationships used to describe a domain. It provides a common vocabulary and structure that allows different artifacts to refer to the same concepts consistently.</p>
+<p>Without a shared ontology, different artifacts may refer to similar ideas using different terminology or levels of abstraction.</p>
+<p><strong>Example: The Order Processing Capability</strong></p>
+<p>Consider how different artifacts might describe the same capability:</p>
+<ul>
+<li>A PRD may describe a capability called “order processing” with requirements for creating, updating, and canceling customer orders</li>
+<li>An architecture diagram may represent this capability as a “Order Service” component with interfaces to a “Payment Service” and “Inventory Service”</li>
+<li>A codebase may implement this capability as a collection of classes: OrderController, OrderRepository, OrderValidator, and OrderEventHandler</li>
+<li>An API specification may define endpoints like POST /orders, PUT /orders/{id}, and DELETE /orders/{id}</li>
+<li>An operational runbook may describe procedures for monitoring order throughput, retrying failed orders, and scaling the Order Service</li>
+</ul>
+<p>Each artifact refers to the same conceptual element—the order processing capability—but uses different names, representations, and levels of detail.</p>
+<p><strong>The Manual Mapping Problem</strong></p>
+<p>Without a shared ontology, integrating information across artifacts requires manual interpretation. Engineers must:</p>
+<ul>
+<li>Recognize that “order processing” in the PRD, “Order Service” in the diagram, and the OrderController class in code all refer to the same capability</li>
+<li>Map relationships between requirements, components, and implementation elements</li>
+<li>Reconstruct the complete architectural picture from fragmentary sources</li>
+</ul>
+<p>This manual mapping process is:</p>
+<ul>
+<li><strong>Time-consuming</strong>: Engineers must spend significant effort understanding how different artifacts relate</li>
+<li><strong>Error-prone</strong>: Misinterpretations can lead to incorrect assumptions about system structure</li>
+<li><strong>Non-scalable</strong>: As systems grow, the number of artifacts and their relationships becomes overwhelming</li>
+<li><strong>Fragile</strong>: Knowledge is lost when engineers leave the organization, requiring reconstruction from scratch</li>
+</ul>
+<p><strong>The Structural Inconsistency Problem</strong></p>
+<p>Even when artifacts describe the same concepts, they may represent them using incompatible structures:</p>
+<ul>
+<li>A PRD may organize capabilities by user value (e.g., “checkout experience”)</li>
+<li>An architecture diagram may organize components by technical boundaries (e.g., “backend services”)</li>
+<li>Code may organize classes by implementation patterns (e.g., “controllers,” “repositories,” “models”)</li>
+</ul>
+<p>These different organizational structures create impedance mismatches that make automated analysis or combination nearly impossible.</p>
+<p><strong>The Consequence: Isolated Knowledge Fragments</strong></p>
 <p>Without a shared ontology, artifacts remain <strong>isolated fragments of knowledge</strong> rather than components of an integrated system model.</p>
+<p>Each fragment is valuable individually, but their collective value is limited because:</p>
+<ul>
+<li>Engineers cannot easily find relevant information across artifacts</li>
+<li>Automated tools cannot analyze relationships between artifacts</li>
+<li>Changes in one artifact may not be reflected in related artifacts</li>
+<li>Knowledge cannot be reused or composed across projects</li>
+</ul>
+<p>The blueprint framework addresses this fragmentation by introducing a central structural model and a shared ontology for representing system knowledge.</p>
 <hr>
 </section>
 <section id="blueprint-as-the-parent-structure" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="blueprint-as-the-parent-structure"><span class="header-section-number">10.3</span> Blueprint as the Parent Structure</h2>
-<p>The blueprint framework addresses this fragmentation by introducing a central structural model.</p>
+<p>The blueprint framework addresses the fragmentation problem by introducing a central structural model.</p>
 <p>In this model, the blueprint functions as the <strong>parent structure</strong> that organizes system knowledge.</p>
+<p><strong>The Parent-Child Relationship</strong></p>
 <p>Instead of treating PRDs, ADRs, architecture diagrams, and specifications as independent artifacts, the blueprint framework interprets them as <strong>projections derived from the same underlying system model</strong>.</p>
-<p>The blueprint captures the core structural representation of the system: its components, interfaces, data relationships, workflows, and constraints.</p>
+<p>The blueprint captures the core structural representation of the system:</p>
+<ul>
+<li>Components and their responsibilities</li>
+<li>Interfaces and communication protocols</li>
+<li>Data models and transformation rules</li>
+<li>Workflows and operational sequences</li>
+<li>Constraints and feasibility requirements</li>
+</ul>
 <p>Other artifacts then become specialized views that emphasize particular aspects of this structure.</p>
-<p>For example:</p>
-<p>A product requirements document emphasizes the goals and capabilities associated with the system.</p>
-<p>An architecture diagram emphasizes the structural relationships between components.</p>
-<p>An API specification emphasizes interface contracts.</p>
-<p>An operational runbook emphasizes runtime procedures and workflows.</p>
-<p>Although these artifacts appear different, they can all be interpreted as <strong>partial representations of the same blueprint</strong>.</p>
-<p>This perspective transforms the role of documentation. Instead of serving as independent sources of information, artifacts become structured projections derived from a shared architectural model.</p>
+<p><strong>How the Blueprint Unifies Artifacts</strong></p>
+<p>Consider how the blueprint relates to the common artifacts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Relationship to Blueprint</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRD</td>
+<td>Emphasizes the <strong>goal</strong> and <strong>capabilities</strong> elements of the blueprint</td>
+</tr>
+<tr class="even">
+<td>ADR</td>
+<td>Captures the <strong>reasoning</strong> behind blueprint decisions</td>
+</tr>
+<tr class="odd">
+<td>RFC</td>
+<td>Proposes <strong>changes</strong> to the blueprint structure</td>
+</tr>
+<tr class="even">
+<td>UML Diagram</td>
+<td>Provides a <strong>visual projection</strong> of the blueprint’s components and interfaces</td>
+</tr>
+<tr class="odd">
+<td>API Specification</td>
+<td>Emphasizes the <strong>interface</strong> elements of the blueprint</td>
+</tr>
+<tr class="even">
+<td>Runbook</td>
+<td>Emphasizes the <strong>workflow</strong> and <strong>operational constraints</strong> elements of the blueprint</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example: Unified Representation</strong></p>
+<p>Using the blueprint as the parent structure, the order processing capability would be represented consistently across all artifacts:</p>
+<ul>
+<li><strong>Blueprint</strong>: Defines the OrderProcessing component with clear responsibilities, interfaces to Payment and Inventory services, data models for orders, and workflows for order lifecycle management</li>
+<li><strong>PRD</strong>: References the blueprint’s goal and capabilities, describing order processing in terms of user value</li>
+<li><strong>Architecture Diagram</strong>: Visually projects the blueprint’s components and interfaces</li>
+<li><strong>API Specification</strong>: Projects the blueprint’s interface definitions as endpoint contracts</li>
+<li><strong>Runbook</strong>: Projects the blueprint’s workflows as operational procedures</li>
+<li><strong>Code</strong>: Implements the blueprint’s components and interfaces</li>
+</ul>
+<p>All artifacts now reference the same underlying conceptual structure, using consistent terminology and relationships.</p>
+<p><strong>The Transformation From Fragments to Model</strong></p>
+<p>This perspective transforms the role of documentation:</p>
+<ul>
+<li><strong>Before</strong>: Artifacts are isolated fragments, each describing a different slice of the system</li>
+<li><strong>After</strong>: Artifacts are projections of a unified model, each emphasizing a different aspect of the same structure</li>
+</ul>
+<p>This transformation has profound implications for system knowledge management:</p>
+<ul>
+<li><strong>Consistency</strong>: All artifacts remain consistent because they derive from the same blueprint</li>
+<li><strong>Comprehensibility</strong>: Engineers can navigate between artifacts using the blueprint as a map</li>
+<li><strong>Maintainability</strong>: Changes to the blueprint automatically update all related projections</li>
+<li><strong>Composability</strong>: Blueprint structures can be reused and composed across projects</li>
+</ul>
 <hr>
 </section>
 <section id="transformations-between-artifacts" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="transformations-between-artifacts"><span class="header-section-number">10.4</span> Transformations Between Artifacts</h2>
 <p>Once artifacts are interpreted as projections of a blueprint, relationships between them become easier to understand.</p>
+<p><strong>Blueprint → Projections</strong></p>
 <p>A blueprint can generate multiple projections, each tailored to a specific audience or purpose.</p>
 <p>For example, a blueprint describing a service-based system may produce:</p>
 <ul>
-<li><p>an architecture projection showing service boundaries and dependencies</p></li>
-<li><p>a specification projection describing interface contracts and acceptance criteria</p></li>
-<li><p>an operational projection describing runtime workflows and monitoring points</p></li>
+<li>an <strong>architecture projection</strong> showing service boundaries and dependencies</li>
+<li>a <strong>specification projection</strong> describing interface contracts and acceptance criteria</li>
+<li>an <strong>operational projection</strong> describing runtime workflows and monitoring points</li>
+<li>a <strong>data projection</strong> describing data models and ownership boundaries</li>
 </ul>
+<p>These projections are not independent documents—they are views extracted from the blueprint.</p>
+<p><strong>Projections → Blueprint</strong></p>
 <p>Conversely, existing artifacts can also serve as inputs for reconstructing a blueprint.</p>
-<p>For instance, architectural diagrams and API specifications may provide partial structural information that can be integrated into a unified blueprint model.</p>
-<p>These transformations are significant because they enable <strong>automation</strong>.</p>
-<p>If artifacts share a common structural foundation, tools can analyze relationships between them, detect inconsistencies, and generate missing views automatically.</p>
+<p>For instance:</p>
+<ul>
+<li>Architectural diagrams may provide information about component structure and relationships</li>
+<li>API specifications may provide interface definitions and communication protocols</li>
+<li>Operational runbooks may provide workflow descriptions and operational constraints</li>
+<li>PRDs may provide goals and capability definitions</li>
+</ul>
+<p>By integrating information from these sources, engineers can reconstruct or populate a blueprint that captures the complete system architecture.</p>
+<p><strong>Bidirectional Transformation</strong></p>
+<p>The relationship between blueprints and projections is bidirectional:</p>
+<ol type="1">
+<li><strong>Blueprint → Projections</strong>: Generate specialized views from the central model</li>
+<li><strong>Projections → Blueprint</strong>: Integrate information from multiple artifacts into a unified model</li>
+</ol>
+<p>This bidirectional capability is significant because it enables <strong>automation</strong>.</p>
+<p><strong>Automated Transformations</strong></p>
+<p>If artifacts share a common structural foundation, tools can:</p>
+<ul>
+<li><strong>Generate projections</strong> automatically from blueprints, ensuring that all views remain synchronized</li>
+<li><strong>Extract blueprint elements</strong> from existing artifacts, accelerating the process of creating blueprints for legacy systems</li>
+<li><strong>Detect inconsistencies</strong> between projections, identifying cases where artifacts have diverged</li>
+<li><strong>Update related artifacts</strong> when the blueprint changes, maintaining consistency across the entire documentation set</li>
+</ul>
 <p>Such capabilities are difficult to achieve when artifacts exist only as informal documents.</p>
-<p>The blueprint framework therefore treats artifacts not as isolated documents but as <strong>structured views connected through a shared model</strong>.</p>
+<p><strong>Example: Automated Consistency Checking</strong></p>
+<p>Consider a system where an architect modifies the blueprint to split a monolithic service into two separate services:</p>
+<ul>
+<li>The blueprint is updated to reflect the new component structure</li>
+<li>An automated tool generates an updated architecture projection showing the new service boundaries</li>
+<li>Another tool detects that the API specification still describes endpoints that have been moved between services</li>
+<li>A notification alerts the team to update the API specification to match the new blueprint</li>
+</ul>
+<p>Without the blueprint as the parent structure, detecting this inconsistency would require manual review. With the blueprint model, consistency becomes automatable.</p>
 <hr>
 </section>
-<section id="blueprint-as-the-primary-model" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="blueprint-as-the-primary-model"><span class="header-section-number">10.5</span> Blueprint as the Primary Model</h2>
+<section id="the-artifact-taxonomy" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="the-artifact-taxonomy"><span class="header-section-number">10.5</span> The Artifact Taxonomy</h2>
+<p>Based on the analysis in this chapter, we can establish a clear taxonomy of system knowledge artifacts.</p>
+<p><strong>Primary Artifacts</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 13%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Role</th>
+<th>Relationship to Blueprint</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Blueprint</strong></td>
+<td>Central structural model</td>
+<td>The parent structure</td>
+</tr>
+<tr class="even">
+<td><strong>Intent</strong></td>
+<td>Goals and requirements</td>
+<td>Input to blueprint creation</td>
+</tr>
+<tr class="odd">
+<td><strong>Implementation</strong></td>
+<td>Code and infrastructure</td>
+<td>Realization of blueprint</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Derived Artifacts (Projections)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 28%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Projection Type</th>
+<th>Emphasized Blueprint Elements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Architecture Diagram</td>
+<td>Architecture Projection</td>
+<td>Components, interfaces, dependencies</td>
+</tr>
+<tr class="even">
+<td>API Specification</td>
+<td>Interface Projection</td>
+<td>Interface definitions, protocols</td>
+</tr>
+<tr class="odd">
+<td>Specification Document</td>
+<td>Specification Projection</td>
+<td>Capabilities, acceptance criteria</td>
+</tr>
+<tr class="even">
+<td>Operational Runbook</td>
+<td>Operational Projection</td>
+<td>Workflows, operational constraints</td>
+</tr>
+<tr class="odd">
+<td>Data Schema</td>
+<td>Data Projection</td>
+<td>Data models, ownership</td>
+</tr>
+<tr class="even">
+<td>Deployment Manifest</td>
+<td>Deployment Projection</td>
+<td>Component deployment, infrastructure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supporting Artifacts</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 13%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>Role</th>
+<th>Relationship to Blueprint</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ADR</td>
+<td>Historical reasoning</td>
+<td>Records decisions affecting blueprint</td>
+</tr>
+<tr class="even">
+<td>RFC</td>
+<td>Change proposals</td>
+<td>Proposed modifications to blueprint</td>
+</tr>
+<tr class="odd">
+<td>Test Plans</td>
+<td>Verification</td>
+<td>Validate blueprint through implementation</td>
+</tr>
+<tr class="even">
+<td>Monitoring Dashboards</td>
+<td>Runtime observation</td>
+<td>Observe blueprint in operation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Insights from the Taxonomy</strong></p>
+<ol type="1">
+<li><strong>Blueprints are primary</strong>: The blueprint is the central model from which other artifacts derive</li>
+<li><strong>Projections are derived</strong>: Most documentation artifacts are projections rather than independent descriptions</li>
+<li><strong>Supporting artifacts are contextual</strong>: ADRs, RFCs, and similar documents provide context and reasoning but do not define structure</li>
+<li><strong>Implementation is realization</strong>: Code and infrastructure are the operational realization of the blueprint, not alternative descriptions</li>
+</ol>
+<hr>
+</section>
+<section id="the-shift-to-artifact-integration" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="the-shift-to-artifact-integration"><span class="header-section-number">10.6</span> The Shift to Artifact Integration</h2>
+<p>The taxonomy introduced in this chapter leads to a fundamental shift in how engineering teams should think about system knowledge artifacts.</p>
+<p><strong>From: Fragmented Artifact Collection</strong></p>
+<ul>
+<li>Each artifact is created independently</li>
+<li>Different formats, terminology, and conceptual models</li>
+<li>Manual effort required to integrate information</li>
+<li>Inconsistencies accumulate over time</li>
+<li>Knowledge is difficult to reuse or compose</li>
+</ul>
+<p><strong>To: Unified Blueprint-Based Model</strong></p>
+<ul>
+<li>Blueprint serves as the central structural model</li>
+<li>All artifacts are projections of or inputs to the blueprint</li>
+<li>Consistent terminology and conceptual framework</li>
+<li>Automated consistency checking and updates</li>
+<li>Knowledge is reusable and composable</li>
+</ul>
+<p><strong>Practical Implications</strong></p>
+<p>This shift has several practical implications for engineering teams:</p>
+<ol type="1">
+<li><strong>Blueprint-First Approach</strong>: Create blueprints before or alongside other artifacts, establishing the central structural model</li>
+<li><strong>Projections as Views</strong>: Treat architecture diagrams, specifications, and runbooks as views derived from the blueprint</li>
+<li><strong>Artifact Synchronization</strong>: Use tools to ensure that projections remain synchronized with the blueprint</li>
+<li><strong>Legacy Migration</strong>: Gradually migrate existing artifacts into a blueprint-based model by extracting structural information and consolidating it into blueprints</li>
+<li><strong>Knowledge Accumulation</strong>: Store blueprints in repositories where they can be retrieved, reused, and composed across projects</li>
+</ol>
+<hr>
+</section>
+<section id="blueprint-as-the-primary-model" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="blueprint-as-the-primary-model"><span class="header-section-number">10.7</span> Blueprint as the Primary Model</h2>
 <p>The taxonomy introduced in this chapter leads to a clear conclusion.</p>
 <p>Among the many artifacts used in software engineering, only one artifact serves as the <strong>primary representation of system structure</strong>.</p>
 <p>That artifact is the blueprint.</p>
 <p>All other artifacts—requirements documents, architecture diagrams, decision records, and operational guides—can be interpreted as projections derived from the blueprint.</p>
+<p><strong>Why This Matters</strong></p>
 <p>By placing the blueprint at the center of the system knowledge model, the framework provides a consistent foundation for organizing architectural information.</p>
-<p>This shift has important consequences.</p>
-<p>Instead of creating independent documents for different audiences, engineers can maintain a single structural model and generate specialized views when necessary.</p>
-<p>Instead of reconstructing system architecture from scattered artifacts, teams can retrieve it directly from a blueprint.</p>
-<p>And instead of losing architectural knowledge over time, organizations can store blueprints as durable knowledge objects within a shared architecture repository.</p>
-<p>The next part of this book builds on this idea by introducing the <strong>Blueprint Kernel</strong>, the minimal structural model required to represent a blueprint in practice.</p>
+<p>This shift has important consequences:</p>
+<p><strong>1. From Independent Documents to Coherent Model</strong></p>
+<ul>
+<li><strong>Before</strong>: Teams maintain independent documents for different purposes</li>
+<li><strong>After</strong>: Teams maintain a single blueprint model and generate specialized views when necessary</li>
+</ul>
+<p><strong>2. From Fragmented Knowledge to Integrated Understanding</strong></p>
+<ul>
+<li><strong>Before</strong>: System architecture must be reconstructed from scattered artifacts</li>
+<li><strong>After</strong>: System architecture is directly accessible from the blueprint</li>
+</ul>
+<p><strong>3. From Ephemeral Documentation to Durable Knowledge</strong></p>
+<ul>
+<li><strong>Before</strong>: Documentation becomes outdated and is often ignored</li>
+<li><strong>After</strong>: Blueprints are versioned, maintained, and treated as engineering assets</li>
+</ul>
+<p><strong>4. From Manual Integration to Automated Operations</strong></p>
+<ul>
+<li><strong>Before</strong>: Integrating information across artifacts requires manual effort</li>
+<li><strong>After</strong>: Automated tools can analyze, transform, and validate artifacts based on the blueprint model</li>
+</ul>
+<p><strong>The Long-Term Vision</strong></p>
+<p>The blueprint model is not merely a documentation technique. It is the foundation for a new approach to system engineering:</p>
+<ul>
+<li><strong>Architecture Libraries</strong>: Collections of reusable blueprints that capture proven architectural patterns</li>
+<li><strong>Automated Reasoning</strong>: Tools that can analyze blueprints to detect inconsistencies, suggest improvements, or validate designs</li>
+<li><strong>System Composition</strong>: Methods for combining blueprints into larger architectures through automated composition rules</li>
+<li><strong>Architecture Intelligence</strong>: AI systems that can learn from blueprint repositories and assist in architectural design</li>
+</ul>
+<p>These capabilities depend on having blueprints as the primary model for representing system structure.</p>
+<hr>
+</section>
+<section id="summary" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.8</span> Summary</h2>
+<p>This chapter has established a taxonomy of system knowledge artifacts and clarified the role of the blueprint within that taxonomy:</p>
+<p><strong>Key Insights:</strong></p>
+<ol type="1">
+<li><strong>Artifacts are Fragmented</strong>: Traditional engineering artifacts are created independently and lack a shared ontology, making them difficult to integrate</li>
+<li><strong>Blueprint is the Parent Structure</strong>: The blueprint serves as the central model from which other artifacts derive as projections</li>
+<li><strong>Transformations Enable Automation</strong>: Bidirectional transformations between blueprints and projections enable consistency checking, automated updates, and artifact synchronization</li>
+<li><strong>Taxonomy Provides Clarity</strong>: A clear taxonomy distinguishes between primary artifacts (blueprint), derived artifacts (projections), and supporting artifacts (context and reasoning)</li>
+</ol>
+<p><strong>Practical Guidance:</strong></p>
+<ul>
+<li><strong>Treat blueprints as primary</strong>: Create and maintain blueprints as the central representation of system architecture</li>
+<li><strong>Generate projections from blueprints</strong>: Use blueprints as the source for architecture diagrams, specifications, and runbooks</li>
+<li><strong>Maintain consistency</strong>: Ensure that all artifacts remain consistent with the underlying blueprint</li>
+<li><strong>Leverage automation</strong>: Use tools to generate projections, detect inconsistencies, and synchronize artifacts</li>
+</ul>
+<p>The next part of this book builds on this foundation by introducing the <strong>Blueprint Kernel</strong>, the minimal structural model required to represent a blueprint in practice.</p>
 
 
 </section>

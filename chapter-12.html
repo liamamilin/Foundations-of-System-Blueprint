@@ -560,13 +560,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#systems-are-built-from-patterns" id="toc-systems-are-built-from-patterns" class="nav-link active" data-scroll-target="#systems-are-built-from-patterns"><span class="header-section-number">15.1</span> Systems Are Built From Patterns</a></li>
   <li><a href="#three-modes-of-composition" id="toc-three-modes-of-composition" class="nav-link" data-scroll-target="#three-modes-of-composition"><span class="header-section-number">15.2</span> Three Modes of Composition</a>
   <ul class="collapse">
-  <li><a href="#stacking" id="toc-stacking" class="nav-link" data-scroll-target="#stacking"><span class="header-section-number">15.2.1</span> Stacking</a></li>
-  <li><a href="#coupling" id="toc-coupling" class="nav-link" data-scroll-target="#coupling"><span class="header-section-number">15.2.2</span> Coupling</a></li>
-  <li><a href="#orchestration" id="toc-orchestration" class="nav-link" data-scroll-target="#orchestration"><span class="header-section-number">15.2.3</span> Orchestration</a></li>
+  <li><a href="#mode-1-stacking" id="toc-mode-1-stacking" class="nav-link" data-scroll-target="#mode-1-stacking"><span class="header-section-number">15.2.1</span> Mode 1: Stacking</a></li>
+  <li><a href="#mode-2-coupling" id="toc-mode-2-coupling" class="nav-link" data-scroll-target="#mode-2-coupling"><span class="header-section-number">15.2.2</span> Mode 2: Coupling</a></li>
+  <li><a href="#mode-3-orchestration" id="toc-mode-3-orchestration" class="nav-link" data-scroll-target="#mode-3-orchestration"><span class="header-section-number">15.2.3</span> Mode 3: Orchestration</a></li>
   </ul></li>
-  <li><a href="#conflicts-in-system-composition" id="toc-conflicts-in-system-composition" class="nav-link" data-scroll-target="#conflicts-in-system-composition"><span class="header-section-number">15.3</span> Conflicts in System Composition</a></li>
+  <li><a href="#conflicts-in-system-composition" id="toc-conflicts-in-system-composition" class="nav-link" data-scroll-target="#conflicts-in-system-composition"><span class="header-section-number">15.3</span> Conflicts in System Composition</a>
+  <ul class="collapse">
+  <li><a href="#category-1-interface-conflicts" id="toc-category-1-interface-conflicts" class="nav-link" data-scroll-target="#category-1-interface-conflicts"><span class="header-section-number">15.3.1</span> Category 1: Interface Conflicts</a></li>
+  <li><a href="#category-2-data-conflicts" id="toc-category-2-data-conflicts" class="nav-link" data-scroll-target="#category-2-data-conflicts"><span class="header-section-number">15.3.2</span> Category 2: Data Conflicts</a></li>
+  <li><a href="#category-3-constraint-conflicts" id="toc-category-3-constraint-conflicts" class="nav-link" data-scroll-target="#category-3-constraint-conflicts"><span class="header-section-number">15.3.3</span> Category 3: Constraint Conflicts</a></li>
+  </ul></li>
   <li><a href="#toward-rules-for-blueprint-composition" id="toc-toward-rules-for-blueprint-composition" class="nav-link" data-scroll-target="#toward-rules-for-blueprint-composition"><span class="header-section-number">15.4</span> Toward Rules for Blueprint Composition</a></li>
   <li><a href="#blueprint-as-the-minimal-composition-interface" id="toc-blueprint-as-the-minimal-composition-interface" class="nav-link" data-scroll-target="#blueprint-as-the-minimal-composition-interface"><span class="header-section-number">15.5</span> Blueprint as the Minimal Composition Interface</a></li>
+  <li><a href="#summary-composition-as-the-reality-of-system-building" id="toc-summary-composition-as-the-reality-of-system-building" class="nav-link" data-scroll-target="#summary-composition-as-the-reality-of-system-building"><span class="header-section-number">15.6</span> Summary: Composition as the Reality of System Building</a></li>
   </ul>
 </nav>
     </div>
@@ -604,42 +610,270 @@ ul.task-list li input[type="checkbox"] {
 <section id="systems-are-built-from-patterns" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="systems-are-built-from-patterns"><span class="header-section-number">15.1</span> Systems Are Built From Patterns</h2>
 <p>Over time, certain architectural patterns have become widely recognized across the software industry.</p>
-<p>Examples include layered architectures, microservice systems, event-driven pipelines, workflow orchestrators, and distributed data processing frameworks.</p>
-<p>Although these patterns appear in many different forms, they share common structural principles. Each pattern describes a particular way of organizing components, interfaces, and data flows.</p>
-<p>When engineers build large systems, they rarely invent these patterns anew. Instead, they assemble systems by selecting and combining known patterns.</p>
-<p>A web platform may combine a service architecture with a messaging system and a data pipeline. A machine learning platform may combine workflow orchestration with distributed storage and model-serving services.</p>
+<p><strong>The Pattern Recognition Reality</strong></p>
+<p>When experienced engineers design systems, they rarely invent entirely new architectures from first principles. Instead, they recognize problems and select appropriate patterns to address them.</p>
+<p>Examples include:</p>
+<ul>
+<li><strong>Layered Architectures</strong>: Separating concerns into presentation, application, business, and data layers</li>
+<li><strong>Microservice Architectures</strong>: Decomposing systems into independently deployable services</li>
+<li><strong>Event-Driven Architectures</strong>: Using events to coordinate loosely-coupled components</li>
+<li><strong>Pipeline Architectures</strong>: Organizing processing into sequential stages</li>
+<li><strong>Repository Patterns</strong>: Abstracting data access behind interfaces</li>
+<li><strong>Circuit Breaker Patterns</strong>: Handling failures gracefully in distributed systems</li>
+</ul>
+<p><strong>From Patterns to Compositions</strong></p>
+<p>While these patterns appear in many different forms, they share common structural principles. Each pattern describes a particular way of organizing components, interfaces, and data flows.</p>
+<p>When engineers build large systems, they:</p>
+<ol type="1">
+<li><strong>Identify patterns</strong> that address the requirements</li>
+<li><strong>Adapt patterns</strong> to the specific context</li>
+<li><strong>Combine patterns</strong> into larger compositions</li>
+<li><strong>Refine patterns</strong> based on implementation experience</li>
+</ol>
+<p>A web platform may combine: - A service architecture (microservice pattern) - A messaging system (event-driven pattern) - A data pipeline (pipeline pattern) - A caching layer (repository pattern)</p>
+<p>A machine learning platform may combine: - A workflow orchestration pattern - A distributed storage pattern - A model-serving pattern - A data ingestion pattern</p>
 <p>In this sense, large systems resemble <strong>architectural compositions</strong> rather than isolated designs.</p>
-<p>Blueprints make this composition explicit by representing each subsystem as a reusable structural unit.</p>
+<p><strong>Blueprints Make Composition Explicit</strong></p>
+<p>Without blueprints, this composition is implicit:</p>
+<ul>
+<li>Patterns exist in the minds of experienced engineers</li>
+<li>Composition decisions are made informally during design discussions</li>
+<li>The resulting architecture is captured in code rather than in structural descriptions</li>
+</ul>
+<p>With blueprints, composition becomes explicit:</p>
+<ul>
+<li>Each pattern can be represented as a blueprint</li>
+<li>Composition decisions are recorded in the structure of combined blueprints</li>
+<li>The resulting architecture is captured as a structural model</li>
+</ul>
+<p>This explicitness enables:</p>
+<ul>
+<li><strong>Systematic analysis</strong>: Understanding how systems are composed</li>
+<li><strong>Pattern discovery</strong>: Identifying which patterns are used most frequently</li>
+<li><strong>Composability validation</strong>: Checking whether patterns can be combined</li>
+<li><strong>Composition reuse</strong>: Reusing successful compositions in new projects</li>
+</ul>
 <hr>
 </section>
 <section id="three-modes-of-composition" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="three-modes-of-composition"><span class="header-section-number">15.2</span> Three Modes of Composition</h2>
 <p>System composition can occur in several distinct ways.</p>
 <p>Within the blueprint framework, three primary modes of composition are identified:</p>
-<p>stacking<br>
-coupling<br>
-orchestration</p>
+<ol type="1">
+<li><strong>Stacking</strong></li>
+<li><strong>Coupling</strong></li>
+<li><strong>Orchestration</strong></li>
+</ol>
 <p>These modes describe different structural relationships between subsystems.</p>
-<section id="stacking" class="level3" data-number="15.2.1">
-<h3 data-number="15.2.1" class="anchored" data-anchor-id="stacking"><span class="header-section-number">15.2.1</span> Stacking</h3>
+<section id="mode-1-stacking" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="mode-1-stacking"><span class="header-section-number">15.2.1</span> Mode 1: Stacking</h3>
 <p>Stacking occurs when systems are organized in <strong>layers</strong>.</p>
-<p>In layered architectures, each layer provides services to the layer above while relying on the layer below. Examples include application stacks consisting of user interfaces, application logic, storage systems, and infrastructure services.</p>
-<p>Stacking allows systems to separate responsibilities across layers while maintaining a clear flow of dependencies.</p>
-<p>Many traditional software architectures, including operating systems and web platforms, rely heavily on layered stacking.</p>
+<p><strong>The Layered Pattern</strong></p>
+<p>In layered architectures, each layer provides services to the layer above while relying on the layer below. This creates a vertical stack of dependencies.</p>
+<p><strong>Characteristics of Stacking</strong>:</p>
+<ul>
+<li><strong>Hierarchical organization</strong>: Clear hierarchy from low-level to high-level components</li>
+<li><strong>Upward dependency</strong>: Higher layers depend on lower layers, but not vice versa</li>
+<li><strong>Service provision</strong>: Each layer provides specific services to the layer above</li>
+<li><strong>Abstraction levels</strong>: Each layer operates at a different level of abstraction</li>
+</ul>
+<p><strong>Examples of Stacking</strong>:</p>
+<p><strong>Operating Systems</strong>:</p>
+<pre><code>Application Layer (User applications)
+    ↓
+System Call Interface
+    ↓
+Kernel Layer (Process management, memory management, I/O)
+    ↓
+Hardware Abstraction Layer
+    ↓
+Hardware (CPU, memory, devices)</code></pre>
+<p><strong>Web Application Stack</strong>:</p>
+<pre><code>Presentation Layer (Web frontend)
+    ↓
+Application Layer (Business logic services)
+    ↓
+Data Access Layer (Database access and caching)
+    ↓
+Data Storage Layer (Databases, file systems)</code></pre>
+<p><strong>Cloud Platform Stack</strong>:</p>
+<pre><code>Platform Services (Developer tools, deployment services)
+    ↓
+Application Runtime (Containers, serverless functions)
+    ↓
+Infrastructure Services (Virtual machines, networking, storage)
+    ↓
+Physical Infrastructure (Data centers, servers)</code></pre>
+<p><strong>Blueprint Representation of Stacking</strong>:</p>
+<p>In a stacked composition, blueprints are combined by:</p>
+<ol type="1">
+<li>Identifying layers as distinct subsystems</li>
+<li>Defining interfaces between layers (upward service interfaces)</li>
+<li>Ensuring dependencies flow downward (higher layers depend on lower layers)</li>
+<li>Maintaining layer independence (lower layers don’t depend on higher layers)</li>
+</ol>
+<p><strong>Advantages of Stacking</strong>:</p>
+<ul>
+<li><strong>Separation of concerns</strong>: Each layer handles a specific concern</li>
+<li><strong>Modifiability</strong>: Layers can be modified without affecting other layers (if interfaces remain stable)</li>
+<li><strong>Reusability</strong>: Lower layers can be reused by multiple higher layers</li>
+<li><strong>Understandability</strong>: The hierarchical structure is easy to understand</li>
+</ul>
+<p><strong>Challenges of Stacking</strong>:</p>
+<ul>
+<li><strong>Performance</strong>: Calls across layers add latency</li>
+<li><strong>Rigidity</strong>: Changing layer boundaries may require significant refactoring</li>
+<li><strong>Bypass risk</strong>: Engineers may bypass layers, violating the architectural intent</li>
+<li><strong>Abstraction leakage</strong>: Low-level concerns may leak into higher layers</li>
+</ul>
 </section>
-<section id="coupling" class="level3" data-number="15.2.2">
-<h3 data-number="15.2.2" class="anchored" data-anchor-id="coupling"><span class="header-section-number">15.2.2</span> Coupling</h3>
+<section id="mode-2-coupling" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="mode-2-coupling"><span class="header-section-number">15.2.2</span> Mode 2: Coupling</h3>
 <p>Coupling occurs when systems interact through <strong>direct dependencies</strong>.</p>
-<p>In this mode, components communicate with each other through explicit interfaces, forming networks of interacting services or modules.</p>
-<p>Microservice architectures provide a common example of coupling. Each service performs a specific function but depends on other services to complete complex operations.</p>
-<p>Coupling enables flexible system design but requires careful management of interfaces and dependencies to avoid excessive complexity.</p>
+<p><strong>The Peer-to-Peer Pattern</strong></p>
+<p>In this mode, components communicate with each other through explicit interfaces, forming networks of interacting services or modules. Components are peers rather than being arranged hierarchically.</p>
+<p><strong>Characteristics of Coupling</strong>:</p>
+<ul>
+<li><strong>Network structure</strong>: Components form a graph of dependencies</li>
+<li><strong>Bidirectional or multi-directional dependencies</strong>: Components may depend on each other</li>
+<li><strong>Interface-based communication</strong>: Interactions occur through defined interfaces</li>
+<li><strong>Potential for complexity</strong>: Dependency networks can become complex</li>
+</ul>
+<p><strong>Examples of Coupling</strong>:</p>
+<p><strong>Microservice Architecture</strong>:</p>
+<pre><code>Order Service ←→ Payment Service
+    ↓              ↓
+Inventory Service ←→ Shipping Service</code></pre>
+<p><strong>Service Mesh</strong>:</p>
+<pre><code>Service A ←→ Service B ←→ Service C
+    ↓            ↓            ↓
+[Service Mesh Infrastructure]</code></pre>
+<p><strong>Event-Driven Architecture</strong>:</p>
+<pre><code>Producer Service → Event Bus → Consumer Service 1
+                              → Consumer Service 2
+                              → Consumer Service 3</code></pre>
+<p><strong>Blueprint Representation of Coupling</strong>:</p>
+<p>In a coupled composition, blueprints are combined by:</p>
+<ol type="1">
+<li>Identifying components as peers in a network</li>
+<li>Defining interfaces that components use to interact</li>
+<li>Specifying dependency relationships (who depends on whom)</li>
+<li>Ensuring interface compatibility across dependencies</li>
+</ol>
+<p><strong>Advantages of Coupling</strong>:</p>
+<ul>
+<li><strong>Flexibility</strong>: Components can be added, removed, or replaced independently</li>
+<li><strong>Scalability</strong>: Individual components can be scaled based on demand</li>
+<li><strong>Technology diversity</strong>: Different components can use different technologies</li>
+<li><strong>Organizational alignment</strong>: Components can align with team boundaries</li>
+</ul>
+<p><strong>Challenges of Coupling</strong>:</p>
+<ul>
+<li><strong>Complexity</strong>: Managing dependencies and interactions becomes complex</li>
+<li><strong>Consistency</strong>: Ensuring data consistency across components is challenging</li>
+<li><strong>Observability</strong>: Understanding system behavior requires tracing interactions across components</li>
+<li><strong>Testing</strong>: Integration testing becomes more complex</li>
+</ul>
 </section>
-<section id="orchestration" class="level3" data-number="15.2.3">
-<h3 data-number="15.2.3" class="anchored" data-anchor-id="orchestration"><span class="header-section-number">15.2.3</span> Orchestration</h3>
+<section id="mode-3-orchestration" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="mode-3-orchestration"><span class="header-section-number">15.2.3</span> Mode 3: Orchestration</h3>
 <p>Orchestration occurs when a coordinating component manages the execution of multiple subsystems.</p>
-<p>Workflow engines, job schedulers, and distributed task coordinators are typical examples of orchestration mechanisms.</p>
+<p><strong>The Controller Pattern</strong></p>
 <p>In orchestration-based architectures, a central controller determines the sequence in which tasks are executed and coordinates interactions between subsystems.</p>
-<p>This mode of composition is particularly common in data pipelines, workflow platforms, and agent systems.</p>
+<p><strong>Characteristics of Orchestration</strong>:</p>
+<ul>
+<li><strong>Central coordination</strong>: A controller orchestrates subsystem execution</li>
+<li><strong>Defined workflows</strong>: The controller specifies workflows or sequences of operations</li>
+<li><strong>State management</strong>: The controller often maintains workflow state</li>
+<li><strong>Error handling</strong>: The controller handles failures and retries</li>
+</ul>
+<p><strong>Examples of Orchestration</strong>:</p>
+<p><strong>Workflow Engine</strong>:</p>
+<pre><code>Workflow Controller
+    ↓
+    ├→ Task 1 (Data Ingestion)
+    ├→ Task 2 (Data Validation)
+    ├→ Task 3 (Data Transformation)
+    └→ Task 4 (Data Loading)</code></pre>
+<p><strong>Job Scheduler</strong>:</p>
+<pre><code>Scheduler
+    ↓
+    ├→ Job 1 (Backup) → Worker A
+    ├→ Job 2 (Report Generation) → Worker B
+    └→ Job 3 (Data Cleanup) → Worker C</code></pre>
+<p><strong>CI/CD Pipeline</strong>:</p>
+<pre><code>Pipeline Orchestrator
+    ↓
+    ├→ Build Stage → Build Worker
+    ├→ Test Stage → Test Workers
+    ├→ Deploy Stage → Deploy Worker
+    └→ Monitor Stage → Monitoring System</code></pre>
+<p><strong>Blueprint Representation of Orchestration</strong>:</p>
+<p>In an orchestrated composition, blueprints are combined by:</p>
+<ol type="1">
+<li>Identifying a controller blueprint (orchestrator)</li>
+<li>Identifying worker blueprints (subsystems being orchestrated)</li>
+<li>Defining control interfaces (how the controller triggers workers)</li>
+<li>Defining status interfaces (how workers report back to the controller)</li>
+<li>Specifying workflow definitions (sequences of operations)</li>
+</ol>
+<p><strong>Advantages of Orchestration</strong>:</p>
+<ul>
+<li><strong>Clear control flow</strong>: Workflows are explicitly defined and easy to understand</li>
+<li><strong>Error handling</strong>: Centralized error handling and retry logic</li>
+<li><strong>Monitoring</strong>: Workflow progress and status are centrally tracked</li>
+<li><strong>Flexibility</strong>: Workflows can be modified without changing subsystems</li>
+</ul>
+<p><strong>Challenges of Orchestration</strong>:</p>
+<ul>
+<li><strong>Centralization risk</strong>: The controller can become a bottleneck or single point of failure</li>
+<li><strong>Complexity</strong>: Complex workflows may be difficult to define and maintain</li>
+<li><strong>Coupling</strong>: Subsystems may become coupled to the orchestrator’s interface</li>
+<li><strong>Scalability</strong>: Orchestrating many subsystems may require careful performance tuning</li>
+</ul>
+<p><strong>Comparing the Three Modes</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 25%">
+<col style="width: 26%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Structure</th>
+<th>Dependency Flow</th>
+<th>Typical Use Case</th>
+<th>Key Challenge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stacking</strong></td>
+<td>Hierarchical layers</td>
+<td>Downward (higher depends on lower)</td>
+<td>Organizing systems by abstraction level</td>
+<td>Layer rigidity, performance</td>
+</tr>
+<tr class="even">
+<td><strong>Coupling</strong></td>
+<td>Peer network</td>
+<td>Multi-directional</td>
+<td>Service-oriented architectures</td>
+<td>Dependency complexity</td>
+</tr>
+<tr class="odd">
+<td><strong>Orchestration</strong></td>
+<td>Controller + workers</td>
+<td>Controller to workers</td>
+<td>Workflow and batch processing</td>
+<td>Controller bottleneck</td>
+</tr>
+</tbody>
+</table>
+<p>Systems often use multiple modes simultaneously. For example, a microservice architecture (coupling) may have internal layering (stacking) and be orchestrated by a workflow engine (orchestration).</p>
 <hr>
 </section>
 </section>
@@ -647,33 +881,218 @@ orchestration</p>
 <h2 data-number="15.3" class="anchored" data-anchor-id="conflicts-in-system-composition"><span class="header-section-number">15.3</span> Conflicts in System Composition</h2>
 <p>Although combining subsystems is essential for building complex systems, composition introduces several challenges.</p>
 <p>When two architectural structures are combined, conflicts may arise in multiple dimensions.</p>
-<p>One common source of conflict involves <strong>interfaces</strong>. Subsystems may expose incompatible communication protocols or inconsistent interaction patterns.</p>
-<p>Another source of conflict involves <strong>data</strong>. Systems may use different data models, ownership rules, or consistency guarantees, making integration difficult.</p>
-<p>A third source of conflict involves <strong>constraints</strong>. Performance requirements, reliability expectations, and operational environments may impose restrictions that affect how subsystems can be combined.</p>
-<p>These conflicts must be resolved for composition to succeed.</p>
-<p>Without clear structural representations, engineers must resolve such conflicts through manual analysis and experimentation.</p>
-<p>Blueprints simplify this process by making the relevant structural elements explicit.</p>
+<p><strong>The Three Categories of Composition Conflicts</strong></p>
+<section id="category-1-interface-conflicts" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="category-1-interface-conflicts"><span class="header-section-number">15.3.1</span> Category 1: Interface Conflicts</h3>
+<p>Interfaces define how components interact. When combining blueprints, interfaces must be compatible.</p>
+<p><strong>Types of Interface Conflicts</strong>:</p>
+<ul>
+<li><strong>Protocol mismatch</strong>: One system uses HTTP, another uses gRPC or message queues</li>
+<li><strong>Data format mismatch</strong>: One system uses JSON, another uses XML or Protocol Buffers</li>
+<li><strong>Operation mismatch</strong>: Required operations are not available or have different signatures</li>
+<li><strong>Version mismatch</strong>: Different versions of the same interface are incompatible</li>
+<li><strong>Semantic mismatch</strong>: Same operation name but different behavior or semantics</li>
+</ul>
+<p><strong>Example Conflict</strong>:</p>
+<p>When integrating a Payment Service blueprint with an Order Service blueprint:</p>
+<ul>
+<li>Order Service expects: <code>processPayment(orderId, amount, paymentMethod)</code></li>
+<li>Payment Service provides: <code>authorizeTransaction(cardInfo, amount)</code> and <code>captureTransaction(transactionId)</code></li>
+</ul>
+<p>The interfaces don’t match, requiring an adapter or integration layer.</p>
+<p><strong>Resolution Strategies</strong>:</p>
+<ul>
+<li><strong>Adapter pattern</strong>: Create an adapter that translates between incompatible interfaces</li>
+<li><strong>Interface modification</strong>: Modify one or both interfaces to achieve compatibility</li>
+<li><strong>Facade pattern</strong>: Create a facade that provides a unified interface to multiple subsystems</li>
+<li><strong>Protocol gateway</strong>: Use a gateway to translate between different protocols</li>
+</ul>
+</section>
+<section id="category-2-data-conflicts" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="category-2-data-conflicts"><span class="header-section-number">15.3.2</span> Category 2: Data Conflicts</h3>
+<p>Data conflicts arise when subsystems use different data models, ownership rules, or consistency guarantees.</p>
+<p><strong>Types of Data Conflicts</strong>:</p>
+<ul>
+<li><strong>Model mismatch</strong>: Different representations of the same entity</li>
+<li><strong>Ownership conflicts</strong>: Conflicting claims about who owns or manages data</li>
+<li><strong>Consistency mismatch</strong>: Different consistency guarantees (strong vs.&nbsp;eventual consistency)</li>
+<li><strong>Schema evolution</strong>: Incompatible schema versions</li>
+<li><strong>Naming conflicts</strong>: Same name used for different entities or different names for the same entity</li>
+</ul>
+<p><strong>Example Conflict</strong>:</p>
+<p>When combining a User Service blueprint with an Order Service blueprint:</p>
+<ul>
+<li>User Service defines: User { id, name, email, address }</li>
+<li>Order Service defines: User { userId, customerName, shippingAddress }</li>
+</ul>
+<p>The user model is represented differently in each system, causing integration challenges.</p>
+<p><strong>Resolution Strategies</strong>:</p>
+<ul>
+<li><strong>Canonical data model</strong>: Establish a shared data model that all systems use for integration</li>
+<li><strong>Data transformation</strong>: Transform data between different models as it flows between systems</li>
+<li><strong>Data ownership agreements</strong>: Clearly define which system owns which data</li>
+<li><strong>Event-driven synchronization</strong>: Use events to keep data synchronized across systems</li>
+<li><strong>API-based access</strong>: Access data through APIs rather than sharing databases directly</li>
+</ul>
+</section>
+<section id="category-3-constraint-conflicts" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="category-3-constraint-conflicts"><span class="header-section-number">15.3.3</span> Category 3: Constraint Conflicts</h3>
+<p>Constraints define the limitations and requirements that systems must satisfy. When combining blueprints, constraints may conflict.</p>
+<p><strong>Types of Constraint Conflicts</strong>:</p>
+<ul>
+<li><strong>Performance conflicts</strong>: One system requires low latency, another requires high throughput</li>
+<li><strong>Reliability conflicts</strong>: Different availability or durability requirements</li>
+<li><strong>Security conflicts</strong>: Different security models or compliance requirements</li>
+<li><strong>Scalability conflicts</strong>: Different scaling assumptions or requirements</li>
+<li><strong>Resource conflicts</strong>: Competing for limited resources (CPU, memory, network)</li>
+</ul>
+<p><strong>Example Conflict</strong>:</p>
+<p>When combining a real-time analytics blueprint with a batch processing blueprint:</p>
+<ul>
+<li>Real-time analytics requires: Low latency (&lt; 100ms), high availability (99.99%)</li>
+<li>Batch processing requires: High throughput, cost efficiency</li>
+</ul>
+<p>These constraints may conflict when both run on shared infrastructure.</p>
+<p><strong>Resolution Strategies</strong>:</p>
+<ul>
+<li><strong>Resource allocation</strong>: Allocate dedicated resources to satisfy conflicting constraints</li>
+<li><strong>Priority negotiation</strong>: Establish priorities when constraints cannot all be satisfied</li>
+<li><strong>Architecture separation</strong>: Separate systems with conflicting constraints into different deployment environments</li>
+<li><strong>Constraint relaxation</strong>: Negotiate relaxed constraints where possible</li>
+<li><strong>Technology selection</strong>: Choose technologies that can satisfy multiple constraints</li>
+</ul>
+<p><strong>The Complexity of Multi-Dimensional Conflicts</strong></p>
+<p>Real-world composition often involves conflicts across multiple dimensions simultaneously. For example:</p>
+<ul>
+<li>Interface conflicts (protocol mismatch)</li>
+<li>AND data conflicts (model mismatch)</li>
+<li>AND constraint conflicts (performance vs.&nbsp;security trade-offs)</li>
+</ul>
+<p>Resolving these multi-dimensional conflicts requires:</p>
+<ul>
+<li><strong>Systematic analysis</strong>: Understanding all conflicts and their interactions</li>
+<li><strong>Prioritization</strong>: Determining which conflicts are most critical</li>
+<li><strong>Iterative resolution</strong>: Addressing conflicts in order of priority</li>
+<li><strong>Architecture refactoring</strong>: Sometimes requiring changes to the original blueprints</li>
+</ul>
 <hr>
+</section>
 </section>
 <section id="toward-rules-for-blueprint-composition" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="toward-rules-for-blueprint-composition"><span class="header-section-number">15.4</span> Toward Rules for Blueprint Composition</h2>
 <p>If blueprints represent system structures in a consistent format, it becomes possible to define rules governing how those structures can be combined.</p>
 <p>Such rules may address questions such as:</p>
-<p>Which interfaces must align when two systems interact?<br>
-How should data ownership be managed across subsystems?<br>
-What constraints must be satisfied when combining architectural patterns?</p>
-<p>These rules form the foundation of <strong>blueprint composition</strong>.</p>
-<p>While this volume introduces the basic concept, a more detailed treatment of composition mechanisms will appear in a later volume of the series dedicated specifically to system composition.</p>
-<p>The goal of that work will be to establish a systematic method for combining blueprint structures into larger architectures.</p>
+<ul>
+<li>Which interfaces must align when two systems interact?</li>
+<li>How should data ownership be managed across subsystems?</li>
+<li>What constraints must be satisfied when combining architectural patterns?</li>
+<li>How can conflicts be detected and resolved automatically?</li>
+</ul>
+<p><strong>The Composition Contract</strong></p>
+<p>For blueprints to be composable, they must satisfy a composition contract:</p>
+<ol type="1">
+<li><strong>Interface Compatibility</strong>: Interfaces must be compatible or translatable</li>
+<li><strong>Data Consistency</strong>: Data models must be aligned or transformable</li>
+<li><strong>Constraint Satisfaction</strong>: Combined constraints must be satisfiable</li>
+<li><strong>Semantic Alignment</strong>: Intent and capabilities must not conflict</li>
+</ol>
+<p><strong>Composition Operations</strong></p>
+<p>Blueprint composition can be expressed through formal operations:</p>
+<ul>
+<li><strong>Merge</strong>: Combine two blueprints into one (e.g., combining capabilities)</li>
+<li><strong>Compose</strong>: Connect blueprints through interfaces (e.g., service composition)</li>
+<li><strong>Overlay</strong>: Layer one blueprint over another (e.g., adding monitoring to a service)</li>
+<li><strong>Extract</strong>: Extract a subsystem blueprint from a larger blueprint</li>
+<li><strong>Transform</strong>: Modify a blueprint to achieve compatibility</li>
+</ul>
+<p><strong>Automated Composition Rules</strong></p>
+<p>Future volumes in this series will explore composition rules in detail, including:</p>
+<ul>
+<li><strong>Interface matching algorithms</strong>: Automatically determining interface compatibility</li>
+<li><strong>Data model alignment</strong>: Detecting and resolving data model conflicts</li>
+<li><strong>Constraint satisfaction</strong>: Checking whether combined constraints are satisfiable</li>
+<li><strong>Composition validation</strong>: Ensuring composed systems maintain architectural quality</li>
+<li><strong>Composition optimization</strong>: Finding optimal compositions based on requirements</li>
+</ul>
+<p><strong>The Goal: Predictable Composition</strong></p>
+<p>The ultimate goal is to make blueprint composition predictable and systematic:</p>
+<ul>
+<li>Engineers can determine whether two blueprints can be composed</li>
+<li>Tools can automatically detect and suggest resolutions for conflicts</li>
+<li>Composition decisions can be validated before implementation</li>
+<li>Composed systems can be analyzed for quality and correctness</li>
+</ul>
+<p>This goal represents a significant advancement over current practice, where composition is often ad-hoc and error-prone.</p>
 <hr>
 </section>
 <section id="blueprint-as-the-minimal-composition-interface" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="blueprint-as-the-minimal-composition-interface"><span class="header-section-number">15.5</span> Blueprint as the Minimal Composition Interface</h2>
 <p>For composition to work reliably, participating systems must share a common representation of their structure.</p>
 <p>Blueprints provide this representation.</p>
+<p><strong>The Common Representation</strong></p>
 <p>Because each blueprint describes its system using consistent structural elements—components, interfaces, data relationships, workflows, and constraints—blueprints function as a <strong>minimal common interface</strong> for architectural composition.</p>
-<p>Instead of combining systems by manually interpreting diagrams and documentation, engineers can reason about composition directly at the level of blueprint structures.</p>
-<p>In this sense, the blueprint model serves not only as a documentation framework but also as the foundation for <strong>system-level interoperability</strong>.</p>
+<p><strong>What Makes Blueprints a Good Composition Interface?</strong></p>
+<ol type="1">
+<li><strong>Explicit Structure</strong>: All structural elements are explicitly defined, not inferred</li>
+<li><strong>Consistent Schema</strong>: All blueprints use the same kernel structure</li>
+<li><strong>Standardized Elements</strong>: Components, interfaces, data, and workflows are represented consistently</li>
+<li><strong>Machine-Usable</strong>: Structure can be parsed and analyzed by tools</li>
+<li><strong>Extensible</strong>: Additional information can be added without breaking compatibility</li>
+</ol>
+<p><strong>The Composition Workflow</strong></p>
+<p>With blueprints as the common interface, composition follows a systematic workflow:</p>
+<pre><code>1. Retrieve blueprint A
+2. Retrieve blueprint B
+3. Analyze compatibility:
+   - Check interface compatibility
+   - Check data model alignment
+   - Check constraint satisfaction
+4. Resolve conflicts:
+   - Apply adapters or transformations
+   - Negotiate constraints
+   - Align data models
+5. Validate composition:
+   - Verify composed structure is valid
+   - Check quality criteria
+6. Implement composition</code></pre>
+<p><strong>Beyond Manual Composition</strong></p>
+<p>The blueprint model enables not just manual composition but also:</p>
+<ul>
+<li><strong>Automated composition</strong>: Tools can automatically compose compatible blueprints</li>
+<li><strong>Composition search</strong>: Find optimal compositions from a library of blueprints</li>
+<li><strong>Composition validation</strong>: Validate compositions before implementation</li>
+<li><strong>Composition optimization</strong>: Optimize compositions based on constraints</li>
+</ul>
+<hr>
+</section>
+<section id="summary-composition-as-the-reality-of-system-building" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="summary-composition-as-the-reality-of-system-building"><span class="header-section-number">15.6</span> Summary: Composition as the Reality of System Building</h2>
+<p>This chapter has established that composition, not invention, is the primary reality of system building.</p>
+<p><strong>Key Insights</strong>:</p>
+<ol type="1">
+<li><strong>Systems are built from patterns</strong>: Engineers reuse architectural patterns rather than inventing new architectures from scratch</li>
+<li><strong>Three composition modes</strong>: Stacking (layered), coupling (peer-to-peer), and orchestration (controller-worker) describe different ways systems are combined</li>
+<li><strong>Conflicts are inevitable</strong>: Interface, data, and constraint conflicts arise when combining systems and must be resolved</li>
+<li><strong>Blueprints enable systematic composition</strong>: Structured representations make composition predictable and automatable</li>
+<li><strong>Composition is the foundation of scale</strong>: Complex systems are built through composition of simpler components</li>
+</ol>
+<p><strong>Practical Implications</strong>:</p>
+<ul>
+<li><strong>Design for composition</strong>: When creating blueprints, consider how they will be combined with other blueprints</li>
+<li><strong>Use standard interfaces</strong>: Adhere to interface standards to enable composition</li>
+<li><strong>Document constraints explicitly</strong>: Make constraints clear to enable conflict detection</li>
+<li><strong>Leverage composition patterns</strong>: Understand and reuse proven composition patterns</li>
+<li><strong>Invest in composition tooling</strong>: Build tools that support blueprint composition</li>
+</ul>
+<p><strong>The Road Ahead</strong>:</p>
+<p>This chapter introduces the concept of blueprint composition, but many questions remain:</p>
+<ul>
+<li>How can composition be automated at scale?</li>
+<li>What formal rules govern valid compositions?</li>
+<li>How can composition conflicts be resolved systematically?</li>
+<li>How can we discover optimal compositions?</li>
+</ul>
+<p>These questions will be addressed in future volumes of the series, particularly in the volume dedicated to <strong>System Composition</strong>.</p>
 <p>The next chapter examines how blueprint-based workflows reshape the engineering process itself, shifting the focus from writing code toward designing and composing architectural structures.</p>
 
 
@@ -1100,7 +1519,7 @@ What constraints must be satisfied when combining architectural patterns?</p>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter-13.html" class="pagination-link" aria-label="Workflow Shift: From “Coding” to “Blueprinting”">
+      <a href="./chapter-13.html" class="pagination-link" aria-label="Workflow Shift: From &quot;Coding&quot; to &quot;Blueprinting&quot;">
         <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Workflow Shift: From “Coding” to “Blueprinting”</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

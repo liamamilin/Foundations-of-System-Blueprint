@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -562,6 +597,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#blueprints-as-graph-structures" id="toc-blueprints-as-graph-structures" class="nav-link" data-scroll-target="#blueprints-as-graph-structures"><span class="header-section-number">17.3</span> Blueprints as Graph Structures</a></li>
   <li><a href="#versioning-and-architectural-evolution" id="toc-versioning-and-architectural-evolution" class="nav-link" data-scroll-target="#versioning-and-architectural-evolution"><span class="header-section-number">17.4</span> Versioning and Architectural Evolution</a></li>
   <li><a href="#building-knowledge-objects" id="toc-building-knowledge-objects" class="nav-link" data-scroll-target="#building-knowledge-objects"><span class="header-section-number">17.5</span> Building Knowledge Objects</a></li>
+  <li><a href="#summary-computable-architectural-knowledge" id="toc-summary-computable-architectural-knowledge" class="nav-link" data-scroll-target="#summary-computable-architectural-knowledge"><span class="header-section-number">17.6</span> Summary: Computable Architectural Knowledge</a></li>
   </ul>
 </nav>
     </div>
@@ -596,20 +632,154 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-computable-means" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="what-computable-means"><span class="header-section-number">17.1</span> What Computable Means</h2>
 <p>For a representation to be computable, its elements must be organized in ways that software systems can interpret reliably.</p>
-<p>Three properties are particularly important:</p>
-<p>structured fields, explicit relationships, and indexable elements.</p>
-<p>Structured fields ensure that each part of the blueprint is described using well-defined attributes rather than free-form text. For example, components, interfaces, data entities, and workflows are represented through identifiable fields rather than scattered explanations.</p>
-<p>Explicit relationships describe how elements within the blueprint connect to each other. Components interact through interfaces, workflows connect sequences of operations, and data flows across system boundaries.</p>
-<p>Indexable elements allow blueprints to be stored and searched efficiently. Systems can query blueprint repositories to locate architectures with specific characteristics, such as particular component types or workflow patterns.</p>
+<p><strong>Three Essential Properties</strong>:</p>
+<ol type="1">
+<li><strong>Structured fields</strong>: Each part of the blueprint is described using well-defined attributes rather than free-form text</li>
+<li><strong>Explicit relationships</strong>: How elements within the blueprint connect to each other is explicitly stated</li>
+<li><strong>Indexable elements</strong>: Blueprints can be stored and searched efficiently</li>
+</ol>
+<p><strong>Property 1: Structured Fields</strong></p>
+<p>Structured fields ensure consistent representation of blueprint elements.</p>
+<p><strong>Example: Component Representation</strong></p>
+<p><em>Unstructured (Documentation)</em>:</p>
+<pre><code>The authentication service is responsible for validating user credentials
+and managing sessions. It talks to the database and the cache. It has a
+REST API that other services use.</code></pre>
+<p><em>Structured (Blueprint)</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Authentication Service</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">responsibility</span><span class="kw">:</span><span class="at"> Validate user credentials and manage sessions</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">interfaces</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> API</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">protocol</span><span class="kw">:</span><span class="at"> REST</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">operations</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> validateCredentials</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> createSession</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> invalidateSession</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">component</span><span class="kw">:</span><span class="at"> Database</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">component</span><span class="kw">:</span><span class="at"> Cache</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The structured representation can be parsed, validated, and processed by software systems. The unstructured representation requires natural language understanding.</p>
+<p><strong>Property 2: Explicit Relationships</strong></p>
+<p>Explicit relationships describe how elements within the blueprint connect to each other.</p>
+<p><strong>Example: Dependency Relationships</strong></p>
+<p><em>Implicit (Documentation)</em>:</p>
+<pre><code>The Order Service needs to talk to the Payment Service and the Inventory
+Service. It also uses the database.</code></pre>
+<p><em>Explicit (Blueprint)</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Order Service</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">target</span><span class="kw">:</span><span class="at"> Payment Service</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">type</span><span class="kw">:</span><span class="at"> service</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">protocol</span><span class="kw">:</span><span class="at"> gRPC</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">target</span><span class="kw">:</span><span class="at"> Inventory Service</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">type</span><span class="kw">:</span><span class="at"> service</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">protocol</span><span class="kw">:</span><span class="at"> gRPC</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">target</span><span class="kw">:</span><span class="at"> Database</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">type</span><span class="kw">:</span><span class="at"> data</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">protocol</span><span class="kw">:</span><span class="at"> SQL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Explicit relationships enable:</p>
+<ul>
+<li><strong>Dependency analysis</strong>: Tools can analyze dependency graphs</li>
+<li><strong>Impact analysis</strong>: Tools can determine the impact of changes</li>
+<li><strong>Composition validation</strong>: Tools can check whether dependencies can be satisfied</li>
+</ul>
+<p><strong>Property 3: Indexable Elements</strong></p>
+<p>Indexable elements allow blueprints to be stored and searched efficiently.</p>
+<p><strong>Example: Indexable Fields</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blueprint</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">id</span><span class="kw">:</span><span class="at"> bp-001</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Web Application Blueprint</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">system_type</span><span class="kw">:</span><span class="at"> web_application</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">complexity</span><span class="kw">:</span><span class="at"> medium</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">created</span><span class="kw">:</span><span class="at"> 2026-03-06</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">goal</span><span class="kw">:</span><span class="at"> Enable users to manage content through a web interface</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">capabilities</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Content Management</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> functional</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> User Authentication</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> functional</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Content Search</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> functional</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Frontend Service</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> presentation</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> API Service</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> business_logic</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Database</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> data_store</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Indexable fields enable:</p>
+<ul>
+<li><strong>Fast retrieval</strong>: Search blueprints by system type, complexity, capabilities, etc.</li>
+<li><strong>Faceted browsing</strong>: Navigate blueprint libraries by multiple criteria</li>
+<li><strong>Similarity matching</strong>: Find blueprints with similar characteristics</li>
+</ul>
 <p>Together, these properties enable blueprints to function as structured data rather than narrative documents.</p>
 <hr>
 </section>
 <section id="the-limits-of-natural-language-documentation" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="the-limits-of-natural-language-documentation"><span class="header-section-number">17.2</span> The Limits of Natural Language Documentation</h2>
 <p>Natural language is highly effective for explaining ideas to humans, but it is poorly suited for computational analysis.</p>
-<p>Documents written in natural language often contain ambiguous terminology, implicit relationships, and inconsistent levels of detail. While humans can interpret these descriptions through context and experience, software systems struggle to extract reliable structural information from them.</p>
-<p>For example, a design document may describe a service architecture in several paragraphs of text. A human reader can infer component relationships, data flows, and system responsibilities from this description. A machine, however, cannot easily determine which elements correspond to components, which represent interfaces, and which describe operational constraints.</p>
-<p>Even when natural language processing techniques are applied, the results remain uncertain.</p>
+<p><strong>Why Natural Language Is Challenging for Machines</strong></p>
+<p>Natural language documentation contains:</p>
+<ul>
+<li><strong>Ambiguous terminology</strong>: The same concept may be described using different words</li>
+<li><strong>Implicit relationships</strong>: Relationships between elements are implied rather than explicit</li>
+<li><strong>Inconsistent structure</strong>: Information is organized narratively, not systematically</li>
+<li><strong>Contextual dependencies</strong>: Meaning depends on context that may not be captured</li>
+</ul>
+<p><strong>Example: Ambiguity in Natural Language</strong></p>
+<p>Consider this description:</p>
+<pre><code>The service handles user requests. It checks if the user is authenticated.
+If not, it returns an error. If yes, it processes the request and stores
+the result in the database.</code></pre>
+<p>Questions a machine might struggle to answer:</p>
+<ul>
+<li>What exactly does “handles user requests” mean?</li>
+<li>How is authentication checked?</li>
+<li>What does “processes the request” involve?</li>
+<li>What is stored in the database—the result, the request, or both?</li>
+<li>What happens if database storage fails?</li>
+</ul>
+<p>A human reader might infer answers from context, but a machine cannot reliably extract this information without making assumptions.</p>
+<p><strong>Example: Inconsistent Structure</strong></p>
+<p>Different documents might describe similar systems differently:</p>
+<p><em>Document A</em>:</p>
+<pre><code>System Components:
+- Web Server
+- Application Server
+- Database</code></pre>
+<p><em>Document B</em>:</p>
+<pre><code>Architecture:
+Frontend: Web Interface
+Backend: Service Layer
+Data: Persistence Layer</code></pre>
+<p><em>Document C</em>:</p>
+<pre><code>The system consists of a client that talks to a server. The server
+uses a database.</code></pre>
+<p>All three describe similar architectures, but the terminology and structure vary. A machine would struggle to recognize that these represent the same pattern.</p>
+<p><strong>The NLP Challenge</strong></p>
+<p>Even with advanced natural language processing (NLP) techniques:</p>
+<ul>
+<li><strong>Extraction is uncertain</strong>: NLP systems make probabilistic guesses about structure</li>
+<li><strong>Context is required</strong>: Understanding often requires broader context than a single document</li>
+<li><strong>Training is needed</strong>: NLP systems require training on domain-specific language</li>
+<li><strong>Errors are inevitable</strong>: Ambiguity leads to incorrect interpretations</li>
+</ul>
+<p><strong>The Structural Advantage</strong></p>
+<p>Structured representations eliminate these challenges:</p>
+<ul>
+<li><strong>Terminology is standardized</strong>: Concepts use consistent names</li>
+<li><strong>Structure is explicit</strong>: All elements follow the same schema</li>
+<li><strong>Relationships are defined</strong>: Connections between elements are explicit</li>
+<li><strong>Meaning is unambiguous</strong>: The structure itself carries meaning</li>
+</ul>
 <p>For architectural knowledge to be reliably processed by computational tools, the underlying representation must contain <strong>explicit structural information</strong>.</p>
 <p>Blueprints provide such a representation.</p>
 <hr>
@@ -617,12 +787,94 @@ ul.task-list li input[type="checkbox"] {
 <section id="blueprints-as-graph-structures" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="blueprints-as-graph-structures"><span class="header-section-number">17.3</span> Blueprints as Graph Structures</h2>
 <p>From a data-structure perspective, a blueprint can be interpreted as a <strong>graph</strong>.</p>
-<p>In this representation, the elements of the blueprint correspond to nodes, relationships between elements correspond to edges, and descriptive attributes provide additional information about each element.</p>
-<p>Nodes represent entities such as components, interfaces, data structures, capabilities, or workflows.</p>
-<p>Edges represent relationships between these entities. Examples include communication links between components, data dependencies, or execution sequences within workflows.</p>
-<p>Attributes describe properties of nodes and edges, such as performance constraints, interface protocols, ownership boundaries, or operational requirements.</p>
-<p>This graph-based representation captures the interconnected nature of system architecture.</p>
-<p>Because graphs are well-understood computational structures, they enable a wide range of analytical operations. Tools can traverse blueprint graphs to analyze dependency chains, detect structural inconsistencies, or identify reusable architectural patterns.</p>
+<p>This graph-based representation captures the interconnected nature of system architecture and enables a wide range of analytical operations.</p>
+<p><strong>The Blueprint Graph Model</strong></p>
+<p>In this representation:</p>
+<ul>
+<li><strong>Nodes</strong> represent entities within the blueprint</li>
+<li><strong>Edges</strong> represent relationships between entities</li>
+<li><strong>Attributes</strong> provide additional information about nodes and edges</li>
+</ul>
+<p><strong>Node Types</strong></p>
+<p>Blueprints contain several types of nodes:</p>
+<ul>
+<li><strong>Goal nodes</strong>: Represent system objectives</li>
+<li><strong>Capability nodes</strong>: Represent functional abilities</li>
+<li><strong>Component nodes</strong>: Represent structural building blocks</li>
+<li><strong>Interface nodes</strong>: Represent communication boundaries</li>
+<li><strong>Data nodes</strong>: Represent information structures</li>
+<li><strong>Workflow nodes</strong>: Represent dynamic behaviors</li>
+</ul>
+<p><strong>Edge Types</strong></p>
+<p>Blueprints contain several types of edges:</p>
+<ul>
+<li><strong>Capability-to-goal edges</strong>: Connect capabilities to the goals they support</li>
+<li><strong>Component-to-capability edges</strong>: Connect components to the capabilities they implement</li>
+<li><strong>Interface edges</strong>: Connect components through their interfaces</li>
+<li><strong>Dependency edges</strong>: Represent dependencies between components</li>
+<li><strong>Data flow edges</strong>: Represent data movement between components</li>
+<li><strong>Workflow edges</strong>: Connect steps in workflows</li>
+</ul>
+<p><strong>Example: Blueprint Graph</strong></p>
+<pre><code>Goal (Enable user authentication)
+    |
+    | (supports)
+    ↓
+Capability (User Login)
+    |
+    | (implemented by)
+    ↓
+Component (Authentication Service)
+    |
+    | (depends on)
+    ↓
+Component (Database)</code></pre>
+<p><strong>Graph-Based Operations</strong></p>
+<p>Because graphs are well-understood computational structures, they enable a wide range of analytical operations:</p>
+<p><strong>1. Dependency Analysis</strong></p>
+<ul>
+<li><strong>Operation</strong>: Traverse dependency edges to understand dependency chains</li>
+<li><strong>Purpose</strong>: Identify critical components, detect circular dependencies, analyze impact of changes</li>
+<li><strong>Example</strong>: Find all components that depend on the Database component</li>
+</ul>
+<p><strong>2. Path Analysis</strong></p>
+<ul>
+<li><strong>Operation</strong>: Find paths between nodes in the graph</li>
+<li><strong>Purpose</strong>: Understand request flow, identify bottlenecks, analyze latency</li>
+<li><strong>Example</strong>: Trace the path from Frontend Service to Database</li>
+</ul>
+<p><strong>3. Component Reachability</strong></p>
+<ul>
+<li><strong>Operation</strong>: Determine which components can reach which other components</li>
+<li><strong>Purpose</strong>: Analyze coupling, identify isolated components, understand communication patterns</li>
+<li><strong>Example</strong>: Determine which components can be reached from the API Gateway</li>
+</ul>
+<p><strong>4. Subgraph Extraction</strong></p>
+<ul>
+<li><strong>Operation</strong>: Extract connected subgraphs from the larger blueprint graph</li>
+<li><strong>Purpose</strong>: Identify subsystems, extract reusable patterns, analyze system boundaries</li>
+<li><strong>Example</strong>: Extract the payment subsystem as a subgraph</li>
+</ul>
+<p><strong>5. Graph Matching</strong></p>
+<ul>
+<li><strong>Operation</strong>: Find isomorphic or similar subgraphs across different blueprints</li>
+<li><strong>Purpose</strong>: Identify architectural patterns, find similar systems, detect composition opportunities</li>
+<li><strong>Example</strong>: Find blueprints that contain similar microservice patterns</li>
+</ul>
+<p><strong>6. Cycle Detection</strong></p>
+<ul>
+<li><strong>Operation</strong>: Detect cycles in the dependency graph</li>
+<li><strong>Purpose</strong>: Identify circular dependencies, potential deadlock scenarios, coupling issues</li>
+<li><strong>Example</strong>: Detect if Component A depends on Component B which depends on Component A</li>
+</ul>
+<p><strong>The Value of Graph Representation</strong></p>
+<p>The graph representation provides several advantages:</p>
+<ul>
+<li><strong>Standard algorithms</strong>: Well-known graph algorithms can be applied</li>
+<li><strong>Efficient processing</strong>: Graph operations are computationally efficient</li>
+<li><strong>Scalability</strong>: Graph databases can handle large-scale graphs</li>
+<li><strong>Visualization</strong>: Graphs can be visualized for human understanding</li>
+</ul>
 <hr>
 </section>
 <section id="versioning-and-architectural-evolution" class="level2" data-number="17.4">
@@ -631,23 +883,186 @@ ul.task-list li input[type="checkbox"] {
 <p>As systems grow and requirements change, components are added, interfaces are modified, and workflows are redesigned. These changes reflect the ongoing adaptation of the system to new conditions.</p>
 <p>In traditional documentation systems, architectural evolution is difficult to track. Documents may be edited repeatedly without preserving the historical reasoning behind earlier designs.</p>
 <p>Blueprints address this limitation by supporting <strong>versioning</strong>.</p>
-<p>Each version of a blueprint represents a snapshot of the system’s architectural structure at a particular point in time. Changes to the blueprint can be recorded as structured modifications to nodes, edges, or attributes within the blueprint model.</p>
-<p>This version history provides valuable insight into the evolution of the system.</p>
-<p>Engineers can compare blueprint versions to understand how architectural decisions have changed, identify the impact of design modifications, and analyze long-term structural trends.</p>
+<p><strong>The Versioning Model</strong></p>
+<p>Each version of a blueprint represents a snapshot of the system’s architectural structure at a particular point in time.</p>
+<p>Changes to the blueprint can be recorded as structured modifications to nodes, edges, or attributes within the blueprint model.</p>
+<p><strong>Versioning Operations</strong></p>
+<p><strong>1. Version Creation</strong></p>
+<ul>
+<li>Create a new version of the blueprint when significant changes occur</li>
+<li>Assign a version identifier (e.g., v1.0, v1.1, v2.0)</li>
+<li>Store the version in the version history</li>
+</ul>
+<p><strong>2. Change Tracking</strong></p>
+<ul>
+<li>Record the differences between versions</li>
+<li>Track which nodes, edges, or attributes were added, modified, or removed</li>
+<li>Preserve the rationale for changes</li>
+</ul>
+<p><strong>3. Version Comparison</strong></p>
+<ul>
+<li>Compare two versions to identify differences</li>
+<li>Highlight structural changes (added/removed components, modified interfaces)</li>
+<li>Show how the architecture evolved</li>
+</ul>
+<p><strong>4. Version Retrieval</strong></p>
+<ul>
+<li>Retrieve any past version of the blueprint</li>
+<li>Examine historical architectural decisions</li>
+<li>Understand the evolution of the system</li>
+</ul>
+<p><strong>Example: Versioning a Blueprint</strong></p>
+<pre><code>Version 1.0:
+Components: [Frontend, API Service, Database]
+
+Version 1.1:
+Components: [Frontend, API Service, Database, Cache]
+Changes: Added Cache component
+
+Version 2.0:
+Components: [Frontend, API Gateway, Order Service, Payment Service, Database]
+Changes:
+- Split API Service into Order Service and Payment Service
+- Added API Gateway
+- Removed original API Service</code></pre>
+<p><strong>The Value of Version History</strong></p>
+<p>Version history provides valuable insight into the evolution of the system:</p>
+<p><strong>1. Understanding Architectural Decisions</strong></p>
+<p>Engineers can examine past versions to understand:</p>
+<ul>
+<li>Why certain architectural decisions were made</li>
+<li>How the system has adapted to changing requirements</li>
+<li>What trade-offs were made at different points in time</li>
+</ul>
+<p><strong>2. Identifying Trends</strong></p>
+<p>Analyzing version history reveals:</p>
+<ul>
+<li>Which elements of the architecture have remained stable</li>
+<li>Which elements change frequently</li>
+<li>Patterns of architectural evolution</li>
+</ul>
+<p><strong>3. Enabling Rollback</strong></p>
+<p>If architectural changes introduce problems, version control enables:</p>
+<ul>
+<li>Restoration of previous working states</li>
+<li>Comparison of problematic versions with working versions</li>
+<li>Identification of what changes caused issues</li>
+</ul>
+<p><strong>4. Learning and Improvement</strong></p>
+<p>Version history serves as:</p>
+<ul>
+<li>A record of architectural experiments and their outcomes</li>
+<li>A learning resource for new team members</li>
+<li>Evidence of architectural patterns that work (and don’t work)</li>
+</ul>
+<p><strong>Versioning as Knowledge Asset</strong></p>
 <p>In this way, the history of blueprint evolution becomes a <strong>knowledge asset in its own right</strong>.</p>
+<p>The version history is not just a backup mechanism—it captures the architectural journey of the system, preserving decisions, experiments, and learning.</p>
 <hr>
 </section>
 <section id="building-knowledge-objects" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="building-knowledge-objects"><span class="header-section-number">17.5</span> Building Knowledge Objects</h2>
 <p>The shift from documentation to computable blueprints represents a fundamental change in how architectural knowledge is treated.</p>
-<p>In traditional workflows, architectural documents serve as temporary explanations. Once implementation begins, these documents often become outdated or irrelevant.</p>
-<p>In the blueprint framework, architectural representations are treated as <strong>persistent knowledge objects</strong>.</p>
-<p>They are structured, versioned, and stored in repositories where they can be analyzed, reused, and combined with other architectural models.</p>
-<p>This shift has profound implications.</p>
-<p>Instead of writing documents that describe systems, engineers construct knowledge objects that represent system structures.</p>
-<p>These objects can be queried, compared, composed, and transformed. Over time, they form the foundation of an architectural knowledge base capable of supporting large-scale system design.</p>
+<p><strong>Traditional Documentation: Temporary Explanations</strong></p>
+<p>In traditional workflows:</p>
+<ul>
+<li>Architectural documents are created to explain the system</li>
+<li>Once implementation begins, documents often become outdated</li>
+<li>Documents may be ignored or discarded</li>
+<li>Architectural knowledge is embedded in code, not preserved in documents</li>
+</ul>
+<p>This approach treats documentation as <strong>temporary</strong>—useful during design but not maintained as a durable asset.</p>
+<p><strong>Blueprints: Persistent Knowledge Objects</strong></p>
+<p>In the blueprint framework:</p>
+<ul>
+<li>Architectural representations are treated as <strong>persistent knowledge objects</strong></li>
+<li>They are structured, versioned, and stored in repositories</li>
+<li>They can be analyzed, reused, and combined with other architectural models</li>
+<li>They evolve alongside the system, remaining current and valuable</li>
+</ul>
+<p>This approach treats blueprints as <strong>durable assets</strong>—valuable throughout the lifecycle of the system.</p>
+<p><strong>The Knowledge Object Lifecycle</strong></p>
+<pre><code>1. Creation: Engineer creates a blueprint
+2. Validation: Blueprint is reviewed and validated
+3. Storage: Blueprint is stored in a repository
+4. Retrieval: Blueprint is retrieved for reuse or reference
+5. Adaptation: Blueprint is adapted for new contexts
+6. Composition: Blueprint is combined with other blueprints
+7. Evolution: Blueprint evolves as the system evolves
+8. Analysis: Blueprint is analyzed for insights and improvements</code></pre>
+<p><strong>From Documentation to Knowledge System</strong></p>
+<p>This shift has profound implications:</p>
+<p><strong>1. Knowledge Accumulation</strong></p>
+<p>Instead of architectural knowledge being scattered and ephemeral, it accumulates in a structured repository:</p>
+<ul>
+<li>Each system contributes its blueprint to the knowledge base</li>
+<li>Blueprints can be reused and adapted across projects</li>
+<li>Organizational architectural knowledge grows over time</li>
+</ul>
+<p><strong>2. Knowledge Analysis</strong></p>
+<p>Structured knowledge enables analysis:</p>
+<ul>
+<li>Patterns can be identified across many blueprints</li>
+<li>Architectural trends can be tracked</li>
+<li>Quality metrics can be measured</li>
+<li>Composition opportunities can be discovered</li>
+</ul>
+<p><strong>3. Knowledge Synthesis</strong></p>
+<p>Structured knowledge can be synthesized:</p>
+<ul>
+<li>Multiple blueprints can be combined into larger architectures</li>
+<li>Architectural patterns can be extracted and generalized</li>
+<li>Best practices can be identified and codified</li>
+</ul>
+<p><strong>4. Knowledge Generation</strong></p>
+<p>With sufficient structured knowledge, new knowledge can be generated:</p>
+<ul>
+<li>AI systems can learn from blueprint repositories</li>
+<li>Architectural recommendations can be generated automatically</li>
+<li>Design spaces can be explored computationally</li>
+</ul>
+<p><strong>The Ultimate Implication</strong></p>
 <p>In other words, when engineers create blueprints, they are not merely documenting architecture.</p>
 <p>They are <strong>building a structured knowledge system for engineering design</strong>.</p>
+<p>This knowledge system can:</p>
+<ul>
+<li>Store architectural knowledge durably</li>
+<li>Make knowledge searchable and retrievable</li>
+<li>Enable analysis and synthesis</li>
+<li>Support automated reasoning and generation</li>
+<li>Grow and improve over time</li>
+</ul>
+<p>This is the foundation for architecture intelligence.</p>
+<hr>
+</section>
+<section id="summary-computable-architectural-knowledge" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="summary-computable-architectural-knowledge"><span class="header-section-number">17.6</span> Summary: Computable Architectural Knowledge</h2>
+<p>This chapter has established that blueprints transform architectural knowledge into computable knowledge objects.</p>
+<p><strong>Key Insights</strong>:</p>
+<ol type="1">
+<li><p><strong>Computability requires structure</strong>: Structured fields, explicit relationships, and indexable elements make blueprints machine-processable</p></li>
+<li><p><strong>Natural language is insufficient</strong>: Narrative documents are ambiguous, inconsistent, and difficult for machines to process reliably</p></li>
+<li><p><strong>Blueprints are graphs</strong>: The graph representation enables powerful analytical operations including dependency analysis, path analysis, and cycle detection</p></li>
+<li><p><strong>Versioning preserves evolution</strong>: Blueprint version history captures architectural evolution, preserving decisions and enabling learning</p></li>
+<li><p><strong>Blueprints are knowledge objects</strong>: Blueprints are persistent, reusable assets that form the foundation of a structured knowledge system</p></li>
+</ol>
+<p><strong>Practical Benefits</strong>:</p>
+<ul>
+<li><strong>Automated validation</strong>: Tools can validate blueprint completeness and consistency</li>
+<li><strong>Efficient search</strong>: Blueprint repositories can be searched and browsed efficiently</li>
+<li><strong>Pattern discovery</strong>: Architectural patterns can be identified across many blueprints</li>
+<li><strong>Composition support</strong>: Tools can assist in combining blueprints</li>
+<li><strong>Evolution tracking</strong>: Architectural evolution can be tracked and analyzed</li>
+</ul>
+<p><strong>The Road Ahead</strong>:</p>
+<p>The computable nature of blueprints enables the capabilities explored in future volumes:</p>
+<ul>
+<li><strong>Automated analysis</strong>: Large-scale analysis of architectural patterns and trends</li>
+<li><strong>Intelligent retrieval</strong>: AI-powered search and recommendation of blueprints</li>
+<li><strong>Automated composition</strong>: Tools that can compose blueprints automatically</li>
+<li><strong>Architecture intelligence</strong>: Systems that learn from blueprints and assist in design</li>
+</ul>
+<p>The next chapter outlines the long-term pathway toward architecture intelligence and explains how the remaining volumes in this series contribute to that goal.</p>
 
 
 </section>
@@ -1068,7 +1483,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter-13.html" class="pagination-link" aria-label="Workflow Shift: From “Coding” to “Blueprinting”">
+      <a href="./chapter-13.html" class="pagination-link" aria-label="Workflow Shift: From &quot;Coding&quot; to &quot;Blueprinting&quot;">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Workflow Shift: From “Coding” to “Blueprinting”</span></span>
       </a>          
   </div>

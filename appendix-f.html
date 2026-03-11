@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -558,13 +593,98 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#blueprint-architecture-view-spec-view-ops-view" id="toc-blueprint-architecture-view-spec-view-ops-view" class="nav-link active" data-scroll-target="#blueprint-architecture-view-spec-view-ops-view"><span class="header-section-number">27.1</span> Blueprint → Architecture View / Spec View / Ops View</a></li>
-  <li><a href="#the-projection-model" id="toc-the-projection-model" class="nav-link" data-scroll-target="#the-projection-model"><span class="header-section-number">28</span> The Projection Model</a></li>
-  <li><a href="#architecture-view" id="toc-architecture-view" class="nav-link" data-scroll-target="#architecture-view"><span class="header-section-number">29</span> Architecture View</a></li>
-  <li><a href="#specification-view" id="toc-specification-view" class="nav-link" data-scroll-target="#specification-view"><span class="header-section-number">30</span> Specification View</a></li>
-  <li><a href="#operational-view" id="toc-operational-view" class="nav-link" data-scroll-target="#operational-view"><span class="header-section-number">31</span> Operational View</a></li>
-  <li><a href="#mapping-blueprint-elements-to-projections" id="toc-mapping-blueprint-elements-to-projections" class="nav-link" data-scroll-target="#mapping-blueprint-elements-to-projections"><span class="header-section-number">32</span> Mapping Blueprint Elements to Projections</a></li>
-  <li><a href="#advantages-of-the-projection-model" id="toc-advantages-of-the-projection-model" class="nav-link" data-scroll-target="#advantages-of-the-projection-model"><span class="header-section-number">33</span> Advantages of the Projection Model</a></li>
-  <li><a href="#blueprint-as-the-source-of-structural-truth" id="toc-blueprint-as-the-source-of-structural-truth" class="nav-link" data-scroll-target="#blueprint-as-the-source-of-structural-truth"><span class="header-section-number">34</span> Blueprint as the Source of Structural Truth</a></li>
+  <li><a href="#the-projection-concept" id="toc-the-projection-concept" class="nav-link" data-scroll-target="#the-projection-concept"><span class="header-section-number">27.2</span> The Projection Concept</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">27.2.1</span> Definition</a></li>
+  <li><a href="#why-projections-matter" id="toc-why-projections-matter" class="nav-link" data-scroll-target="#why-projections-matter"><span class="header-section-number">27.2.2</span> Why Projections Matter</a></li>
+  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link" data-scroll-target="#the-core-principle"><span class="header-section-number">27.2.3</span> The Core Principle</a></li>
+  </ul></li>
+  <li><a href="#the-projection-model" id="toc-the-projection-model" class="nav-link" data-scroll-target="#the-projection-model"><span class="header-section-number">27.3</span> The Projection Model</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-diagram" id="toc-conceptual-diagram" class="nav-link" data-scroll-target="#conceptual-diagram"><span class="header-section-number">27.3.1</span> Conceptual Diagram</a></li>
+  <li><a href="#projection-hierarchy" id="toc-projection-hierarchy" class="nav-link" data-scroll-target="#projection-hierarchy"><span class="header-section-number">27.3.2</span> Projection Hierarchy</a></li>
+  <li><a href="#key-characteristics" id="toc-key-characteristics" class="nav-link" data-scroll-target="#key-characteristics"><span class="header-section-number">27.3.3</span> Key Characteristics</a></li>
+  </ul></li>
+  <li><a href="#architecture-view" id="toc-architecture-view" class="nav-link" data-scroll-target="#architecture-view"><span class="header-section-number">27.4</span> Architecture View</a>
+  <ul class="collapse">
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1"><span class="header-section-number">27.4.1</span> Definition</a></li>
+  <li><a href="#primary-audience" id="toc-primary-audience" class="nav-link" data-scroll-target="#primary-audience"><span class="header-section-number">27.4.2</span> Primary Audience</a></li>
+  <li><a href="#what-it-emphasizes" id="toc-what-it-emphasizes" class="nav-link" data-scroll-target="#what-it-emphasizes"><span class="header-section-number">27.4.3</span> What It Emphasizes</a></li>
+  <li><a href="#typical-representations" id="toc-typical-representations" class="nav-link" data-scroll-target="#typical-representations"><span class="header-section-number">27.4.4</span> Typical Representations</a></li>
+  <li><a href="#example-architecture-view" id="toc-example-architecture-view" class="nav-link" data-scroll-target="#example-architecture-view"><span class="header-section-number">27.4.5</span> Example Architecture View</a></li>
+  <li><a href="#architecture-view-content" id="toc-architecture-view-content" class="nav-link" data-scroll-target="#architecture-view-content"><span class="header-section-number">27.4.6</span> Architecture View Content</a></li>
+  <li><a href="#generation-method" id="toc-generation-method" class="nav-link" data-scroll-target="#generation-method"><span class="header-section-number">27.4.7</span> Generation Method</a></li>
+  <li><a href="#architecture-view-checklist" id="toc-architecture-view-checklist" class="nav-link" data-scroll-target="#architecture-view-checklist"><span class="header-section-number">27.4.8</span> Architecture View Checklist</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">27.4.9</span> Common Pitfalls</a></li>
+  </ul></li>
+  <li><a href="#specification-view" id="toc-specification-view" class="nav-link" data-scroll-target="#specification-view"><span class="header-section-number">27.5</span> Specification View</a>
+  <ul class="collapse">
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2"><span class="header-section-number">27.5.1</span> Definition</a></li>
+  <li><a href="#primary-audience-1" id="toc-primary-audience-1" class="nav-link" data-scroll-target="#primary-audience-1"><span class="header-section-number">27.5.2</span> Primary Audience</a></li>
+  <li><a href="#what-it-emphasizes-1" id="toc-what-it-emphasizes-1" class="nav-link" data-scroll-target="#what-it-emphasizes-1"><span class="header-section-number">27.5.3</span> What It Emphasizes</a></li>
+  <li><a href="#typical-representations-1" id="toc-typical-representations-1" class="nav-link" data-scroll-target="#typical-representations-1"><span class="header-section-number">27.5.4</span> Typical Representations</a></li>
+  <li><a href="#example-specification-view" id="toc-example-specification-view" class="nav-link" data-scroll-target="#example-specification-view"><span class="header-section-number">27.5.5</span> Example Specification View</a></li>
+  <li><a href="#specification-view-content" id="toc-specification-view-content" class="nav-link" data-scroll-target="#specification-view-content"><span class="header-section-number">27.5.6</span> Specification View Content</a></li>
+  <li><a href="#generation-method-1" id="toc-generation-method-1" class="nav-link" data-scroll-target="#generation-method-1"><span class="header-section-number">27.5.7</span> Generation Method</a></li>
+  <li><a href="#specification-view-checklist" id="toc-specification-view-checklist" class="nav-link" data-scroll-target="#specification-view-checklist"><span class="header-section-number">27.5.8</span> Specification View Checklist</a></li>
+  <li><a href="#common-pitfalls-1" id="toc-common-pitfalls-1" class="nav-link" data-scroll-target="#common-pitfalls-1"><span class="header-section-number">27.5.9</span> Common Pitfalls</a></li>
+  </ul></li>
+  <li><a href="#operational-view" id="toc-operational-view" class="nav-link" data-scroll-target="#operational-view"><span class="header-section-number">27.6</span> Operational View</a>
+  <ul class="collapse">
+  <li><a href="#definition-3" id="toc-definition-3" class="nav-link" data-scroll-target="#definition-3"><span class="header-section-number">27.6.1</span> Definition</a></li>
+  <li><a href="#primary-audience-2" id="toc-primary-audience-2" class="nav-link" data-scroll-target="#primary-audience-2"><span class="header-section-number">27.6.2</span> Primary Audience</a></li>
+  <li><a href="#what-it-emphasizes-2" id="toc-what-it-emphasizes-2" class="nav-link" data-scroll-target="#what-it-emphasizes-2"><span class="header-section-number">27.6.3</span> What It Emphasizes</a></li>
+  <li><a href="#typical-representations-2" id="toc-typical-representations-2" class="nav-link" data-scroll-target="#typical-representations-2"><span class="header-section-number">27.6.4</span> Typical Representations</a></li>
+  <li><a href="#example-operational-view" id="toc-example-operational-view" class="nav-link" data-scroll-target="#example-operational-view"><span class="header-section-number">27.6.5</span> Example Operational View</a></li>
+  <li><a href="#operational-view-content" id="toc-operational-view-content" class="nav-link" data-scroll-target="#operational-view-content"><span class="header-section-number">27.6.6</span> Operational View Content</a></li>
+  <li><a href="#generation-method-2" id="toc-generation-method-2" class="nav-link" data-scroll-target="#generation-method-2"><span class="header-section-number">27.6.7</span> Generation Method</a></li>
+  <li><a href="#operational-view-checklist" id="toc-operational-view-checklist" class="nav-link" data-scroll-target="#operational-view-checklist"><span class="header-section-number">27.6.8</span> Operational View Checklist</a></li>
+  <li><a href="#common-pitfalls-2" id="toc-common-pitfalls-2" class="nav-link" data-scroll-target="#common-pitfalls-2"><span class="header-section-number">27.6.9</span> Common Pitfalls</a></li>
+  </ul></li>
+  <li><a href="#element-mapping-matrix" id="toc-element-mapping-matrix" class="nav-link" data-scroll-target="#element-mapping-matrix"><span class="header-section-number">27.7</span> Element Mapping Matrix</a>
+  <ul class="collapse">
+  <li><a href="#key-insights" id="toc-key-insights" class="nav-link" data-scroll-target="#key-insights"><span class="header-section-number">27.7.1</span> Key Insights</a></li>
+  </ul></li>
+  <li><a href="#projection-generation-pipeline" id="toc-projection-generation-pipeline" class="nav-link" data-scroll-target="#projection-generation-pipeline"><span class="header-section-number">27.8</span> Projection Generation Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#automated-generation-process" id="toc-automated-generation-process" class="nav-link" data-scroll-target="#automated-generation-process"><span class="header-section-number">27.8.1</span> Automated Generation Process</a></li>
+  <li><a href="#generation-tools" id="toc-generation-tools" class="nav-link" data-scroll-target="#generation-tools"><span class="header-section-number">27.8.2</span> Generation Tools</a></li>
+  <li><a href="#manual-generation" id="toc-manual-generation" class="nav-link" data-scroll-target="#manual-generation"><span class="header-section-number">27.8.3</span> Manual Generation</a></li>
+  </ul></li>
+  <li><a href="#use-cases-and-benefits" id="toc-use-cases-and-benefits" class="nav-link" data-scroll-target="#use-cases-and-benefits"><span class="header-section-number">27.9</span> Use Cases and Benefits</a>
+  <ul class="collapse">
+  <li><a href="#use-case-1-onboarding-new-team-members" id="toc-use-case-1-onboarding-new-team-members" class="nav-link" data-scroll-target="#use-case-1-onboarding-new-team-members"><span class="header-section-number">27.9.1</span> Use Case 1: Onboarding New Team Members</a></li>
+  <li><a href="#use-case-2-system-integration" id="toc-use-case-2-system-integration" class="nav-link" data-scroll-target="#use-case-2-system-integration"><span class="header-section-number">27.9.2</span> Use Case 2: System Integration</a></li>
+  <li><a href="#use-case-3-incident-response" id="toc-use-case-3-incident-response" class="nav-link" data-scroll-target="#use-case-3-incident-response"><span class="header-section-number">27.9.3</span> Use Case 3: Incident Response</a></li>
+  <li><a href="#use-case-4-architecture-review" id="toc-use-case-4-architecture-review" class="nav-link" data-scroll-target="#use-case-4-architecture-review"><span class="header-section-number">27.9.4</span> Use Case 4: Architecture Review</a></li>
+  <li><a href="#use-case-5-compliance-auditing" id="toc-use-case-5-compliance-auditing" class="nav-link" data-scroll-target="#use-case-5-compliance-auditing"><span class="header-section-number">27.9.5</span> Use Case 5: Compliance Auditing</a></li>
+  <li><a href="#overall-benefits" id="toc-overall-benefits" class="nav-link" data-scroll-target="#overall-benefits"><span class="header-section-number">27.9.6</span> Overall Benefits</a></li>
+  </ul></li>
+  <li><a href="#tool-integration" id="toc-tool-integration" class="nav-link" data-scroll-target="#tool-integration"><span class="header-section-number">27.10</span> Tool Integration</a>
+  <ul class="collapse">
+  <li><a href="#version-control-integration" id="toc-version-control-integration" class="nav-link" data-scroll-target="#version-control-integration"><span class="header-section-number">27.10.1</span> Version Control Integration</a></li>
+  <li><a href="#cicd-integration" id="toc-cicd-integration" class="nav-link" data-scroll-target="#cicd-integration"><span class="header-section-number">27.10.2</span> CI/CD Integration</a></li>
+  <li><a href="#documentation-platforms" id="toc-documentation-platforms" class="nav-link" data-scroll-target="#documentation-platforms"><span class="header-section-number">27.10.3</span> Documentation Platforms</a></li>
+  <li><a href="#monitoring-integration" id="toc-monitoring-integration" class="nav-link" data-scroll-target="#monitoring-integration"><span class="header-section-number">27.10.4</span> Monitoring Integration</a></li>
+  </ul></li>
+  <li><a href="#common-pitfalls-and-best-practices" id="toc-common-pitfalls-and-best-practices" class="nav-link" data-scroll-target="#common-pitfalls-and-best-practices"><span class="header-section-number">27.11</span> Common Pitfalls and Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#pitfalls-to-avoid" id="toc-pitfalls-to-avoid" class="nav-link" data-scroll-target="#pitfalls-to-avoid"><span class="header-section-number">27.11.1</span> Pitfalls to Avoid</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">27.11.2</span> Best Practices</a></li>
+  </ul></li>
+  <li><a href="#advanced-topics" id="toc-advanced-topics" class="nav-link" data-scroll-target="#advanced-topics"><span class="header-section-number">27.12</span> Advanced Topics</a>
+  <ul class="collapse">
+  <li><a href="#specialized-projections" id="toc-specialized-projections" class="nav-link" data-scroll-target="#specialized-projections"><span class="header-section-number">27.12.1</span> Specialized Projections</a></li>
+  <li><a href="#projection-composition" id="toc-projection-composition" class="nav-link" data-scroll-target="#projection-composition"><span class="header-section-number">27.12.2</span> Projection Composition</a></li>
+  <li><a href="#projection-evolution" id="toc-projection-evolution" class="nav-link" data-scroll-target="#projection-evolution"><span class="header-section-number">27.12.3</span> Projection Evolution</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">27.13</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#key-principles" id="toc-key-principles" class="nav-link" data-scroll-target="#key-principles"><span class="header-section-number">27.13.1</span> Key Principles</a></li>
+  <li><a href="#the-three-primary-projections" id="toc-the-three-primary-projections" class="nav-link" data-scroll-target="#the-three-primary-projections"><span class="header-section-number">27.13.2</span> The Three Primary Projections</a></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits"><span class="header-section-number">27.13.3</span> Benefits</a></li>
+  <li><a href="#action-items" id="toc-action-items" class="nav-link" data-scroll-target="#action-items"><span class="header-section-number">27.13.4</span> Action Items</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -597,106 +717,508 @@ ul.task-list li input[type="checkbox"] {
 <p>In traditional engineering workflows, different artifacts are created independently. Architecture diagrams, specifications, and operational runbooks are often written separately and maintained by different teams. Over time these artifacts drift apart, leading to inconsistencies and misunderstandings.</p>
 <p>The blueprint model addresses this problem by treating these artifacts as <strong>projections of a single blueprint</strong>.</p>
 <p>A projection is a view derived from the underlying blueprint that emphasizes a particular aspect of the system.</p>
-<p>This appendix provides a conceptual map of the major projections used in blueprint-based system engineering.</p>
+<p>This appendix provides a comprehensive map of the major projections used in blueprint-based system engineering, including: - The conceptual projection model - Detailed descriptions of each major projection - Mapping of blueprint elements to projections - Practical generation methods - Use cases and benefits - Tool integration guidance - Common pitfalls and best practices</p>
 <hr>
 </section>
-<section id="the-projection-model" class="level1" data-number="28">
-<h1 data-number="28"><span class="header-section-number">28</span> The Projection Model</h1>
-<p>At the center of the framework is the <strong>Blueprint</strong>, which represents the structural model of the system.</p>
-<p>From this model, several projections can be generated.</p>
-<pre><code>Blueprint (Core System Model)
-        │
-        ├── Architecture View
-        ├── Specification View
-        └── Operational View</code></pre>
-<p>Each projection highlights different elements of the blueprint while remaining consistent with the same underlying structure.</p>
+<section id="the-projection-concept" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="the-projection-concept"><span class="header-section-number">27.2</span> The Projection Concept</h2>
+<section id="definition" class="level3" data-number="27.2.1">
+<h3 data-number="27.2.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">27.2.1</span> Definition</h3>
+<p>A <strong>projection</strong> is a derived representation of a blueprint that highlights a particular aspect of the system while maintaining consistency with the underlying model. Different projections serve different audiences and purposes.</p>
+</section>
+<section id="why-projections-matter" class="level3" data-number="27.2.2">
+<h3 data-number="27.2.2" class="anchored" data-anchor-id="why-projections-matter"><span class="header-section-number">27.2.2</span> Why Projections Matter</h3>
+<p><strong>Problem</strong>: Traditional documentation creates multiple independent artifacts that drift apart over time.</p>
+<p><strong>Solution</strong>: Projections are always derived from the same blueprint, ensuring consistency.</p>
+<p><strong>Benefit</strong>: Teams get the right view for their needs without maintaining separate documents.</p>
+</section>
+<section id="the-core-principle" class="level3" data-number="27.2.3">
+<h3 data-number="27.2.3" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">27.2.3</span> The Core Principle</h3>
+<blockquote class="blockquote">
+<p><strong>The blueprint is the source of structural truth. All other artifacts are views derived from this central model.</strong></p>
+</blockquote>
+<p>This principle shifts architectural documentation from maintaining multiple documents to maintaining a single model and deriving specialized views.</p>
 <hr>
 </section>
-<section id="architecture-view" class="level1" data-number="29">
-<h1 data-number="29"><span class="header-section-number">29</span> Architecture View</h1>
-<p>The <strong>Architecture View</strong> focuses on the structural relationships between system components.</p>
-<p>This projection emphasizes:</p>
+</section>
+<section id="the-projection-model" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="the-projection-model"><span class="header-section-number">27.3</span> The Projection Model</h2>
+<section id="conceptual-diagram" class="level3" data-number="27.3.1">
+<h3 data-number="27.3.1" class="anchored" data-anchor-id="conceptual-diagram"><span class="header-section-number">27.3.1</span> Conceptual Diagram</h3>
+<pre><code>                    Blueprint (Core System Model)
+                                │
+                ┌───────────────┼───────────────┐
+                │               │               │
+                ▼               ▼               ▼
+         Architecture View  Spec View  Operational View
+         (Structure)       (Behavior)     (Runtime)
+                │               │               │
+                └───────────────┼───────────────┘
+                                │
+                                ▼
+                    Consistency Guaranteed</code></pre>
+</section>
+<section id="projection-hierarchy" class="level3" data-number="27.3.2">
+<h3 data-number="27.3.2" class="anchored" data-anchor-id="projection-hierarchy"><span class="header-section-number">27.3.2</span> Projection Hierarchy</h3>
+<ol type="1">
+<li><strong>Source Model</strong>: Blueprint (kernel + extensions)</li>
+<li><strong>Primary Projections</strong>: Architecture, Specification, Operational</li>
+<li><strong>Derived Views</strong>: Specialized views for specific audiences (e.g., security, performance)</li>
+<li><strong>Artifacts</strong>: Concrete deliverables (diagrams, docs, configs)</li>
+</ol>
+</section>
+<section id="key-characteristics" class="level3" data-number="27.3.3">
+<h3 data-number="27.3.3" class="anchored" data-anchor-id="key-characteristics"><span class="header-section-number">27.3.3</span> Key Characteristics</h3>
+<p>All projections share these characteristics:</p>
 <ul>
-<li><p>components</p></li>
-<li><p>interfaces</p></li>
-<li><p>dependencies</p></li>
-<li><p>structural boundaries</p></li>
+<li><strong>Derived</strong>: Generated from blueprint, not created independently</li>
+<li><strong>Consistent</strong>: Always aligned with underlying blueprint</li>
+<li><strong>Focused</strong>: Emphasize specific aspects of the system</li>
+<li><strong>Audience-Specific</strong>: Tailored to particular stakeholders</li>
+<li><strong>Traceable</strong>: Can be traced back to blueprint elements</li>
 </ul>
-<p>Architecture diagrams commonly used in engineering discussions are examples of this projection.</p>
-<p>Typical representations include:</p>
-<ul>
-<li><p>component diagrams</p></li>
-<li><p>service dependency graphs</p></li>
-<li><p>system topology diagrams</p></li>
-</ul>
-<p>The architecture view answers questions such as:</p>
-<p>How is the system structured?<br>
-Which components interact with each other?<br>
-Where are the architectural boundaries?</p>
-<p>In the blueprint framework:</p>
-<p>Architecture = <strong>Structural Projection of the Blueprint</strong></p>
 <hr>
 </section>
-<section id="specification-view" class="level1" data-number="30">
-<h1 data-number="30"><span class="header-section-number">30</span> Specification View</h1>
-<p>The <strong>Specification View</strong> focuses on system behavior and expected outcomes.</p>
-<p>This projection emphasizes:</p>
+</section>
+<section id="architecture-view" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="architecture-view"><span class="header-section-number">27.4</span> Architecture View</h2>
+<section id="definition-1" class="level3" data-number="27.4.1">
+<h3 data-number="27.4.1" class="anchored" data-anchor-id="definition-1"><span class="header-section-number">27.4.1</span> Definition</h3>
+<p>The <strong>Architecture View</strong> focuses on the structural relationships between system components. It answers “How is the system structured?”</p>
+</section>
+<section id="primary-audience" class="level3" data-number="27.4.2">
+<h3 data-number="27.4.2" class="anchored" data-anchor-id="primary-audience"><span class="header-section-number">27.4.2</span> Primary Audience</h3>
 <ul>
-<li><p>capabilities</p></li>
-<li><p>interface contracts</p></li>
-<li><p>input/output behavior</p></li>
-<li><p>acceptance conditions</p></li>
+<li><strong>Software Architects</strong>: Design system structure</li>
+<li><strong>Technical Leads</strong>: Understand component relationships</li>
+<li><strong>Engineers</strong>: Navigate code organization</li>
+<li><strong>System Integrators</strong>: Plan integration points</li>
 </ul>
-<p>Specifications often describe how the system should respond to requests, what guarantees it provides, and what criteria determine whether the system behaves correctly.</p>
-<p>Typical representations include:</p>
+</section>
+<section id="what-it-emphasizes" class="level3" data-number="27.4.3">
+<h3 data-number="27.4.3" class="anchored" data-anchor-id="what-it-emphasizes"><span class="header-section-number">27.4.3</span> What It Emphasizes</h3>
 <ul>
-<li><p>API specifications</p></li>
-<li><p>functional requirements</p></li>
-<li><p>acceptance criteria</p></li>
-<li><p>behavioral descriptions</p></li>
+<li>Components and their responsibilities</li>
+<li>Interfaces and communication boundaries</li>
+<li>Dependencies and coupling</li>
+<li>Structural boundaries (internal vs external)</li>
+<li>Technology choices (at architectural level)</li>
 </ul>
-<p>The specification view answers questions such as:</p>
-<p>What capabilities does the system provide?<br>
-How should external systems interact with it?<br>
-What conditions determine correct behavior?</p>
-<p>In the blueprint framework:</p>
-<p>Specification = <strong>Requirements and Acceptance Projection of the Blueprint</strong></p>
+</section>
+<section id="typical-representations" class="level3" data-number="27.4.4">
+<h3 data-number="27.4.4" class="anchored" data-anchor-id="typical-representations"><span class="header-section-number">27.4.4</span> Typical Representations</h3>
+<ul>
+<li><strong>Component Diagrams</strong>: Boxes and arrows showing components and interfaces</li>
+<li><strong>Service Dependency Graphs</strong>: Dependency relationships between services</li>
+<li><strong>System Topology Diagrams</strong>: Physical or logical deployment structure</li>
+<li><strong>Layer Diagrams</strong>: Architectural layers and their relationships</li>
+</ul>
+</section>
+<section id="example-architecture-view" class="level3" data-number="27.4.5">
+<h3 data-number="27.4.5" class="anchored" data-anchor-id="example-architecture-view"><span class="header-section-number">27.4.5</span> Example Architecture View</h3>
+<pre><code>┌─────────────┐         HTTP/REST          ┌─────────────┐
+│   Web       │ ─────────────────────────► │   API       │
+│  Frontend   │ ◄───────────────────────── │  Service    │
+└─────────────┘    Session Tokens          └─────────────┘
+                                               │
+                                               │ PostgreSQL
+                                               ▼
+                                       ┌─────────────┐
+                                       │  Database   │
+                                       └─────────────┘
+
+Key Elements Shown:
+- Components (Frontend, API Service, Database)
+- Interfaces (HTTP/REST, PostgreSQL)
+- Communication patterns (request/response)
+- Technology choices (implied by interface types)</code></pre>
+</section>
+<section id="architecture-view-content" class="level3" data-number="27.4.6">
+<h3 data-number="27.4.6" class="anchored" data-anchor-id="architecture-view-content"><span class="header-section-number">27.4.6</span> Architecture View Content</h3>
+<p>Based on blueprint elements:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Blueprint Element</th>
+<th>Architecture View Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Components</td>
+<td>Nodes/boxes in diagram</td>
+</tr>
+<tr class="even">
+<td>Interfaces</td>
+<td>Arrows/lines between nodes</td>
+</tr>
+<tr class="odd">
+<td>Interface Protocols</td>
+<td>Labels on arrows (HTTP, gRPC, etc.)</td>
+</tr>
+<tr class="even">
+<td>Component Responsibilities</td>
+<td>Annotations or detailed diagrams</td>
+</tr>
+<tr class="odd">
+<td>External Components</td>
+<td>Distinct visual representation</td>
+</tr>
+<tr class="even">
+<td>System Boundaries</td>
+<td>Enclosing boxes or zones</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="generation-method" class="level3" data-number="27.4.7">
+<h3 data-number="27.4.7" class="anchored" data-anchor-id="generation-method"><span class="header-section-number">27.4.7</span> Generation Method</h3>
+<ol type="1">
+<li><strong>Extract Components</strong>: Read <code>components:</code> section from blueprint</li>
+<li><strong>Extract Interfaces</strong>: Read <code>interfaces:</code> section</li>
+<li><strong>Build Graph</strong>: Create nodes for components, edges for interfaces</li>
+<li><strong>Apply Layout</strong>: Arrange components logically (layered, hierarchical, etc.)</li>
+<li><strong>Add Labels</strong>: Annotate with protocols, responsibilities, technology</li>
+<li><strong>Format Output</strong>: Generate diagram (Mermaid, PlantUML, etc.)</li>
+</ol>
+</section>
+<section id="architecture-view-checklist" class="level3" data-number="27.4.8">
+<h3 data-number="27.4.8" class="anchored" data-anchor-id="architecture-view-checklist"><span class="header-section-number">27.4.8</span> Architecture View Checklist</h3>
+<p>When generating or reviewing architecture views:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">All components from blueprint are represented</label></li>
+<li><label><input type="checkbox">All interfaces are shown with protocols</label></li>
+<li><label><input type="checkbox">Component responsibilities are clear</label></li>
+<li><label><input type="checkbox">External components are distinguished</label></li>
+<li><label><input type="checkbox">Communication patterns are evident</label></li>
+<li><label><input type="checkbox">System boundaries are marked</label></li>
+<li><label><input type="checkbox">Technology choices are indicated (if relevant)</label></li>
+<li><label><input type="checkbox">Diagram is readable and well-organized</label></li>
+</ul>
+</section>
+<section id="common-pitfalls" class="level3" data-number="27.4.9">
+<h3 data-number="27.4.9" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">27.4.9</span> Common Pitfalls</h3>
+<p>❌ <strong>Including Behavioral Details</strong>: Architecture views should show structure, not workflows or behavior ❌ <strong>Implementation-Level Detail</strong>: Architecture is at component level, not class or function level ❌ <strong>Missing Interfaces</strong>: All communication should have defined interfaces ❌ <strong>Confusing Layout with Structure</strong>: Diagram layout doesn’t equal architectural structure</p>
 <hr>
 </section>
-<section id="operational-view" class="level1" data-number="31">
-<h1 data-number="31"><span class="header-section-number">31</span> Operational View</h1>
-<p>The <strong>Operational View</strong> focuses on runtime behavior and operational processes.</p>
-<p>This projection emphasizes:</p>
+</section>
+<section id="specification-view" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="specification-view"><span class="header-section-number">27.5</span> Specification View</h2>
+<section id="definition-2" class="level3" data-number="27.5.1">
+<h3 data-number="27.5.1" class="anchored" data-anchor-id="definition-2"><span class="header-section-number">27.5.1</span> Definition</h3>
+<p>The <strong>Specification View</strong> focuses on system behavior and expected outcomes. It answers “What should the system do and how should it behave?”</p>
+</section>
+<section id="primary-audience-1" class="level3" data-number="27.5.2">
+<h3 data-number="27.5.2" class="anchored" data-anchor-id="primary-audience-1"><span class="header-section-number">27.5.2</span> Primary Audience</h3>
 <ul>
-<li><p>workflows</p></li>
-<li><p>execution sequences</p></li>
-<li><p>monitoring points</p></li>
-<li><p>operational procedures</p></li>
+<li><strong>Product Managers</strong>: Define requirements and acceptance criteria</li>
+<li><strong>QA Engineers</strong>: Create test cases and verify behavior</li>
+<li><strong>API Consumers</strong>: Integrate with system APIs</li>
+<li><strong>Business Stakeholders</strong>: Understand system capabilities</li>
 </ul>
-<p>Operational artifacts often include:</p>
+</section>
+<section id="what-it-emphasizes-1" class="level3" data-number="27.5.3">
+<h3 data-number="27.5.3" class="anchored" data-anchor-id="what-it-emphasizes-1"><span class="header-section-number">27.5.3</span> What It Emphasizes</h3>
 <ul>
-<li><p>deployment diagrams</p></li>
-<li><p>runtime workflow diagrams</p></li>
-<li><p>operational runbooks</p></li>
-<li><p>monitoring and observability descriptions</p></li>
+<li>Capabilities and their descriptions</li>
+<li>Interface contracts (API specs, message formats)</li>
+<li>Input/output behavior</li>
+<li>Acceptance criteria and success conditions</li>
+<li>Error conditions and responses</li>
+<li>Performance and reliability requirements</li>
 </ul>
-<p>The operational view answers questions such as:</p>
-<p>How does the system behave during execution?<br>
-What processes occur when requests are handled?<br>
-How is the system monitored and maintained in production?</p>
-<p>In the blueprint framework:</p>
-<p>Operational View = <strong>Runtime Projection of the Blueprint</strong></p>
+</section>
+<section id="typical-representations-1" class="level3" data-number="27.5.4">
+<h3 data-number="27.5.4" class="anchored" data-anchor-id="typical-representations-1"><span class="header-section-number">27.5.4</span> Typical Representations</h3>
+<ul>
+<li><strong>API Specifications</strong>: OpenAPI/Swagger documents</li>
+<li><strong>Functional Requirements</strong>: User stories and acceptance criteria</li>
+<li><strong>Behavior Specifications</strong>: State machines, decision tables</li>
+<li><strong>Contract Documents</strong>: SLAs, SLOs, performance guarantees</li>
+</ul>
+</section>
+<section id="example-specification-view" class="level3" data-number="27.5.5">
+<h3 data-number="27.5.5" class="anchored" data-anchor-id="example-specification-view"><span class="header-section-number">27.5.5</span> Example Specification View</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># API Specification: User Authentication</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">capability</span><span class="kw">:</span><span class="at"> user_authentication</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">endpoints</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">/auth/login</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">method</span><span class="kw">:</span><span class="at"> POST</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Authenticate user and return session token</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">request</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">email</span><span class="kw">:</span><span class="at"> string (required)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">password</span><span class="kw">:</span><span class="at"> string (required)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">response</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">success</span><span class="kw">:</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">status</span><span class="kw">:</span><span class="at"> </span><span class="dv">200</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">body</span><span class="kw">:</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">token</span><span class="kw">:</span><span class="at"> string (JWT)</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">user_id</span><span class="kw">:</span><span class="at"> string (UUID)</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">expires_at</span><span class="kw">:</span><span class="at"> timestamp</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">errors</span><span class="kw">:</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">401</span><span class="kw">:</span><span class="at"> Invalid credentials</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">400</span><span class="kw">:</span><span class="at"> Invalid input</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">429</span><span class="kw">:</span><span class="at"> Rate limit exceeded</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">/auth/logout</span><span class="kw">:</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">method</span><span class="kw">:</span><span class="at"> POST</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Invalidate session token</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">request</span><span class="kw">:</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">token</span><span class="kw">:</span><span class="at"> string (JWT, header)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">response</span><span class="kw">:</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">success</span><span class="kw">:</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">status</span><span class="kw">:</span><span class="at"> </span><span class="dv">200</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">body</span><span class="kw">:</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="st">"Logged out successfully"</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">errors</span><span class="kw">:</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">401</span><span class="kw">:</span><span class="at"> Invalid or expired token</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">acceptance_criteria</span><span class="kw">:</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Valid credentials return JWT token</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Invalid credentials return 401</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Token expires after 24 hours</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">Rate limit</span><span class="kw">:</span><span class="at"> 10 requests per minute per IP</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="specification-view-content" class="level3" data-number="27.5.6">
+<h3 data-number="27.5.6" class="anchored" data-anchor-id="specification-view-content"><span class="header-section-number">27.5.6</span> Specification View Content</h3>
+<p>Based on blueprint elements:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Blueprint Element</th>
+<th>Specification View Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Goal</td>
+<td>Functional objectives and success metrics</td>
+</tr>
+<tr class="even">
+<td>Capabilities</td>
+<td>Functional requirements and user stories</td>
+</tr>
+<tr class="odd">
+<td>Interfaces</td>
+<td>API contracts, message formats, protocols</td>
+</tr>
+<tr class="even">
+<td>Workflows</td>
+<td>Behavioral sequences and state transitions</td>
+</tr>
+<tr class="odd">
+<td>Success Metrics</td>
+<td>Acceptance criteria and performance targets</td>
+</tr>
+<tr class="even">
+<td>Constraints</td>
+<td>Non-functional requirements and limitations</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="generation-method-1" class="level3" data-number="27.5.7">
+<h3 data-number="27.5.7" class="anchored" data-anchor-id="generation-method-1"><span class="header-section-number">27.5.7</span> Generation Method</h3>
+<ol type="1">
+<li><strong>Extract Capabilities</strong>: Read <code>capabilities:</code> section from blueprint</li>
+<li><strong>Extract Interface Contracts</strong>: Read <code>interfaces:</code> with protocols and formats</li>
+<li><strong>Extract Workflows</strong>: Read <code>workflows:</code> for behavior description</li>
+<li><strong>Extract Success Criteria</strong>: Read <code>goal.success_metrics:</code> and workflow completion criteria</li>
+<li><strong>Extract Constraints</strong>: Read <code>goal.constraints:</code> and any additional constraints</li>
+<li><strong>Format Output</strong>: Generate specification document (OpenAPI, requirements doc, etc.)</li>
+</ol>
+</section>
+<section id="specification-view-checklist" class="level3" data-number="27.5.8">
+<h3 data-number="27.5.8" class="anchored" data-anchor-id="specification-view-checklist"><span class="header-section-number">27.5.8</span> Specification View Checklist</h3>
+<p>When generating or reviewing specification views:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">All capabilities are specified with clear behavior</label></li>
+<li><label><input type="checkbox">Interface contracts include protocols, formats, and error conditions</label></li>
+<li><label><input type="checkbox">Workflows describe expected behavior sequences</label></li>
+<li><label><input type="checkbox">Acceptance criteria are measurable and testable</label></li>
+<li><label><input type="checkbox">Performance requirements are specified (if applicable)</label></li>
+<li><label><input type="checkbox">Error conditions are documented</label></li>
+<li><label><input type="checkbox">Authentication and authorization requirements are specified</label></li>
+<li><label><input type="checkbox">Constraints and limitations are documented</label></li>
+</ul>
+</section>
+<section id="common-pitfalls-1" class="level3" data-number="27.5.9">
+<h3 data-number="27.5.9" class="anchored" data-anchor-id="common-pitfalls-1"><span class="header-section-number">27.5.9</span> Common Pitfalls</h3>
+<p>❌ <strong>Including Implementation Details</strong>: Specifications define behavior, not how it’s implemented ❌ <strong>Vague Requirements</strong>: Specifications should be testable and unambiguous ❌ <strong>Missing Error Cases</strong>: Specifications must define behavior for error conditions ❌ <strong>Ignoring Edge Cases</strong>: Specifications should cover boundary conditions and unusual inputs</p>
 <hr>
 </section>
-<section id="mapping-blueprint-elements-to-projections" class="level1" data-number="32">
-<h1 data-number="32"><span class="header-section-number">32</span> Mapping Blueprint Elements to Projections</h1>
-<p>Each projection highlights a subset of blueprint elements.</p>
+</section>
+<section id="operational-view" class="level2" data-number="27.6">
+<h2 data-number="27.6" class="anchored" data-anchor-id="operational-view"><span class="header-section-number">27.6</span> Operational View</h2>
+<section id="definition-3" class="level3" data-number="27.6.1">
+<h3 data-number="27.6.1" class="anchored" data-anchor-id="definition-3"><span class="header-section-number">27.6.1</span> Definition</h3>
+<p>The <strong>Operational View</strong> focuses on runtime behavior and operational processes. It answers “How does the system run and how do we operate it?”</p>
+</section>
+<section id="primary-audience-2" class="level3" data-number="27.6.2">
+<h3 data-number="27.6.2" class="anchored" data-anchor-id="primary-audience-2"><span class="header-section-number">27.6.2</span> Primary Audience</h3>
+<ul>
+<li><strong>DevOps Engineers</strong>: Deploy and monitor systems</li>
+<li><strong>SREs</strong>: Ensure reliability and performance</li>
+<li><strong>Operations Teams</strong>: Handle incidents and maintenance</li>
+<li><strong>Support Teams</strong>: Troubleshoot production issues</li>
+</ul>
+</section>
+<section id="what-it-emphasizes-2" class="level3" data-number="27.6.3">
+<h3 data-number="27.6.3" class="anchored" data-anchor-id="what-it-emphasizes-2"><span class="header-section-number">27.6.3</span> What It Emphasizes</h3>
+<ul>
+<li>Workflows and execution sequences</li>
+<li>Deployment procedures and environments</li>
+<li>Monitoring and observability points</li>
+<li>Operational procedures and runbooks</li>
+<li>Performance characteristics and bottlenecks</li>
+<li>Failure modes and recovery procedures</li>
+</ul>
+</section>
+<section id="typical-representations-2" class="level3" data-number="27.6.4">
+<h3 data-number="27.6.4" class="anchored" data-anchor-id="typical-representations-2"><span class="header-section-number">27.6.4</span> Typical Representations</h3>
+<ul>
+<li><strong>Workflow Diagrams</strong>: Sequence diagrams, activity diagrams</li>
+<li><strong>Deployment Diagrams</strong>: Infrastructure and deployment topology</li>
+<li><strong>Operational Runbooks</strong>: Step-by-step procedures</li>
+<li><strong>Monitoring Dashboards</strong>: Metrics, alerts, and health indicators</li>
+<li><strong>Capacity Plans</strong>: Resource requirements and scaling strategies</li>
+</ul>
+</section>
+<section id="example-operational-view" class="level3" data-number="27.6.5">
+<h3 data-number="27.6.5" class="anchored" data-anchor-id="example-operational-view"><span class="header-section-number">27.6.5</span> Example Operational View</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Operational View: User Login Workflow</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">workflow</span><span class="kw">:</span><span class="at"> user_login</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">execution_sequence</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  1. User submits login credentials</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  2. API Gateway receives request</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  3. API Gateway validates input format</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  4. API Service authenticates user</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  5. API Service generates JWT token</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  6. API Service caches session in Redis</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  7. Response returned to user</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">monitoring_points</span><span class="kw">:</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> login_request_count</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> counter</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">location</span><span class="kw">:</span><span class="at"> API Gateway</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">endpoint</span><span class="kw">,</span><span class="at"> status_code</span><span class="kw">]</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> login_duration</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> histogram</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">location</span><span class="kw">:</span><span class="at"> API Service</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">buckets</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">10ms</span><span class="kw">,</span><span class="at"> 50ms</span><span class="kw">,</span><span class="at"> 100ms</span><span class="kw">,</span><span class="at"> 500ms</span><span class="kw">,</span><span class="at"> 1s</span><span class="kw">,</span><span class="at"> 5s</span><span class="kw">]</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> authentication_failures</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> counter</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">location</span><span class="kw">:</span><span class="at"> API Service</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">labels</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">failure_reason</span><span class="kw">]</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">operational_procedures</span><span class="kw">:</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> handle_high_failure_rate</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">trigger</span><span class="kw">:</span><span class="at"> authentication_failures &gt; 10/minute</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">actions</span><span class="kw">:</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Check database connectivity</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Verify Redis availability</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Review authentication service logs</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Escalate if persistent</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> handle_slow_logins</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">trigger</span><span class="kw">:</span><span class="at"> login_duration p95 &gt; 500ms</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">actions</span><span class="kw">:</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Check database query performance</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Verify Redis latency</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Review system resource utilization</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Scale services if needed</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">deployment_considerations</span><span class="kw">:</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">API Gateway</span><span class="kw">:</span><span class="at"> Horizontal scaling, load balancing</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">API Service</span><span class="kw">:</span><span class="at"> Horizontal scaling, connection pooling</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">Redis</span><span class="kw">:</span><span class="at"> Cluster mode, persistence</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">Database</span><span class="kw">:</span><span class="at"> Read replicas for queries</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="operational-view-content" class="level3" data-number="27.6.6">
+<h3 data-number="27.6.6" class="anchored" data-anchor-id="operational-view-content"><span class="header-section-number">27.6.6</span> Operational View Content</h3>
+<p>Based on blueprint elements:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Blueprint Element</th>
+<th>Operational View Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Workflows</td>
+<td>Execution sequences and operational procedures</td>
+</tr>
+<tr class="even">
+<td>Components</td>
+<td>Runtime instances and deployment units</td>
+</tr>
+<tr class="odd">
+<td>Interfaces</td>
+<td>Runtime communication and monitoring points</td>
+</tr>
+<tr class="even">
+<td>Workflows (Error Handling)</td>
+<td>Failure modes and recovery procedures</td>
+</tr>
+<tr class="odd">
+<td>Constraints</td>
+<td>Operational limitations and requirements</td>
+</tr>
+<tr class="even">
+<td>Workflows (Steps)</td>
+<td>Operational tasks and procedures</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="generation-method-2" class="level3" data-number="27.6.7">
+<h3 data-number="27.6.7" class="anchored" data-anchor-id="generation-method-2"><span class="header-section-number">27.6.7</span> Generation Method</h3>
+<ol type="1">
+<li><strong>Extract Workflows</strong>: Read <code>workflows:</code> section from blueprint</li>
+<li><strong>Extract Error Handling</strong>: Read workflow <code>error_handling:</code> sections</li>
+<li><strong>Identify Monitoring Points</strong>: Determine key metrics for each workflow step</li>
+<li><strong>Define Procedures</strong>: Create operational procedures from workflows</li>
+<li><strong>Identify Deployment Units</strong>: Map components to deployment artifacts</li>
+<li><strong>Format Output</strong>: Generate operational documentation (runbooks, dashboards, etc.)</li>
+</ol>
+</section>
+<section id="operational-view-checklist" class="level3" data-number="27.6.8">
+<h3 data-number="27.6.8" class="anchored" data-anchor-id="operational-view-checklist"><span class="header-section-number">27.6.8</span> Operational View Checklist</h3>
+<p>When generating or reviewing operational views:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Major workflows are documented with execution sequences</label></li>
+<li><label><input type="checkbox">Monitoring points are identified for key operations</label></li>
+<li><label><input type="checkbox">Error handling and recovery procedures are defined</label></li>
+<li><label><input type="checkbox">Performance characteristics are documented</label></li>
+<li><label><input type="checkbox">Deployment procedures are specified</label></li>
+<li><label><input type="checkbox">Capacity and scaling considerations are addressed</label></li>
+<li><label><input type="checkbox">Incident response procedures are defined</label></li>
+<li><label><input type="checkbox">Operational constraints and limitations are documented</label></li>
+</ul>
+</section>
+<section id="common-pitfalls-2" class="level3" data-number="27.6.9">
+<h3 data-number="27.6.9" class="anchored" data-anchor-id="common-pitfalls-2"><span class="header-section-number">27.6.9</span> Common Pitfalls</h3>
+<p>❌ <strong>Including Architecture Details</strong>: Operational views focus on behavior, not structure ❌ <strong>Missing Error Handling</strong>: Operational views must cover failure scenarios ❌ <strong>Vague Procedures</strong>: Operational procedures should be specific and actionable ❌ <strong>Ignoring Monitoring</strong>: Operational views should define what to monitor and why</p>
+<hr>
+</section>
+</section>
+<section id="element-mapping-matrix" class="level2" data-number="27.7">
+<h2 data-number="27.7" class="anchored" data-anchor-id="element-mapping-matrix"><span class="header-section-number">27.7</span> Element Mapping Matrix</h2>
+<p>This matrix shows how each blueprint element contributes to different projections:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -704,75 +1226,596 @@ How is the system monitored and maintained in production?</p>
 <th>Architecture View</th>
 <th>Spec View</th>
 <th>Ops View</th>
+<th>Primary Projection</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Goal</td>
-<td>context</td>
-<td>functional objective</td>
-<td>operational objective</td>
+<td><strong>Goal</strong></td>
+<td>Context for structure</td>
+<td>Functional objective</td>
+<td>Operational objective</td>
+<td>All</td>
 </tr>
 <tr class="even">
-<td>Capabilities</td>
-<td>structural allocation</td>
-<td>behavioral requirements</td>
-<td>execution outcomes</td>
+<td><strong>Goal.success_metrics</strong></td>
+<td>Performance targets</td>
+<td>Acceptance criteria</td>
+<td>SLOs</td>
+<td>Spec, Ops</td>
 </tr>
 <tr class="odd">
-<td>Components</td>
-<td>primary focus</td>
-<td>referenced indirectly</td>
-<td>execution participants</td>
+<td><strong>Goal.constraints</strong></td>
+<td>Design constraints</td>
+<td>Requirements</td>
+<td>Operational limits</td>
+<td>All</td>
 </tr>
 <tr class="even">
-<td>Interfaces</td>
-<td>structural communication</td>
+<td><strong>Capabilities</strong></td>
+<td>Structural allocation</td>
+<td>Behavioral requirements</td>
+<td>Execution outcomes</td>
+<td>Spec</td>
+</tr>
+<tr class="odd">
+<td><strong>Components</strong></td>
+<td>Primary focus</td>
+<td>Referenced indirectly</td>
+<td>Execution participants</td>
+<td>Architecture</td>
+</tr>
+<tr class="even">
+<td><strong>Components.responsibility</strong></td>
+<td>Component role</td>
+<td>Function specification</td>
+<td>Operational scope</td>
+<td>Architecture, Spec</td>
+</tr>
+<tr class="odd">
+<td><strong>Components.technology</strong></td>
+<td>Tech stack</td>
+<td>Implementation hints</td>
+<td>Deployment config</td>
+<td>Architecture, Ops</td>
+</tr>
+<tr class="even">
+<td><strong>Interfaces</strong></td>
+<td>Structural communication</td>
 <td>API contracts</td>
-<td>runtime interaction</td>
+<td>Runtime interaction</td>
+<td>All</td>
 </tr>
 <tr class="odd">
-<td>Data</td>
-<td>storage relationships</td>
-<td>input/output definitions</td>
-<td>data movement</td>
+<td><strong>Interfaces.protocol</strong></td>
+<td>Communication type</td>
+<td>Contract details</td>
+<td>Monitoring format</td>
+<td>All</td>
 </tr>
 <tr class="even">
-<td>Workflows</td>
-<td>partial representation</td>
-<td>behavioral sequences</td>
-<td>primary focus</td>
+<td><strong>Interfaces.connects</strong></td>
+<td>Dependency graph</td>
+<td>Integration points</td>
+<td>Data flow</td>
+<td>Architecture, Ops</td>
+</tr>
+<tr class="odd">
+<td><strong>Data</strong></td>
+<td>Storage relationships</td>
+<td>Input/output definitions</td>
+<td>Data movement</td>
+<td>Architecture, Spec, Ops</td>
+</tr>
+<tr class="even">
+<td><strong>Data.owner</strong></td>
+<td>Data responsibility</td>
+<td>Data ownership</td>
+<td>Data service responsibility</td>
+<td>Architecture, Ops</td>
+</tr>
+<tr class="odd">
+<td><strong>Data.sensitivity</strong></td>
+<td>Security design</td>
+<td>Data classification</td>
+<td>Access control</td>
+<td>All</td>
+</tr>
+<tr class="even">
+<td><strong>Workflows</strong></td>
+<td>Partial representation</td>
+<td>Behavioral sequences</td>
+<td>Primary focus</td>
+<td>Spec, Ops</td>
+</tr>
+<tr class="odd">
+<td><strong>Workflows.steps</strong></td>
+<td>Component interaction</td>
+<td>Behavior spec</td>
+<td>Operational procedure</td>
+<td>Spec, Ops</td>
+</tr>
+<tr class="even">
+<td><strong>Workflows.error_handling</strong></td>
+<td>Failure design</td>
+<td>Error contracts</td>
+<td>Recovery procedures</td>
+<td>Spec, Ops</td>
+</tr>
+<tr class="odd">
+<td><strong>Workflows.trigger</strong></td>
+<td>Interaction pattern</td>
+<td>Entry condition</td>
+<td>Operational trigger</td>
+<td>Spec, Ops</td>
 </tr>
 </tbody>
 </table>
-<p>This mapping ensures that each projection remains consistent with the underlying blueprint structure.</p>
+<section id="key-insights" class="level3" data-number="27.7.1">
+<h3 data-number="27.7.1" class="anchored" data-anchor-id="key-insights"><span class="header-section-number">27.7.1</span> Key Insights</h3>
+<ol type="1">
+<li><strong>Components</strong> are primarily architectural but referenced in other views</li>
+<li><strong>Workflows</strong> span specification and operational views</li>
+<li><strong>Interfaces</strong> are important across all views (communication contracts)</li>
+<li><strong>Goal</strong> provides context for all views</li>
+<li><strong>Data</strong> appears in all views with different emphases</li>
+</ol>
 <hr>
 </section>
-<section id="advantages-of-the-projection-model" class="level1" data-number="33">
-<h1 data-number="33"><span class="header-section-number">33</span> Advantages of the Projection Model</h1>
-<p>Using a projection model provides several benefits.</p>
-<p>First, it ensures <strong>consistency</strong>. Because all projections derive from the same blueprint, different architectural artifacts remain aligned.</p>
-<p>Second, it reduces <strong>duplication of knowledge</strong>. Engineers do not need to maintain multiple independent descriptions of the system.</p>
-<p>Third, it enables <strong>automation</strong>. Once blueprint structures are defined formally, tools can generate projections automatically.</p>
-<p>For example, a blueprint could be used to generate:</p>
+</section>
+<section id="projection-generation-pipeline" class="level2" data-number="27.8">
+<h2 data-number="27.8" class="anchored" data-anchor-id="projection-generation-pipeline"><span class="header-section-number">27.8</span> Projection Generation Pipeline</h2>
+<section id="automated-generation-process" class="level3" data-number="27.8.1">
+<h3 data-number="27.8.1" class="anchored" data-anchor-id="automated-generation-process"><span class="header-section-number">27.8.1</span> Automated Generation Process</h3>
+<pre><code>Blueprint (YAML + Markdown)
+        │
+        ▼
+   Parser (Read Blueprint)
+        │
+        ├──────────────────┬──────────────────┬──────────────────┐
+        │                  │                  │                  │
+        ▼                  ▼                  ▼                  ▼
+  Architecture      Specification      Operational      Specialized
+  Generator         Generator          Generator         Views
+        │                  │                  │                  │
+        ▼                  ▼                  ▼                  ▼
+  Component Diagram   API Spec         Runbook           Security View
+  Dependency Graph    Requirements    Monitoring         Performance View
+  Topology Diagram    Contracts       Dashboard          Compliance View</code></pre>
+</section>
+<section id="generation-tools" class="level3" data-number="27.8.2">
+<h3 data-number="27.8.2" class="anchored" data-anchor-id="generation-tools"><span class="header-section-number">27.8.2</span> Generation Tools</h3>
+<section id="architecture-view-generators" class="level4" data-number="27.8.2.1">
+<h4 data-number="27.8.2.1" class="anchored" data-anchor-id="architecture-view-generators"><span class="header-section-number">27.8.2.1</span> 1. Architecture View Generators</h4>
+<p><strong>Input</strong>: Blueprint YAML (components, interfaces)</p>
+<p><strong>Output</strong>: Diagrams (Mermaid, PlantUML, Graphviz)</p>
+<p><strong>Example Tool</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_architecture_diagram(blueprint):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    components <span class="op">=</span> blueprint[<span class="st">'components'</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    interfaces <span class="op">=</span> blueprint[<span class="st">'interfaces'</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    mermaid <span class="op">=</span> <span class="st">"graph TD</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add components</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> comp <span class="kw">in</span> components:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        external <span class="op">=</span> <span class="st">"((External))"</span> <span class="cf">if</span> comp.get(<span class="st">'external'</span>) <span class="cf">else</span> <span class="st">""</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        mermaid <span class="op">+=</span> <span class="ss">f"  </span><span class="sc">{</span>comp[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">[</span><span class="sc">{</span>comp[<span class="st">'name'</span>]<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>external<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add interfaces</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> iface <span class="kw">in</span> interfaces:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        connects <span class="op">=</span> iface[<span class="st">'connects'</span>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(connects) <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            mermaid <span class="op">+=</span> <span class="ss">f"  </span><span class="sc">{</span>connects[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> -- </span><span class="sc">{</span>iface[<span class="st">'protocol'</span>]<span class="sc">}</span><span class="ss"> --&gt; </span><span class="sc">{</span>connects[<span class="dv">1</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mermaid</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="specification-view-generators" class="level4" data-number="27.8.2.2">
+<h4 data-number="27.8.2.2" class="anchored" data-anchor-id="specification-view-generators"><span class="header-section-number">27.8.2.2</span> 2. Specification View Generators</h4>
+<p><strong>Input</strong>: Blueprint YAML (capabilities, interfaces, workflows, goal)</p>
+<p><strong>Output</strong>: OpenAPI spec, requirements document, test cases</p>
+<p><strong>Example Tool</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_openapi_spec(blueprint):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    spec <span class="op">=</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'openapi'</span>: <span class="st">'3.0.0'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'info'</span>: {<span class="st">'title'</span>: blueprint[<span class="st">'name'</span>], <span class="st">'version'</span>: blueprint[<span class="st">'version'</span>]},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'paths'</span>: {}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> iface <span class="kw">in</span> blueprint[<span class="st">'interfaces'</span>]:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> iface[<span class="st">'protocol'</span>] <span class="op">==</span> <span class="st">'HTTP/REST'</span>:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Generate endpoint definitions from interface</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ...</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> spec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="operational-view-generators" class="level4" data-number="27.8.2.3">
+<h4 data-number="27.8.2.3" class="anchored" data-anchor-id="operational-view-generators"><span class="header-section-number">27.8.2.3</span> 3. Operational View Generators</h4>
+<p><strong>Input</strong>: Blueprint YAML (workflows, components, interfaces)</p>
+<p><strong>Output</strong>: Runbooks, monitoring configs, deployment manifests</p>
+<p><strong>Example Tool</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_monitoring_config(blueprint):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> []</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> workflow <span class="kw">in</span> blueprint[<span class="st">'workflows'</span>]:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> step <span class="kw">in</span> workflow[<span class="st">'steps'</span>]:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            metrics.append({</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">'name'</span>: <span class="ss">f"</span><span class="sc">{</span>workflow[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>step[<span class="st">'step'</span>]<span class="sc">}</span><span class="ss">_duration"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'type'</span>: <span class="st">'histogram'</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">'labels'</span>: [<span class="st">'component'</span>, <span class="st">'status'</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="manual-generation" class="level3" data-number="27.8.3">
+<h3 data-number="27.8.3" class="anchored" data-anchor-id="manual-generation"><span class="header-section-number">27.8.3</span> Manual Generation</h3>
+<p>When automated tools aren’t available:</p>
+<ol type="1">
+<li><strong>Extract Elements</strong>: Manually read relevant sections from blueprint</li>
+<li><strong>Choose Format</strong>: Select appropriate representation (diagram, document, etc.)</li>
+<li><strong>Structure Content</strong>: Organize according to projection type</li>
+<li><strong>Validate</strong>: Cross-check against blueprint for consistency</li>
+<li><strong>Version</strong>: Track projection version and blueprint version</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="use-cases-and-benefits" class="level2" data-number="27.9">
+<h2 data-number="27.9" class="anchored" data-anchor-id="use-cases-and-benefits"><span class="header-section-number">27.9</span> Use Cases and Benefits</h2>
+<section id="use-case-1-onboarding-new-team-members" class="level3" data-number="27.9.1">
+<h3 data-number="27.9.1" class="anchored" data-anchor-id="use-case-1-onboarding-new-team-members"><span class="header-section-number">27.9.1</span> Use Case 1: Onboarding New Team Members</h3>
+<p><strong>Challenge</strong>: New engineers need to understand system quickly</p>
+<p><strong>Solution</strong>: Provide appropriate projection for their role</p>
 <ul>
-<li><p>architecture diagrams</p></li>
-<li><p>API documentation</p></li>
-<li><p>operational workflow diagrams</p></li>
+<li><strong>Architects</strong>: Architecture view for structural understanding</li>
+<li><strong>Developers</strong>: Specification view for API contracts</li>
+<li><strong>Ops Engineers</strong>: Operational view for deployment and monitoring</li>
 </ul>
-<p>This capability becomes particularly important when blueprint datasets are used for computational analysis or AI-assisted system design.</p>
+<p><strong>Benefit</strong>: Faster onboarding, reduced learning curve</p>
+</section>
+<section id="use-case-2-system-integration" class="level3" data-number="27.9.2">
+<h3 data-number="27.9.2" class="anchored" data-anchor-id="use-case-2-system-integration"><span class="header-section-number">27.9.2</span> Use Case 2: System Integration</h3>
+<p><strong>Challenge</strong>: Multiple teams need to integrate systems</p>
+<p><strong>Solution</strong>: Use specification views as integration contracts</p>
+<ul>
+<li>Share API specifications from specification view</li>
+<li>Reference interface definitions from architecture view</li>
+<li>Understand data flow from operational view</li>
+</ul>
+<p><strong>Benefit</strong>: Clear integration contracts, reduced integration issues</p>
+</section>
+<section id="use-case-3-incident-response" class="level3" data-number="27.9.3">
+<h3 data-number="27.9.3" class="anchored" data-anchor-id="use-case-3-incident-response"><span class="header-section-number">27.9.3</span> Use Case 3: Incident Response</h3>
+<p><strong>Challenge</strong>: Operators need to troubleshoot production issues</p>
+<p><strong>Solution</strong>: Use operational views for troubleshooting</p>
+<ul>
+<li>Review workflow diagrams for execution paths</li>
+<li>Check monitoring points from operational view</li>
+<li>Follow error handling procedures from operational view</li>
+</ul>
+<p><strong>Benefit</strong>: Faster incident resolution, reduced downtime</p>
+</section>
+<section id="use-case-4-architecture-review" class="level3" data-number="27.9.4">
+<h3 data-number="27.9.4" class="anchored" data-anchor-id="use-case-4-architecture-review"><span class="header-section-number">27.9.4</span> Use Case 4: Architecture Review</h3>
+<p><strong>Challenge</strong>: Team needs to evaluate architectural decisions</p>
+<p><strong>Solution</strong>: Use architecture view for structural analysis</p>
+<ul>
+<li>Review component responsibilities</li>
+<li>Analyze interface dependencies</li>
+<li>Identify coupling and boundaries</li>
+</ul>
+<p><strong>Benefit</strong>: Better architectural decisions, reduced technical debt</p>
+</section>
+<section id="use-case-5-compliance-auditing" class="level3" data-number="27.9.5">
+<h3 data-number="27.9.5" class="anchored" data-anchor-id="use-case-5-compliance-auditing"><span class="header-section-number">27.9.5</span> Use Case 5: Compliance Auditing</h3>
+<p><strong>Challenge</strong>: Auditors need to understand system controls</p>
+<p><strong>Solution</strong>: Use specialized projections (security, compliance)</p>
+<ul>
+<li>Security view for authentication and authorization</li>
+<li>Data view for privacy controls</li>
+<li>Operational view for logging and monitoring</li>
+</ul>
+<p><strong>Benefit</strong>: Easier compliance, reduced audit preparation time</p>
+</section>
+<section id="overall-benefits" class="level3" data-number="27.9.6">
+<h3 data-number="27.9.6" class="anchored" data-anchor-id="overall-benefits"><span class="header-section-number">27.9.6</span> Overall Benefits</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Benefit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Consistency</strong></td>
+<td>All views derived from same blueprint, no drift</td>
+</tr>
+<tr class="even">
+<td><strong>Efficiency</strong></td>
+<td>Generate views automatically, reduce manual work</td>
+</tr>
+<tr class="odd">
+<td><strong>Traceability</strong></td>
+<td>Trace any view element back to blueprint source</td>
+</tr>
+<tr class="even">
+<td><strong>Maintainability</strong></td>
+<td>Update blueprint, regenerate views automatically</td>
+</tr>
+<tr class="odd">
+<td><strong>Clarity</strong></td>
+<td>Each view focused on relevant information</td>
+</tr>
+<tr class="even">
+<td><strong>Collaboration</strong></td>
+<td>Different teams get views tailored to their needs</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
-<section id="blueprint-as-the-source-of-structural-truth" class="level1" data-number="34">
-<h1 data-number="34"><span class="header-section-number">34</span> Blueprint as the Source of Structural Truth</h1>
-<p>The projection map presented in this appendix reinforces a key principle of the blueprint framework.</p>
-<p>The blueprint is the <strong>primary representation of system structure</strong>.</p>
-<p>All other architectural artifacts—diagrams, specifications, and operational documentation—should be understood as views derived from this central model.</p>
-<p>This perspective shifts the role of architectural documentation.</p>
-<p>Instead of maintaining separate documents for each audience, engineers maintain a single structural model and derive specialized views from it.</p>
+</section>
+<section id="tool-integration" class="level2" data-number="27.10">
+<h2 data-number="27.10" class="anchored" data-anchor-id="tool-integration"><span class="header-section-number">27.10</span> Tool Integration</h2>
+<section id="version-control-integration" class="level3" data-number="27.10.1">
+<h3 data-number="27.10.1" class="anchored" data-anchor-id="version-control-integration"><span class="header-section-number">27.10.1</span> Version Control Integration</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store blueprint in Git</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add system.blueprint.md</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update blueprint: add notification capability"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tag blueprint version</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag v1.1.0</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate projections on CI/CD</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render  <span class="co"># Generate all views</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add _book/</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Regenerate projections from blueprint v1.1.0"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cicd-integration" class="level3" data-number="27.10.2">
+<h3 data-number="27.10.2" class="anchored" data-anchor-id="cicd-integration"><span class="header-section-number">27.10.2</span> CI/CD Integration</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .github/workflows/blueprint-validation.yml</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Blueprint Validation</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">,</span><span class="at"> pull_request</span><span class="kw">]</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">validate</span><span class="kw">:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Validate Blueprint Structure</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>          python scripts/validate_blueprint.py system.blueprint.md</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Generate Projections</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>          python scripts/generate_views.py system.blueprint.md</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test Projections</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>          python scripts/test_views.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="documentation-platforms" class="level3" data-number="27.10.3">
+<h3 data-number="27.10.3" class="anchored" data-anchor-id="documentation-platforms"><span class="header-section-number">27.10.3</span> Documentation Platforms</h3>
+<p><strong>GitLab Wiki</strong>: - Store blueprint as wiki page - Use GitLab CI to generate projections - Link projections to blueprint</p>
+<p><strong>Confluence</strong>: - Import blueprint via REST API - Use macros to render projections - Maintain blueprint in Git, sync to Confluence</p>
+<p><strong>Obsidian</strong>: - Store blueprint as Markdown file - Use graph view for relationships - Embed projections in notes</p>
+</section>
+<section id="monitoring-integration" class="level3" data-number="27.10.4">
+<h3 data-number="27.10.4" class="anchored" data-anchor-id="monitoring-integration"><span class="header-section-number">27.10.4</span> Monitoring Integration</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prometheus configuration generated from operational view</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scrape_configs</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">job_name</span><span class="kw">:</span><span class="at"> </span><span class="st">'api_service'</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">static_configs</span><span class="kw">:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">targets</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">'api-service:9090'</span><span class="kw">]</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">metrics_path</span><span class="kw">:</span><span class="at"> </span><span class="st">'/metrics'</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">    # Generated from blueprint monitoring points</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafana dashboard generated from operational view</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dashboard</span><span class="kw">:</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">panels</span><span class="kw">:</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Login Request Rate</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">targets</span><span class="kw">:</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">expr</span><span class="kw">:</span><span class="at"> login_request_count{status_code="200"}</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">      # Generated from blueprint monitoring points</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="common-pitfalls-and-best-practices" class="level2" data-number="27.11">
+<h2 data-number="27.11" class="anchored" data-anchor-id="common-pitfalls-and-best-practices"><span class="header-section-number">27.11</span> Common Pitfalls and Best Practices</h2>
+<section id="pitfalls-to-avoid" class="level3" data-number="27.11.1">
+<h3 data-number="27.11.1" class="anchored" data-anchor-id="pitfalls-to-avoid"><span class="header-section-number">27.11.1</span> Pitfalls to Avoid</h3>
+<section id="creating-independent-documents" class="level4" data-number="27.11.1.1">
+<h4 data-number="27.11.1.1" class="anchored" data-anchor-id="creating-independent-documents"><span class="header-section-number">27.11.1.1</span> 1. Creating Independent Documents</h4>
+<p>❌ <strong>Problem</strong>: Architecture diagram, API spec, and runbook created separately without linking to blueprint</p>
+<p>✅ <strong>Solution</strong>: All projections are generated from blueprint and traceable back to source</p>
+</section>
+<section id="allowing-projections-to-drift" class="level4" data-number="27.11.1.2">
+<h4 data-number="27.11.1.2" class="anchored" data-anchor-id="allowing-projections-to-drift"><span class="header-section-number">27.11.1.2</span> 2. Allowing Projections to Drift</h4>
+<p>❌ <strong>Problem</strong>: Projections updated manually without updating blueprint</p>
+<p>✅ <strong>Solution</strong>: Update blueprint first, regenerate projections automatically</p>
+</section>
+<section id="over-specifying-in-projections" class="level4" data-number="27.11.1.3">
+<h4 data-number="27.11.1.3" class="anchored" data-anchor-id="over-specifying-in-projections"><span class="header-section-number">27.11.1.3</span> 3. Over-Specifying in Projections</h4>
+<p>❌ <strong>Problem</strong>: Architecture view includes implementation details (class names, function calls)</p>
+<p>✅ <strong>Solution</strong>: Keep projections at appropriate abstraction level</p>
+</section>
+<section id="wrong-projection-for-audience" class="level4" data-number="27.11.1.4">
+<h4 data-number="27.11.1.4" class="anchored" data-anchor-id="wrong-projection-for-audience"><span class="header-section-number">27.11.1.4</span> 4. Wrong Projection for Audience</h4>
+<p>❌ <strong>Problem</strong>: Showing architecture view to QA team, specification view to ops team</p>
+<p>✅ <strong>Solution</strong>: Match projection to audience and use case</p>
+</section>
+<section id="missing-projections" class="level4" data-number="27.11.1.5">
+<h4 data-number="27.11.1.5" class="anchored" data-anchor-id="missing-projections"><span class="header-section-number">27.11.1.5</span> 5. Missing Projections</h4>
+<p>❌ <strong>Problem</strong>: System has blueprint but no projections generated</p>
+<p>✅ <strong>Solution</strong>: Generate standard projections (architecture, spec, operational) for every blueprint</p>
+</section>
+</section>
+<section id="best-practices" class="level3" data-number="27.11.2">
+<h3 data-number="27.11.2" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">27.11.2</span> Best Practices</h3>
+<section id="always-start-with-blueprint" class="level4" data-number="27.11.2.1">
+<h4 data-number="27.11.2.1" class="anchored" data-anchor-id="always-start-with-blueprint"><span class="header-section-number">27.11.2.1</span> 1. Always Start with Blueprint</h4>
+<p>✓ Design the blueprint first, then generate projections ✓ Don’t create projections without an underlying blueprint ✓ Treat blueprint as source of truth</p>
+</section>
+<section id="automate-projection-generation" class="level4" data-number="27.11.2.2">
+<h4 data-number="27.11.2.2" class="anchored" data-anchor-id="automate-projection-generation"><span class="header-section-number">27.11.2.2</span> 2. Automate Projection Generation</h4>
+<p>✓ Build tools to generate projections from blueprint ✓ Integrate generation into CI/CD pipeline ✓ Version projections alongside blueprint</p>
+</section>
+<section id="keep-projections-current" class="level4" data-number="27.11.2.3">
+<h4 data-number="27.11.2.3" class="anchored" data-anchor-id="keep-projections-current"><span class="header-section-number">27.11.2.3</span> 3. Keep Projections Current</h4>
+<p>✓ Regenerate projections when blueprint changes ✓ Store projection version with blueprint version ✓ Use automated validation to detect drift</p>
+</section>
+<section id="choose-right-projection-for-audience" class="level4" data-number="27.11.2.4">
+<h4 data-number="27.11.2.4" class="anchored" data-anchor-id="choose-right-projection-for-audience"><span class="header-section-number">27.11.2.4</span> 4. Choose Right Projection for Audience</h4>
+<p>✓ Architecture view for architects and engineers ✓ Specification view for QA, product, and integrators ✓ Operational view for DevOps, SREs, and support ✓ Specialized views for specific needs (security, compliance, performance)</p>
+</section>
+<section id="maintain-traceability" class="level4" data-number="27.11.2.5">
+<h4 data-number="27.11.2.5" class="anchored" data-anchor-id="maintain-traceability"><span class="header-section-number">27.11.2.5</span> 5. Maintain Traceability</h4>
+<p>✓ Link projection elements back to blueprint elements ✓ Document how projections are generated ✓ Track which blueprint version generated which projection</p>
+</section>
+<section id="validate-projections" class="level4" data-number="27.11.2.6">
+<h4 data-number="27.11.2.6" class="anchored" data-anchor-id="validate-projections"><span class="header-section-number">27.11.2.6</span> 6. Validate Projections</h4>
+<p>✓ Test that projections accurately reflect blueprint ✓ Review projections with appropriate stakeholders ✓ Fix inconsistencies in blueprint, not projections</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="advanced-topics" class="level2" data-number="27.12">
+<h2 data-number="27.12" class="anchored" data-anchor-id="advanced-topics"><span class="header-section-number">27.12</span> Advanced Topics</h2>
+<section id="specialized-projections" class="level3" data-number="27.12.1">
+<h3 data-number="27.12.1" class="anchored" data-anchor-id="specialized-projections"><span class="header-section-number">27.12.1</span> Specialized Projections</h3>
+<p>Beyond the three primary projections, specialized views can be generated for specific needs:</p>
+<section id="security-view" class="level4" data-number="27.12.1.1">
+<h4 data-number="27.12.1.1" class="anchored" data-anchor-id="security-view"><span class="header-section-number">27.12.1.1</span> Security View</h4>
+<p><strong>Focus</strong>: Security controls, authentication, authorization, data protection</p>
+<p><strong>Elements</strong>: - Data sensitivity classifications - Authentication and authorization mechanisms - Encryption requirements - Security monitoring points</p>
+</section>
+<section id="performance-view" class="level4" data-number="27.12.1.2">
+<h4 data-number="27.12.1.2" class="anchored" data-anchor-id="performance-view"><span class="header-section-number">27.12.1.2</span> Performance View</h4>
+<p><strong>Focus</strong>: Performance characteristics, bottlenecks, capacity planning</p>
+<p><strong>Elements</strong>: - Performance targets from success metrics - Workflow duration estimates - Resource requirements - Scaling strategies</p>
+</section>
+<section id="compliance-view" class="level4" data-number="27.12.1.3">
+<h4 data-number="27.12.1.3" class="anchored" data-anchor-id="compliance-view"><span class="header-section-number">27.12.1.3</span> Compliance View</h4>
+<p><strong>Focus</strong>: Regulatory compliance, audit trails, data governance</p>
+<p><strong>Elements</strong>: - Data retention policies - Audit logging requirements - Compliance controls - Regulatory mappings</p>
+</section>
+<section id="testing-view" class="level4" data-number="27.12.1.4">
+<h4 data-number="27.12.1.4" class="anchored" data-anchor-id="testing-view"><span class="header-section-number">27.12.1.4</span> Testing View</h4>
+<p><strong>Focus</strong>: Test coverage, test cases, validation strategies</p>
+<p><strong>Elements</strong>: - Acceptance criteria from specifications - Workflow test scenarios - Error condition testing - Integration test points</p>
+</section>
+</section>
+<section id="projection-composition" class="level3" data-number="27.12.2">
+<h3 data-number="27.12.2" class="anchored" data-anchor-id="projection-composition"><span class="header-section-number">27.12.2</span> Projection Composition</h3>
+<p>Multiple projections can be combined for comprehensive documentation:</p>
+<pre><code>Blueprint
+    │
+    ├─→ Architecture View
+    │       └─→ Security Architecture View
+    │       └─→ Performance Architecture View
+    │
+    ├─→ Specification View
+    │       └─→ API Specification
+    │       └─→ Test Specification
+    │
+    └─→ Operational View
+            └─→ Monitoring Configuration
+            └─→ Deployment Manifest</code></pre>
+</section>
+<section id="projection-evolution" class="level3" data-number="27.12.3">
+<h3 data-number="27.12.3" class="anchored" data-anchor-id="projection-evolution"><span class="header-section-number">27.12.3</span> Projection Evolution</h3>
+<p>Projections evolve with the blueprint:</p>
+<ol type="1">
+<li><strong>Initial</strong>: Generate basic projections from v1.0 blueprint</li>
+<li><strong>Refinement</strong>: Add details as blueprint matures</li>
+<li><strong>Specialization</strong>: Create specialized views for specific needs</li>
+<li><strong>Optimization</strong>: Improve projection generation tools and formats</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2" data-number="27.13">
+<h2 data-number="27.13" class="anchored" data-anchor-id="summary"><span class="header-section-number">27.13</span> Summary</h2>
+<p>The projection model presented in this appendix reinforces a key principle of the blueprint framework:</p>
+<section id="key-principles" class="level3" data-number="27.13.1">
+<h3 data-number="27.13.1" class="anchored" data-anchor-id="key-principles"><span class="header-section-number">27.13.1</span> Key Principles</h3>
+<ol type="1">
+<li><strong>Single Source of Truth</strong>: Blueprint is the primary representation</li>
+<li><strong>Derived Views</strong>: All other artifacts are projections of blueprint</li>
+<li><strong>Consistency</strong>: Projections remain aligned with blueprint</li>
+<li><strong>Audience-Specific</strong>: Different projections serve different stakeholders</li>
+<li><strong>Automatable</strong>: Projections can be generated automatically</li>
+</ol>
+</section>
+<section id="the-three-primary-projections" class="level3" data-number="27.13.2">
+<h3 data-number="27.13.2" class="anchored" data-anchor-id="the-three-primary-projections"><span class="header-section-number">27.13.2</span> The Three Primary Projections</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 13%">
+<col style="width: 34%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Projection</th>
+<th>Focus</th>
+<th>Primary Audience</th>
+<th>Key Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Architecture View</strong></td>
+<td>Structure</td>
+<td>Architects, Engineers</td>
+<td>How is it structured?</td>
+</tr>
+<tr class="even">
+<td><strong>Specification View</strong></td>
+<td>Behavior</td>
+<td>Product, QA, Integrators</td>
+<td>What should it do?</td>
+</tr>
+<tr class="odd">
+<td><strong>Operational View</strong></td>
+<td>Runtime</td>
+<td>DevOps, SREs, Ops</td>
+<td>How does it run?</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="benefits" class="level3" data-number="27.13.3">
+<h3 data-number="27.13.3" class="anchored" data-anchor-id="benefits"><span class="header-section-number">27.13.3</span> Benefits</h3>
+<ul>
+<li><strong>Consistency</strong>: No drift between different artifacts</li>
+<li><strong>Efficiency</strong>: Generate views automatically</li>
+<li><strong>Clarity</strong>: Each view focused on relevant information</li>
+<li><strong>Traceability</strong>: Trace any element back to blueprint</li>
+<li><strong>Maintainability</strong>: Update once, regenerate all views</li>
+</ul>
+</section>
+<section id="action-items" class="level3" data-number="27.13.4">
+<h3 data-number="27.13.4" class="anchored" data-anchor-id="action-items"><span class="header-section-number">27.13.4</span> Action Items</h3>
+<p>For organizations adopting blueprint-based engineering:</p>
+<ol type="1">
+<li><strong>Establish Blueprint First</strong>: Always create blueprints before other documentation</li>
+<li><strong>Build Generation Tools</strong>: Automate projection generation</li>
+<li><strong>Integrate with Workflows</strong>: Make projection generation part of CI/CD</li>
+<li><strong>Train Teams</strong>: Teach teams which projection to use for which purpose</li>
+<li><strong>Maintain Discipline</strong>: Update blueprints, not projections</li>
+</ol>
 <p>By treating architecture, specification, and operations as projections of a shared blueprint, the framework provides a consistent foundation for representing and evolving system knowledge.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

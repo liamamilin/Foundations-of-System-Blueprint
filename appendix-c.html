@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -557,14 +592,91 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#structural-completeness" id="toc-structural-completeness" class="nav-link active" data-scroll-target="#structural-completeness"><span class="header-section-number">24.1</span> Structural Completeness</a></li>
-  <li><a href="#structural-consistency" id="toc-structural-consistency" class="nav-link" data-scroll-target="#structural-consistency"><span class="header-section-number">24.2</span> Structural Consistency</a></li>
-  <li><a href="#interface-clarity" id="toc-interface-clarity" class="nav-link" data-scroll-target="#interface-clarity"><span class="header-section-number">24.3</span> Interface Clarity</a></li>
-  <li><a href="#data-ownership-and-flow" id="toc-data-ownership-and-flow" class="nav-link" data-scroll-target="#data-ownership-and-flow"><span class="header-section-number">24.4</span> Data Ownership and Flow</a></li>
-  <li><a href="#operational-behavior" id="toc-operational-behavior" class="nav-link" data-scroll-target="#operational-behavior"><span class="header-section-number">24.5</span> Operational Behavior</a></li>
-  <li><a href="#composability" id="toc-composability" class="nav-link" data-scroll-target="#composability"><span class="header-section-number">24.6</span> Composability</a></li>
-  <li><a href="#feasibility" id="toc-feasibility" class="nav-link" data-scroll-target="#feasibility"><span class="header-section-number">24.7</span> Feasibility</a></li>
-  <li><a href="#outcome-of-the-review" id="toc-outcome-of-the-review" class="nav-link" data-scroll-target="#outcome-of-the-review"><span class="header-section-number">24.8</span> Outcome of the Review</a></li>
+  <li><a href="#review-framework" id="toc-review-framework" class="nav-link active" data-scroll-target="#review-framework"><span class="header-section-number">24.1</span> Review Framework</a>
+  <ul class="collapse">
+  <li><a href="#review-objectives" id="toc-review-objectives" class="nav-link" data-scroll-target="#review-objectives"><span class="header-section-number">24.1.1</span> Review Objectives</a></li>
+  <li><a href="#review-principles" id="toc-review-principles" class="nav-link" data-scroll-target="#review-principles"><span class="header-section-number">24.1.2</span> Review Principles</a></li>
+  <li><a href="#review-outcomes" id="toc-review-outcomes" class="nav-link" data-scroll-target="#review-outcomes"><span class="header-section-number">24.1.3</span> Review Outcomes</a></li>
+  </ul></li>
+  <li><a href="#review-checklist" id="toc-review-checklist" class="nav-link" data-scroll-target="#review-checklist"><span class="header-section-number">24.2</span> Review Checklist</a>
+  <ul class="collapse">
+  <li><a href="#severity-indicators" id="toc-severity-indicators" class="nav-link" data-scroll-target="#severity-indicators"><span class="header-section-number">24.2.1</span> Severity Indicators</a></li>
+  </ul></li>
+  <li><a href="#dimension-1-structural-completeness" id="toc-dimension-1-structural-completeness" class="nav-link" data-scroll-target="#dimension-1-structural-completeness"><span class="header-section-number">24.3</span> Dimension 1: Structural Completeness</a>
+  <ul class="collapse">
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective"><span class="header-section-number">24.3.1</span> Objective</a></li>
+  <li><a href="#check-items" id="toc-check-items" class="nav-link" data-scroll-target="#check-items"><span class="header-section-number">24.3.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">24.3.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings" id="toc-example-findings" class="nav-link" data-scroll-target="#example-findings"><span class="header-section-number">24.3.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-2-structural-consistency" id="toc-dimension-2-structural-consistency" class="nav-link" data-scroll-target="#dimension-2-structural-consistency"><span class="header-section-number">24.4</span> Dimension 2: Structural Consistency</a>
+  <ul class="collapse">
+  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1"><span class="header-section-number">24.4.1</span> Objective</a></li>
+  <li><a href="#check-items-1" id="toc-check-items-1" class="nav-link" data-scroll-target="#check-items-1"><span class="header-section-number">24.4.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-1" id="toc-common-pitfalls-1" class="nav-link" data-scroll-target="#common-pitfalls-1"><span class="header-section-number">24.4.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-1" id="toc-example-findings-1" class="nav-link" data-scroll-target="#example-findings-1"><span class="header-section-number">24.4.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-3-interface-clarity" id="toc-dimension-3-interface-clarity" class="nav-link" data-scroll-target="#dimension-3-interface-clarity"><span class="header-section-number">24.5</span> Dimension 3: Interface Clarity</a>
+  <ul class="collapse">
+  <li><a href="#objective-2" id="toc-objective-2" class="nav-link" data-scroll-target="#objective-2"><span class="header-section-number">24.5.1</span> Objective</a></li>
+  <li><a href="#check-items-2" id="toc-check-items-2" class="nav-link" data-scroll-target="#check-items-2"><span class="header-section-number">24.5.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-2" id="toc-common-pitfalls-2" class="nav-link" data-scroll-target="#common-pitfalls-2"><span class="header-section-number">24.5.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-2" id="toc-example-findings-2" class="nav-link" data-scroll-target="#example-findings-2"><span class="header-section-number">24.5.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-4-data-ownership-and-flow" id="toc-dimension-4-data-ownership-and-flow" class="nav-link" data-scroll-target="#dimension-4-data-ownership-and-flow"><span class="header-section-number">24.6</span> Dimension 4: Data Ownership and Flow</a>
+  <ul class="collapse">
+  <li><a href="#objective-3" id="toc-objective-3" class="nav-link" data-scroll-target="#objective-3"><span class="header-section-number">24.6.1</span> Objective</a></li>
+  <li><a href="#check-items-3" id="toc-check-items-3" class="nav-link" data-scroll-target="#check-items-3"><span class="header-section-number">24.6.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-3" id="toc-common-pitfalls-3" class="nav-link" data-scroll-target="#common-pitfalls-3"><span class="header-section-number">24.6.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-3" id="toc-example-findings-3" class="nav-link" data-scroll-target="#example-findings-3"><span class="header-section-number">24.6.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-5-operational-behavior" id="toc-dimension-5-operational-behavior" class="nav-link" data-scroll-target="#dimension-5-operational-behavior"><span class="header-section-number">24.7</span> Dimension 5: Operational Behavior</a>
+  <ul class="collapse">
+  <li><a href="#objective-4" id="toc-objective-4" class="nav-link" data-scroll-target="#objective-4"><span class="header-section-number">24.7.1</span> Objective</a></li>
+  <li><a href="#check-items-4" id="toc-check-items-4" class="nav-link" data-scroll-target="#check-items-4"><span class="header-section-number">24.7.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-4" id="toc-common-pitfalls-4" class="nav-link" data-scroll-target="#common-pitfalls-4"><span class="header-section-number">24.7.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-4" id="toc-example-findings-4" class="nav-link" data-scroll-target="#example-findings-4"><span class="header-section-number">24.7.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-6-composability" id="toc-dimension-6-composability" class="nav-link" data-scroll-target="#dimension-6-composability"><span class="header-section-number">24.8</span> Dimension 6: Composability</a>
+  <ul class="collapse">
+  <li><a href="#objective-5" id="toc-objective-5" class="nav-link" data-scroll-target="#objective-5"><span class="header-section-number">24.8.1</span> Objective</a></li>
+  <li><a href="#check-items-5" id="toc-check-items-5" class="nav-link" data-scroll-target="#check-items-5"><span class="header-section-number">24.8.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-5" id="toc-common-pitfalls-5" class="nav-link" data-scroll-target="#common-pitfalls-5"><span class="header-section-number">24.8.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-5" id="toc-example-findings-5" class="nav-link" data-scroll-target="#example-findings-5"><span class="header-section-number">24.8.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#dimension-7-feasibility" id="toc-dimension-7-feasibility" class="nav-link" data-scroll-target="#dimension-7-feasibility"><span class="header-section-number">24.9</span> Dimension 7: Feasibility</a>
+  <ul class="collapse">
+  <li><a href="#objective-6" id="toc-objective-6" class="nav-link" data-scroll-target="#objective-6"><span class="header-section-number">24.9.1</span> Objective</a></li>
+  <li><a href="#check-items-6" id="toc-check-items-6" class="nav-link" data-scroll-target="#check-items-6"><span class="header-section-number">24.9.2</span> Check Items</a></li>
+  <li><a href="#common-pitfalls-6" id="toc-common-pitfalls-6" class="nav-link" data-scroll-target="#common-pitfalls-6"><span class="header-section-number">24.9.3</span> Common Pitfalls</a></li>
+  <li><a href="#example-findings-6" id="toc-example-findings-6" class="nav-link" data-scroll-target="#example-findings-6"><span class="header-section-number">24.9.4</span> Example Findings</a></li>
+  </ul></li>
+  <li><a href="#review-process-guidelines" id="toc-review-process-guidelines" class="nav-link" data-scroll-target="#review-process-guidelines"><span class="header-section-number">24.10</span> Review Process Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#pre-review-preparation" id="toc-pre-review-preparation" class="nav-link" data-scroll-target="#pre-review-preparation"><span class="header-section-number">24.10.1</span> Pre-Review Preparation</a></li>
+  <li><a href="#review-execution" id="toc-review-execution" class="nav-link" data-scroll-target="#review-execution"><span class="header-section-number">24.10.2</span> Review Execution</a></li>
+  <li><a href="#issue-documentation-template" id="toc-issue-documentation-template" class="nav-link" data-scroll-target="#issue-documentation-template"><span class="header-section-number">24.10.3</span> Issue Documentation Template</a></li>
+  <li><a href="#review-communication" id="toc-review-communication" class="nav-link" data-scroll-target="#review-communication"><span class="header-section-number">24.10.4</span> Review Communication</a></li>
+  </ul></li>
+  <li><a href="#example-review" id="toc-example-review" class="nav-link" data-scroll-target="#example-review"><span class="header-section-number">24.11</span> Example Review</a>
+  <ul class="collapse">
+  <li><a href="#blueprint-summary" id="toc-blueprint-summary" class="nav-link" data-scroll-target="#blueprint-summary"><span class="header-section-number">24.11.1</span> Blueprint Summary</a></li>
+  <li><a href="#review-findings" id="toc-review-findings" class="nav-link" data-scroll-target="#review-findings"><span class="header-section-number">24.11.2</span> Review Findings</a></li>
+  <li><a href="#review-outcome" id="toc-review-outcome" class="nav-link" data-scroll-target="#review-outcome"><span class="header-section-number">24.11.3</span> Review Outcome</a></li>
+  <li><a href="#approval-criteria" id="toc-approval-criteria" class="nav-link" data-scroll-target="#approval-criteria"><span class="header-section-number">24.11.4</span> Approval Criteria</a></li>
+  </ul></li>
+  <li><a href="#review-best-practices" id="toc-review-best-practices" class="nav-link" data-scroll-target="#review-best-practices"><span class="header-section-number">24.12</span> Review Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#for-reviewers" id="toc-for-reviewers" class="nav-link" data-scroll-target="#for-reviewers"><span class="header-section-number">24.12.1</span> For Reviewers</a></li>
+  <li><a href="#for-authors" id="toc-for-authors" class="nav-link" data-scroll-target="#for-authors"><span class="header-section-number">24.12.2</span> For Authors</a></li>
+  <li><a href="#for-organizations" id="toc-for-organizations" class="nav-link" data-scroll-target="#for-organizations"><span class="header-section-number">24.12.3</span> For Organizations</a></li>
+  </ul></li>
+  <li><a href="#automation-opportunities" id="toc-automation-opportunities" class="nav-link" data-scroll-target="#automation-opportunities"><span class="header-section-number">24.13</span> Automation Opportunities</a>
+  <ul class="collapse">
+  <li><a href="#automated-checks" id="toc-automated-checks" class="nav-link" data-scroll-target="#automated-checks"><span class="header-section-number">24.13.1</span> Automated Checks</a></li>
+  <li><a href="#semi-automated-review" id="toc-semi-automated-review" class="nav-link" data-scroll-target="#semi-automated-review"><span class="header-section-number">24.13.2</span> Semi-Automated Review</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">24.14</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -593,104 +705,919 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Blueprints function as structural representations of system knowledge. Because they are intended to support reuse, composition, and computational analysis, their quality must be verified before they are stored in blueprint repositories.</p>
 <p>The purpose of a blueprint review is to ensure that the blueprint accurately represents the system architecture and satisfies the structural requirements defined in this framework.</p>
-<p>This appendix provides a <strong>minimal review checklist</strong> that can be used during blueprint evaluation. The checklist is designed to be simple enough for practical use while ensuring that essential structural elements are present and consistent.</p>
-<p>The review process should focus primarily on <strong>structural correctness and completeness</strong>, rather than stylistic or cosmetic aspects of documentation.</p>
+<p>This appendix provides a <strong>comprehensive review checklist</strong> that can be used during blueprint evaluation. The checklist is designed to be practical for everyday use while ensuring that essential structural elements are present, consistent, and complete.</p>
+<p>This appendix includes: - Structured review criteria organized by quality dimension - Specific check items with severity indicators - Common pitfalls and how to detect them - Review process guidelines - Approval criteria and decision framework - Example review findings</p>
 <hr>
-<section id="structural-completeness" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="structural-completeness"><span class="header-section-number">24.1</span> Structural Completeness</h2>
-<p>The first objective of the review process is to confirm that the blueprint contains all required structural elements.</p>
-<p>A blueprint must include the core kernel elements:</p>
-<p>Goal<br>
-Capabilities<br>
-Components<br>
-Interfaces<br>
-Data<br>
-Workflows</p>
-<p>Reviewers should verify that each of these elements is present and sufficiently described.</p>
-<p>Questions to consider include:</p>
-<p>Does the blueprint clearly define the system’s goal?<br>
-Are the major capabilities required to achieve that goal identified?<br>
-Are the primary system components defined and described?<br>
-Are the interfaces between components explicitly specified?<br>
-Are key data entities and ownership boundaries identified?<br>
-Are the workflows that coordinate system behavior described?</p>
-<p>If any of these elements are missing, the blueprint cannot serve as a reliable structural model of the system.</p>
+<section id="review-framework" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="review-framework"><span class="header-section-number">24.1</span> Review Framework</h2>
+<section id="review-objectives" class="level3" data-number="24.1.1">
+<h3 data-number="24.1.1" class="anchored" data-anchor-id="review-objectives"><span class="header-section-number">24.1.1</span> Review Objectives</h3>
+<p>The blueprint review process focuses on three primary objectives:</p>
+<ol type="1">
+<li><strong>Structural Completeness</strong>: All required elements are present</li>
+<li><strong>Structural Consistency</strong>: Elements align with each other</li>
+<li><strong>Structural Quality</strong>: Elements are clear, specific, and actionable</li>
+</ol>
+</section>
+<section id="review-principles" class="level3" data-number="24.1.2">
+<h3 data-number="24.1.2" class="anchored" data-anchor-id="review-principles"><span class="header-section-number">24.1.2</span> Review Principles</h3>
+<ul>
+<li><strong>Focus on Structure</strong>: Review architectural structure, not implementation details</li>
+<li><strong>Practical Usability</strong>: Ensure blueprint can be understood and used by engineers</li>
+<li><strong>Future Composability</strong>: Verify blueprint can be composed with other blueprints</li>
+<li><strong>Computational Readiness</strong>: Ensure blueprint can be parsed and analyzed by tools</li>
+</ul>
+</section>
+<section id="review-outcomes" class="level3" data-number="24.1.3">
+<h3 data-number="24.1.3" class="anchored" data-anchor-id="review-outcomes"><span class="header-section-number">24.1.3</span> Review Outcomes</h3>
+<p>At the end of the review process, blueprints fall into one of three categories:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 32%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Description</th>
+<th>Action Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Approved</strong></td>
+<td>Blueprint satisfies all structural requirements</td>
+<td>Store in repository</td>
+</tr>
+<tr class="even">
+<td><strong>Revision Required</strong></td>
+<td>Blueprint has incomplete or inconsistent elements</td>
+<td>Return to author with feedback</td>
+</tr>
+<tr class="odd">
+<td><strong>Rejected</strong></td>
+<td>Blueprint lacks essential structural elements</td>
+<td>Redesign blueprint from scratch</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
-<section id="structural-consistency" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="structural-consistency"><span class="header-section-number">24.2</span> Structural Consistency</h2>
-<p>Once completeness has been verified, reviewers should examine the blueprint for internal consistency.</p>
-<p>All elements of the blueprint must align with each other. For example, workflows should reference components and interfaces that are defined in the structural layer of the blueprint.</p>
-<p>Questions to consider include:</p>
-<p>Do workflows reference valid components and interfaces?<br>
-Are interface definitions consistent with component responsibilities?<br>
-Do data entities correspond to the components responsible for managing them?<br>
-Do capability descriptions align with the system’s stated goal?</p>
-<p>Inconsistencies between blueprint elements often indicate missing information or structural misunderstandings.</p>
+</section>
+<section id="review-checklist" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="review-checklist"><span class="header-section-number">24.2</span> Review Checklist</h2>
+<p>The checklist is organized into <strong>7 quality dimensions</strong>, each with specific check items and severity indicators.</p>
+<section id="severity-indicators" class="level3" data-number="24.2.1">
+<h3 data-number="24.2.1" class="anchored" data-anchor-id="severity-indicators"><span class="header-section-number">24.2.1</span> Severity Indicators</h3>
+<ul>
+<li><strong>🔴 Critical</strong>: Must be fixed before approval (blocks storage)</li>
+<li><strong>🟡 Important</strong>: Should be fixed but may be deferred (conditional approval)</li>
+<li><strong>🟢 Advisory</strong>: Improvement recommended but not required</li>
+</ul>
 <hr>
 </section>
-<section id="interface-clarity" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="interface-clarity"><span class="header-section-number">24.3</span> Interface Clarity</h2>
-<p>Interfaces play a central role in system composition.</p>
-<p>Reviewers should ensure that all significant communication boundaries are represented clearly.</p>
-<p>Questions to consider include:</p>
-<p>Are the major interfaces between components defined?<br>
-Do interface descriptions specify the communication mechanism or protocol?<br>
-Are external interfaces between the system and its environment clearly identified?</p>
-<p>Ambiguous interfaces can lead to integration problems and reduce the composability of the blueprint.</p>
+</section>
+<section id="dimension-1-structural-completeness" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="dimension-1-structural-completeness"><span class="header-section-number">24.3</span> Dimension 1: Structural Completeness</h2>
+<section id="objective" class="level3" data-number="24.3.1">
+<h3 data-number="24.3.1" class="anchored" data-anchor-id="objective"><span class="header-section-number">24.3.1</span> Objective</h3>
+<p>Verify that the blueprint contains all required structural elements from the Blueprint Kernel v0.1.</p>
+</section>
+<section id="check-items" class="level3" data-number="24.3.2">
+<h3 data-number="24.3.2" class="anchored" data-anchor-id="check-items"><span class="header-section-number">24.3.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.1</td>
+<td>Goal section present and complete</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>goal:</code> with <code>description</code></td>
+</tr>
+<tr class="even">
+<td>1.2</td>
+<td>Capabilities section present</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>capabilities:</code> list</td>
+</tr>
+<tr class="odd">
+<td>1.3</td>
+<td>Components section present</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>components:</code> list</td>
+</tr>
+<tr class="even">
+<td>1.4</td>
+<td>Interfaces section present</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>interfaces:</code> list</td>
+</tr>
+<tr class="odd">
+<td>1.5</td>
+<td>Data section present</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>data:</code> list</td>
+</tr>
+<tr class="even">
+<td>1.6</td>
+<td>Workflows section present</td>
+<td>🔴 Critical</td>
+<td>Check YAML includes <code>workflows:</code> list</td>
+</tr>
+<tr class="odd">
+<td>1.7</td>
+<td>Goal description is clear and specific</td>
+<td>🟡 Important</td>
+<td>Goal should state outcome, not features</td>
+</tr>
+<tr class="even">
+<td>1.8</td>
+<td>Success metrics defined</td>
+<td>🟡 Important</td>
+<td>Goal should include measurable outcomes</td>
+</tr>
+<tr class="odd">
+<td>1.9</td>
+<td>Constraints documented</td>
+<td>🟢 Advisory</td>
+<td>Goal should identify known limitations</td>
+</tr>
+<tr class="even">
+<td>1.10</td>
+<td>At least one capability defined</td>
+<td>🔴 Critical</td>
+<td><code>capabilities:</code> list must not be empty</td>
+</tr>
+<tr class="odd">
+<td>1.11</td>
+<td>At least one component defined</td>
+<td>🔴 Critical</td>
+<td><code>components:</code> list must not be empty</td>
+</tr>
+<tr class="even">
+<td>1.12</td>
+<td>At least one interface defined</td>
+<td>🔴 Critical</td>
+<td><code>interfaces:</code> list must not be empty</td>
+</tr>
+<tr class="odd">
+<td>1.13</td>
+<td>At least one data entity defined</td>
+<td>🔴 Critical</td>
+<td><code>data:</code> list must not be empty</td>
+</tr>
+<tr class="even">
+<td>1.14</td>
+<td>At least one workflow defined</td>
+<td>🔴 Critical</td>
+<td><code>workflows:</code> list must not be empty</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls" class="level3" data-number="24.3.3">
+<h3 data-number="24.3.3" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">24.3.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Missing Kernel Section</strong>: Blueprint omits one of the 6 required sections ❌ <strong>Empty Lists</strong>: Section exists but list is empty (e.g., <code>capabilities: []</code>) ❌ <strong>Vague Goals</strong>: Goal states “manage data” instead of “enable users to create, update, and retrieve task records” ❌ <strong>No Success Metrics</strong>: Goal lacks measurable outcomes</p>
+</section>
+<section id="example-findings" class="level3" data-number="24.3.4">
+<h3 data-number="24.3.4" class="anchored" data-anchor-id="example-findings"><span class="header-section-number">24.3.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Goal description is feature-focused rather than outcome-focused - Current: “Provide user login, task management, and reporting” - Required: “Enable teams to collaboratively manage tasks with real-time visibility and comprehensive reporting” - Action: Rewrite goal to focus on outcomes</p>
+<p><strong>Finding</strong>: Success metrics are missing from goal section - Action: Add measurable success criteria (e.g., “Support 1000 concurrent users with &lt;200ms response time”)</p>
 <hr>
 </section>
-<section id="data-ownership-and-flow" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="data-ownership-and-flow"><span class="header-section-number">24.4</span> Data Ownership and Flow</h2>
-<p>Data relationships are another important aspect of architectural structure.</p>
-<p>Reviewers should examine how the blueprint represents data entities and their ownership.</p>
-<p>Questions to consider include:</p>
-<p>Are key data structures or entities identified?<br>
-Is the component responsible for each data entity clearly defined?<br>
-Do workflows describe how data moves between components?</p>
-<p>Clear data ownership boundaries are essential for maintaining consistency and avoiding architectural conflicts.</p>
+</section>
+<section id="dimension-2-structural-consistency" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="dimension-2-structural-consistency"><span class="header-section-number">24.4</span> Dimension 2: Structural Consistency</h2>
+<section id="objective-1" class="level3" data-number="24.4.1">
+<h3 data-number="24.4.1" class="anchored" data-anchor-id="objective-1"><span class="header-section-number">24.4.1</span> Objective</h3>
+<p>Ensure all elements of the blueprint align with each other and reference valid entities.</p>
+</section>
+<section id="check-items-1" class="level3" data-number="24.4.2">
+<h3 data-number="24.4.2" class="anchored" data-anchor-id="check-items-1"><span class="header-section-number">24.4.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2.1</td>
+<td>All workflow steps reference valid components</td>
+<td>🔴 Critical</td>
+<td>Check workflow <code>component:</code> values against <code>components:</code> list</td>
+</tr>
+<tr class="even">
+<td>2.2</td>
+<td>All interface connections reference valid components</td>
+<td>🔴 Critical</td>
+<td>Check interface <code>connects:</code> values against <code>components:</code> list</td>
+</tr>
+<tr class="odd">
+<td>2.3</td>
+<td>Data owners reference valid components</td>
+<td>🔴 Critical</td>
+<td>Check data <code>owner:</code> values against <code>components:</code> list</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>Component IDs are unique</td>
+<td>🔴 Critical</td>
+<td>No duplicate <code>id:</code> values in <code>components:</code> list</td>
+</tr>
+<tr class="odd">
+<td>2.5</td>
+<td>Interface IDs are unique</td>
+<td>🔴 Critical</td>
+<td>No duplicate <code>id:</code> values in <code>interfaces:</code> list</td>
+</tr>
+<tr class="even">
+<td>2.6</td>
+<td>Data IDs are unique</td>
+<td>🔴 Critical</td>
+<td>No duplicate <code>id:</code> values in <code>data:</code> list</td>
+</tr>
+<tr class="odd">
+<td>2.7</td>
+<td>Workflow IDs are unique</td>
+<td>🔴 Critical</td>
+<td>No duplicate <code>id:</code> values in <code>workflows:</code> list</td>
+</tr>
+<tr class="even">
+<td>2.8</td>
+<td>Capabilities align with goal</td>
+<td>🟡 Important</td>
+<td>Capabilities should collectively achieve goal</td>
+</tr>
+<tr class="odd">
+<td>2.9</td>
+<td>Component responsibilities are clear and non-overlapping</td>
+<td>🟡 Important</td>
+<td>Each component should have single, distinct responsibility</td>
+</tr>
+<tr class="even">
+<td>2.10</td>
+<td>Interface protocols are specified</td>
+<td>🟡 Important</td>
+<td>Each interface should define communication mechanism</td>
+</tr>
+<tr class="odd">
+<td>2.11</td>
+<td>Data sensitivity is classified</td>
+<td>🟢 Advisory</td>
+<td>Each data entity should have sensitivity level</td>
+</tr>
+<tr class="even">
+<td>2.12</td>
+<td>Workflow triggers are defined</td>
+<td>🟡 Important</td>
+<td>Each workflow should specify what initiates it</td>
+</tr>
+<tr class="odd">
+<td>2.13</td>
+<td>Workflow completion criteria defined</td>
+<td>🟡 Important</td>
+<td>Each workflow should define success conditions</td>
+</tr>
+<tr class="even">
+<td>2.14</td>
+<td>System type matches Appendix B taxonomy</td>
+<td>🔴 Critical</td>
+<td><code>system_type:</code> must be valid taxonomy entry</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-1" class="level3" data-number="24.4.3">
+<h3 data-number="24.4.3" class="anchored" data-anchor-id="common-pitfalls-1"><span class="header-section-number">24.4.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Orphaned References</strong>: Workflow references component <code>component.user_service</code> but component not defined ❌ <strong>Duplicate IDs</strong>: Two components both use <code>id: component.api</code> ❌ <strong>Undefined Protocol</strong>: Interface lists <code>protocol: custom</code> without specification ❌ <strong>Missing Workflow Trigger</strong>: Workflow exists but no indication of when it runs ❌ <strong>Vague Responsibility</strong>: Component responsibility is “handle data” without specifics</p>
+</section>
+<section id="example-findings-1" class="level3" data-number="24.4.4">
+<h3 data-number="24.4.4" class="anchored" data-anchor-id="example-findings-1"><span class="header-section-number">24.4.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Workflow references undefined component - Issue: Workflow <code>workflow.user_login</code> references <code>component.auth_service</code> but this component is not defined in <code>components:</code> list - Action: Add missing component or correct reference</p>
+<p><strong>Finding</strong>: Interface connection references external component - Issue: Interface <code>interface.external_api</code> connects to <code>component.third_party</code> which is marked as external but not defined - Action: Define external component or remove from connection list</p>
 <hr>
 </section>
-<section id="operational-behavior" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="operational-behavior"><span class="header-section-number">24.5</span> Operational Behavior</h2>
-<p>A blueprint should describe not only static architecture but also the dynamic behavior of the system.</p>
-<p>Reviewers should confirm that the operational layer of the blueprint provides sufficient information about system workflows.</p>
-<p>Questions to consider include:</p>
-<p>Are the main system workflows identified?<br>
-Do workflows explain how components interact during execution?<br>
-Are critical operational processes such as request handling or event processing represented?</p>
-<p>Understanding operational behavior is necessary for evaluating system performance and reliability.</p>
+</section>
+<section id="dimension-3-interface-clarity" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="dimension-3-interface-clarity"><span class="header-section-number">24.5</span> Dimension 3: Interface Clarity</h2>
+<section id="objective-2" class="level3" data-number="24.5.1">
+<h3 data-number="24.5.1" class="anchored" data-anchor-id="objective-2"><span class="header-section-number">24.5.1</span> Objective</h3>
+<p>Ensure all significant communication boundaries are represented clearly with sufficient detail for integration.</p>
+</section>
+<section id="check-items-2" class="level3" data-number="24.5.2">
+<h3 data-number="24.5.2" class="anchored" data-anchor-id="check-items-2"><span class="header-section-number">24.5.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.1</td>
+<td>All major component-to-component boundaries have interfaces</td>
+<td>🔴 Critical</td>
+<td>Every component pair should have defined interface</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>Interface protocols are specified</td>
+<td>🔴 Critical</td>
+<td>Each interface should define protocol (HTTP, gRPC, etc.)</td>
+</tr>
+<tr class="odd">
+<td>3.3</td>
+<td>Interface direction is specified</td>
+<td>🟡 Important</td>
+<td>Each interface should specify communication pattern</td>
+</tr>
+<tr class="even">
+<td>3.4</td>
+<td>External interfaces identified</td>
+<td>🔴 Critical</td>
+<td>Interfaces to external systems should be marked</td>
+</tr>
+<tr class="odd">
+<td>3.5</td>
+<td>Interface descriptions are clear</td>
+<td>🟡 Important</td>
+<td>Interface purpose should be understandable</td>
+</tr>
+<tr class="even">
+<td>3.6</td>
+<td>Authentication requirements specified</td>
+<td>🟢 Advisory</td>
+<td>Security-sensitive interfaces should specify auth</td>
+</tr>
+<tr class="odd">
+<td>3.7</td>
+<td>Rate limiting specified (if applicable)</td>
+<td>🟢 Advisory</td>
+<td>Public interfaces should define rate limits</td>
+</tr>
+<tr class="even">
+<td>3.8</td>
+<td>Data format specified (if applicable)</td>
+<td>🟢 Advisory</td>
+<td>Data interfaces should specify format (JSON, XML, etc.)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-2" class="level3" data-number="24.5.3">
+<h3 data-number="24.5.3" class="anchored" data-anchor-id="common-pitfalls-2"><span class="header-section-number">24.5.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Missing Interface</strong>: Two components communicate directly without defined interface ❌ <strong>Vague Protocol</strong>: Interface specifies <code>protocol: API</code> without indicating HTTP, gRPC, etc. ❌ <strong>Undefined Direction</strong>: Interface exists but unclear if bidirectional or request/response ❌ <strong>No External System Boundaries</strong>: External services not explicitly called out</p>
+</section>
+<section id="example-findings-2" class="level3" data-number="24.5.4">
+<h3 data-number="24.5.4" class="anchored" data-anchor-id="example-findings-2"><span class="header-section-number">24.5.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Missing interface between components - Issue: <code>component.frontend</code> and <code>component.backend</code> communicate but no interface defined - Action: Add <code>interface.http_api</code> with protocol and connection details</p>
+<p><strong>Finding</strong>: Interface protocol unspecified - Current: <code>protocol: REST</code> - Required: <code>protocol: HTTP/REST</code> or <code>protocol: gRPC</code> - Action: Specify precise protocol</p>
 <hr>
 </section>
-<section id="composability" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="composability"><span class="header-section-number">24.6</span> Composability</h2>
-<p>One of the central goals of the blueprint framework is to support architectural composition.</p>
-<p>Reviewers should evaluate whether the blueprint can be combined with other blueprints without ambiguity.</p>
-<p>Questions to consider include:</p>
-<p>Are system boundaries clearly defined?<br>
-Are external dependencies identified?<br>
-Do interfaces provide sufficient information for integration with other systems?</p>
-<p>Blueprints that lack clear boundaries or interface definitions are difficult to compose within larger architectures.</p>
+</section>
+<section id="dimension-4-data-ownership-and-flow" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="dimension-4-data-ownership-and-flow"><span class="header-section-number">24.6</span> Dimension 4: Data Ownership and Flow</h2>
+<section id="objective-3" class="level3" data-number="24.6.1">
+<h3 data-number="24.6.1" class="anchored" data-anchor-id="objective-3"><span class="header-section-number">24.6.1</span> Objective</h3>
+<p>Verify data relationships, ownership boundaries, and flow through the system.</p>
+</section>
+<section id="check-items-3" class="level3" data-number="24.6.2">
+<h3 data-number="24.6.2" class="anchored" data-anchor-id="check-items-3"><span class="header-section-number">24.6.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4.1</td>
+<td>All significant data entities identified</td>
+<td>🔴 Critical</td>
+<td>Major data structures should be in <code>data:</code> list</td>
+</tr>
+<tr class="even">
+<td>4.2</td>
+<td>Data owners are specified</td>
+<td>🔴 Critical</td>
+<td>Each data entity should have <code>owner:</code> field</td>
+</tr>
+<tr class="odd">
+<td>4.3</td>
+<td>Data owners reference valid components</td>
+<td>🔴 Critical</td>
+<td>Data <code>owner:</code> values should match <code>components:</code> list</td>
+</tr>
+<tr class="even">
+<td>4.4</td>
+<td>Data sensitivity is classified</td>
+<td>🟡 Important</td>
+<td>Each data entity should have <code>sensitivity:</code> level</td>
+</tr>
+<tr class="odd">
+<td>4.5</td>
+<td>Data structure described</td>
+<td>🟡 Important</td>
+<td>Each data entity should list key fields</td>
+</tr>
+<tr class="even">
+<td>4.6</td>
+<td>Data retention policy specified (if applicable)</td>
+<td>🟢 Advisory</td>
+<td>Long-term data should specify retention</td>
+</tr>
+<tr class="odd">
+<td>4.7</td>
+<td>Workflows describe data movement</td>
+<td>🟡 Important</td>
+<td>Critical data flows should be visible in workflows</td>
+</tr>
+<tr class="even">
+<td>4.8</td>
+<td>Data ownership is unambiguous</td>
+<td>🔴 Critical</td>
+<td>Each data entity should have single owner</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-3" class="level3" data-number="24.6.3">
+<h3 data-number="24.6.3" class="anchored" data-anchor-id="common-pitfalls-3"><span class="header-section-number">24.6.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Missing Data Entities</strong>: Major data structures not documented (e.g., user accounts, transactions) ❌ <strong>Ambiguous Ownership</strong>: Data entity has no owner or multiple owners ❌ <strong>No Sensitivity Classification</strong>: PII data not marked as confidential ❌ <strong>Missing Data Flow</strong>: Data creation/movement not visible in workflows</p>
+</section>
+<section id="example-findings-3" class="level3" data-number="24.6.4">
+<h3 data-number="24.6.4" class="anchored" data-anchor-id="example-findings-3"><span class="header-section-number">24.6.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Critical data entity missing - Issue: Blueprint describes user authentication but <code>data.user_account</code> is not defined - Action: Add user account data entity with structure and ownership</p>
+<p><strong>Finding</strong>: Data ownership ambiguous - Issue: <code>data.audit_log</code> has no owner specified - Action: Assign ownership to <code>component.audit_service</code> or appropriate component</p>
 <hr>
 </section>
-<section id="feasibility" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="feasibility"><span class="header-section-number">24.7</span> Feasibility</h2>
-<p>Finally, reviewers should consider whether the blueprint describes a system that can be implemented realistically.</p>
-<p>Questions to consider include:</p>
-<p>Are technical constraints acknowledged?<br>
-Does the architecture rely on achievable technologies and infrastructure?<br>
-Are performance or operational requirements consistent with the system design?</p>
-<p>A blueprint that ignores practical constraints may appear structurally sound but fail during implementation.</p>
+</section>
+<section id="dimension-5-operational-behavior" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="dimension-5-operational-behavior"><span class="header-section-number">24.7</span> Dimension 5: Operational Behavior</h2>
+<section id="objective-4" class="level3" data-number="24.7.1">
+<h3 data-number="24.7.1" class="anchored" data-anchor-id="objective-4"><span class="header-section-number">24.7.1</span> Objective</h3>
+<p>Confirm that workflows adequately describe system behavior and component coordination.</p>
+</section>
+<section id="check-items-4" class="level3" data-number="24.7.2">
+<h3 data-number="24.7.2" class="anchored" data-anchor-id="check-items-4"><span class="header-section-number">24.7.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5.1</td>
+<td>Major system workflows identified</td>
+<td>🔴 Critical</td>
+<td>Key capabilities should have associated workflows</td>
+</tr>
+<tr class="even">
+<td>5.2</td>
+<td>Workflow steps are ordered logically</td>
+<td>🟡 Important</td>
+<td>Steps should follow clear sequence</td>
+</tr>
+<tr class="odd">
+<td>5.3</td>
+<td>Workflow triggers are defined</td>
+<td>🔴 Critical</td>
+<td>Each workflow should specify what starts it</td>
+</tr>
+<tr class="even">
+<td>5.4</td>
+<td>Workflow completion criteria defined</td>
+<td>🟡 Important</td>
+<td>Each workflow should define success conditions</td>
+</tr>
+<tr class="odd">
+<td>5.5</td>
+<td>Error handling documented</td>
+<td>🟡 Important</td>
+<td>Critical workflows should specify error handling</td>
+</tr>
+<tr class="even">
+<td>5.6</td>
+<td>Workflow references valid components</td>
+<td>🔴 Critical</td>
+<td>Workflow <code>component:</code> values must exist</td>
+</tr>
+<tr class="odd">
+<td>5.7</td>
+<td>Workflow step descriptions are clear</td>
+<td>🟡 Important</td>
+<td>Each step should explain what happens</td>
+</tr>
+<tr class="even">
+<td>5.8</td>
+<td>Workflow scope is appropriate</td>
+<td>🟢 Advisory</td>
+<td>Workflows should describe cross-component coordination, not internal logic</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-4" class="level3" data-number="24.7.3">
+<h3 data-number="24.7.3" class="anchored" data-anchor-id="common-pitfalls-4"><span class="header-section-number">24.7.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Missing Workflows</strong>: Major capabilities have no corresponding workflow ❌ <strong>No Error Handling</strong>: Workflows only describe happy path, no error conditions ❌ <strong>Over-Detailed Workflows</strong>: Steps describe internal function calls rather than component interactions ❌ <strong>Under-Specified Workflows</strong>: Workflow listed but no steps defined</p>
+</section>
+<section id="example-findings-4" class="level3" data-number="24.7.4">
+<h3 data-number="24.7.4" class="anchored" data-anchor-id="example-findings-4"><span class="header-section-number">24.7.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Capability without corresponding workflow - Issue: <code>capability.user_authentication</code> is defined but no workflow shows login flow - Action: Add <code>workflow.user_login</code> describing authentication process</p>
+<p><strong>Finding</strong>: Workflow missing error handling - Current: Workflow only describes success path - Action: Add <code>error_handling:</code> section with common error conditions and responses</p>
 <hr>
 </section>
-<section id="outcome-of-the-review" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="outcome-of-the-review"><span class="header-section-number">24.8</span> Outcome of the Review</h2>
-<p>At the end of the review process, the blueprint should fall into one of three categories:</p>
-<p>Approved — The blueprint satisfies structural requirements and can be stored in the blueprint repository.</p>
-<p>Revision Required — The blueprint contains incomplete or inconsistent elements that must be corrected before acceptance.</p>
-<p>Rejected — The blueprint lacks essential structural elements and must be redesigned.</p>
-<p>Maintaining review discipline ensures that blueprint repositories remain reliable sources of architectural knowledge.</p>
-<p>Over time, consistent review practices enable organizations to build <strong>high-quality blueprint libraries</strong> that support architectural reuse and system composition.</p>
+</section>
+<section id="dimension-6-composability" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="dimension-6-composability"><span class="header-section-number">24.8</span> Dimension 6: Composability</h2>
+<section id="objective-5" class="level3" data-number="24.8.1">
+<h3 data-number="24.8.1" class="anchored" data-anchor-id="objective-5"><span class="header-section-number">24.8.1</span> Objective</h3>
+<p>Evaluate whether the blueprint can be combined with other blueprints without ambiguity.</p>
+</section>
+<section id="check-items-5" class="level3" data-number="24.8.2">
+<h3 data-number="24.8.2" class="anchored" data-anchor-id="check-items-5"><span class="header-section-number">24.8.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6.1</td>
+<td>System boundaries clearly defined</td>
+<td>🔴 Critical</td>
+<td>External vs.&nbsp;internal components should be distinguished</td>
+</tr>
+<tr class="even">
+<td>6.2</td>
+<td>External dependencies identified</td>
+<td>🔴 Critical</td>
+<td>External services should be marked with <code>external: true</code></td>
+</tr>
+<tr class="odd">
+<td>6.3</td>
+<td>Interface contracts specified</td>
+<td>🔴 Critical</td>
+<td>Interfaces should define protocols and formats</td>
+</tr>
+<tr class="even">
+<td>6.4</td>
+<td>Data ownership boundaries clear</td>
+<td>🔴 Critical</td>
+<td>Data should be clearly owned by single component</td>
+</tr>
+<tr class="odd">
+<td>6.5</td>
+<td>No implicit assumptions about external systems</td>
+<td>🟡 Important</td>
+<td>External dependencies should be explicitly defined</td>
+</tr>
+<tr class="even">
+<td>6.6</td>
+<td>System type is appropriate</td>
+<td>🟡 Important</td>
+<td>Classification enables pattern discovery</td>
+</tr>
+<tr class="odd">
+<td>6.7</td>
+<td>Complexity level is appropriate</td>
+<td>🟢 Advisory</td>
+<td>Complexity matches actual system scale</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-5" class="level3" data-number="24.8.3">
+<h3 data-number="24.8.3" class="anchored" data-anchor-id="common-pitfalls-5"><span class="header-section-number">24.8.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Blurred Boundaries</strong>: Unclear what’s inside/outside system ❌ <strong>Implicit Dependencies</strong>: External system used but not documented ❌ <strong>Undefined Interfaces</strong>: External interfaces lack protocol specification ❌ <strong>Ambiguous Data Ownership</strong>: Data shared without clear owner</p>
+</section>
+<section id="example-findings-5" class="level3" data-number="24.8.4">
+<h3 data-number="24.8.4" class="anchored" data-anchor-id="example-findings-5"><span class="header-section-number">24.8.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: External system not explicitly marked - Issue: <code>component.email_service</code> is actually SendGrid API but not marked as external - Action: Add <code>external: true</code> and provide interface details</p>
+<p><strong>Finding</strong>: System boundary unclear - Issue: Not clear whether authentication is handled by system or external SSO - Action: Explicitly define whether <code>component.auth_service</code> is internal or external</p>
+<hr>
+</section>
+</section>
+<section id="dimension-7-feasibility" class="level2" data-number="24.9">
+<h2 data-number="24.9" class="anchored" data-anchor-id="dimension-7-feasibility"><span class="header-section-number">24.9</span> Dimension 7: Feasibility</h2>
+<section id="objective-6" class="level3" data-number="24.9.1">
+<h3 data-number="24.9.1" class="anchored" data-anchor-id="objective-6"><span class="header-section-number">24.9.1</span> Objective</h3>
+<p>Verify that the blueprint describes a system that can be implemented realistically.</p>
+</section>
+<section id="check-items-6" class="level3" data-number="24.9.2">
+<h3 data-number="24.9.2" class="anchored" data-anchor-id="check-items-6"><span class="header-section-number">24.9.2</span> Check Items</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Check Item</th>
+<th>Severity</th>
+<th>How to Verify</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7.1</td>
+<td>Technical constraints acknowledged</td>
+<td>🟡 Important</td>
+<td>Goal constraints should include technical limitations</td>
+</tr>
+<tr class="even">
+<td>7.2</td>
+<td>Architecture uses achievable technologies</td>
+<td>🟡 Important</td>
+<td>Component technologies should be realistic</td>
+</tr>
+<tr class="odd">
+<td>7.3</td>
+<td>Performance requirements are realistic</td>
+<td>🟡 Important</td>
+<td>Success metrics should be achievable</td>
+</tr>
+<tr class="even">
+<td>7.4</td>
+<td>Operational requirements consistent with design</td>
+<td>🟢 Advisory</td>
+<td>Uptime, reliability targets should match architecture</td>
+</tr>
+<tr class="odd">
+<td>7.5</td>
+<td>No impossible or contradictory requirements</td>
+<td>🔴 Critical</td>
+<td>Goal and constraints should be internally consistent</td>
+</tr>
+<tr class="even">
+<td>7.6</td>
+<td>Security considerations addressed</td>
+<td>🟡 Important</td>
+<td>Sensitive data should have appropriate protection</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-6" class="level3" data-number="24.9.3">
+<h3 data-number="24.9.3" class="anchored" data-anchor-id="common-pitfalls-6"><span class="header-section-number">24.9.3</span> Common Pitfalls</h3>
+<p>❌ <strong>Unrealistic Performance</strong>: Goal requires sub-millisecond latency for complex operations ❌ <strong>Impossible Constraints</strong>: Conflicting constraints (e.g., “zero latency” with “distributed system”) ❌ <strong>Over-Engineering</strong>: Architecture complexity exceeds system requirements ❌ <strong>Missing Security</strong>: PII data with no encryption or access control</p>
+</section>
+<section id="example-findings-6" class="level3" data-number="24.9.4">
+<h3 data-number="24.9.4" class="anchored" data-anchor-id="example-findings-6"><span class="header-section-number">24.9.4</span> Example Findings</h3>
+<p><strong>Finding</strong>: Contradictory constraints - Issue: Goal requires “instant responses” with “distributed architecture across regions” - Action: Reconcile constraints (e.g., “p95 latency &lt; 200ms” instead of “instant”)</p>
+<p><strong>Finding</strong>: Missing security considerations - Issue: <code>data.user_profile</code> marked as <code>confidential</code> but no security controls documented - Action: Add encryption, access control, or note that security is implementation concern</p>
+<hr>
+</section>
+</section>
+<section id="review-process-guidelines" class="level2" data-number="24.10">
+<h2 data-number="24.10" class="anchored" data-anchor-id="review-process-guidelines"><span class="header-section-number">24.10</span> Review Process Guidelines</h2>
+<section id="pre-review-preparation" class="level3" data-number="24.10.1">
+<h3 data-number="24.10.1" class="anchored" data-anchor-id="pre-review-preparation"><span class="header-section-number">24.10.1</span> Pre-Review Preparation</h3>
+<ol type="1">
+<li><strong>Understand Context</strong>: Review any supporting documentation or requirements</li>
+<li><strong>Set Review Criteria</strong>: Determine which checklist items apply based on system type and complexity</li>
+<li><strong>Allocate Time</strong>: Complex blueprints may require 30-60 minutes for thorough review</li>
+</ol>
+</section>
+<section id="review-execution" class="level3" data-number="24.10.2">
+<h3 data-number="24.10.2" class="anchored" data-anchor-id="review-execution"><span class="header-section-number">24.10.2</span> Review Execution</h3>
+<ol type="1">
+<li><strong>Completeness Check</strong>: Verify all 6 kernel sections are present (Dimension 1)</li>
+<li><strong>Consistency Check</strong>: Validate all references are correct (Dimension 2)</li>
+<li><strong>Detailed Review</strong>: Go through Dimensions 3-7 systematically</li>
+<li><strong>Document Findings</strong>: Record all issues with severity indicators</li>
+<li><strong>Categorize Outcome</strong>: Determine Approved, Revision Required, or Rejected</li>
+</ol>
+</section>
+<section id="issue-documentation-template" class="level3" data-number="24.10.3">
+<h3 data-number="24.10.3" class="anchored" data-anchor-id="issue-documentation-template"><span class="header-section-number">24.10.3</span> Issue Documentation Template</h3>
+<p>For each issue found, document:</p>
+<pre><code>Issue ID: [unique identifier]
+Dimension: [1-7]
+Severity: [🔴 Critical / 🟡 Important / 🟢 Advisory]
+Finding: [Description of issue]
+Location: [Specific section or line]
+Impact: [Why this matters]
+Recommended Action: [How to fix]</code></pre>
+</section>
+<section id="review-communication" class="level3" data-number="24.10.4">
+<h3 data-number="24.10.4" class="anchored" data-anchor-id="review-communication"><span class="header-section-number">24.10.4</span> Review Communication</h3>
+<p><strong>For Approved Blueprints</strong>: - Acknowledge approval - Note any advisory items for future improvement - Confirm repository storage location</p>
+<p><strong>For Revision Required</strong>: - List all critical and important issues - Provide specific guidance for fixes - Set timeline for resubmission - Offer clarification if needed</p>
+<p><strong>For Rejected Blueprints</strong>: - Explain why blueprint cannot be salvaged - Suggest redesign approach - Provide resources for improvement - Encourage resubmission after major revisions</p>
+<hr>
+</section>
+</section>
+<section id="example-review" class="level2" data-number="24.11">
+<h2 data-number="24.11" class="anchored" data-anchor-id="example-review"><span class="header-section-number">24.11</span> Example Review</h2>
+<section id="blueprint-summary" class="level3" data-number="24.11.1">
+<h3 data-number="24.11.1" class="anchored" data-anchor-id="blueprint-summary"><span class="header-section-number">24.11.1</span> Blueprint Summary</h3>
+<p><strong>Blueprint ID</strong>: <code>com.taskmanager.webapp.v1</code> <strong>System Type</strong>: Web Application <strong>Complexity</strong>: medium <strong>Review Date</strong>: 2026-03-11 <strong>Reviewer</strong>: Architecture Review Team</p>
+</section>
+<section id="review-findings" class="level3" data-number="24.11.2">
+<h3 data-number="24.11.2" class="anchored" data-anchor-id="review-findings"><span class="header-section-number">24.11.2</span> Review Findings</h3>
+<section id="critical-issues---must-fix" class="level4" data-number="24.11.2.1">
+<h4 data-number="24.11.2.1" class="anchored" data-anchor-id="critical-issues---must-fix"><span class="header-section-number">24.11.2.1</span> Critical Issues (🔴) - Must Fix</h4>
+<p><strong>C-1: Undefined Component Reference</strong> - Dimension: 2 (Structural Consistency) - Location: Workflow <code>workflow.create_task</code>, step <code>create_task_record</code> - Finding: References <code>component.task_orchestrator</code> which is not defined in <code>components:</code> list - Impact: Workflow cannot be executed; blueprint structurally invalid - Action: Add missing component or correct reference to existing component</p>
+<p><strong>C-2: Missing External System Boundary</strong> - Dimension: 6 (Composability) - Location: Component <code>component.email_provider</code> - Finding: External SendGrid service not marked with <code>external: true</code> - Impact: System boundary unclear; affects integration planning - Action: Add <code>external: true</code> and document external dependency</p>
+</section>
+<section id="important-issues---should-fix" class="level4" data-number="24.11.2.2">
+<h4 data-number="24.11.2.2" class="anchored" data-anchor-id="important-issues---should-fix"><span class="header-section-number">24.11.2.2</span> Important Issues (🟡) - Should Fix</h4>
+<p><strong>I-1: Workflow Missing Error Handling</strong> - Dimension: 5 (Operational Behavior) - Location: All workflows - Finding: No <code>error_handling:</code> sections defined for any workflows - Impact: Operational planning incomplete; failure modes unclear - Action: Add error handling to at least critical workflows (user login, task creation)</p>
+<p><strong>I-2: Interface Protocol Vague</strong> - Dimension: 3 (Interface Clarity) - Location: Interface <code>interface.user_api</code> - Finding: Protocol specified as <code>REST</code> without HTTP details - Impact: Integration ambiguity; protocol specifics unclear - Action: Specify as <code>HTTP/REST</code> with details (e.g., authentication, rate limiting)</p>
+<p><strong>I-3: Success Metrics Missing</strong> - Dimension: 1 (Structural Completeness) - Location: Goal section - Finding: Goal has no <code>success_metrics:</code> defined - Impact: System success criteria undefined - Action: Add measurable success metrics (e.g., response time, throughput)</p>
+</section>
+<section id="advisory-items---nice-to-have" class="level4" data-number="24.11.2.3">
+<h4 data-number="24.11.2.3" class="anchored" data-anchor-id="advisory-items---nice-to-have"><span class="header-section-number">24.11.2.3</span> Advisory Items (🟢) - Nice to Have</h4>
+<p><strong>A-1: Data Retention Policy</strong> - Dimension: 4 (Data Ownership and Flow) - Location: Data entities - Finding: No retention policies specified for any data entities - Impact: Compliance planning incomplete - Action: Consider adding retention policies for audit logs and user data</p>
+<p><strong>A-2: Complexity May Be Underrated</strong> - Dimension: 7 (Feasibility) - Location: Blueprint metadata - Finding: Labeled as <code>complexity: medium</code> but 18 components suggests large - Impact: May underestimate implementation effort - Action: Consider reclassifying as <code>complexity: large</code></p>
+</section>
+</section>
+<section id="review-outcome" class="level3" data-number="24.11.3">
+<h3 data-number="24.11.3" class="anchored" data-anchor-id="review-outcome"><span class="header-section-number">24.11.3</span> Review Outcome</h3>
+<p><strong>Status</strong>: Revision Required</p>
+<p><strong>Rationale</strong>: Blueprint has structural consistency issues (undefined components) and missing critical documentation (error handling, success metrics). These issues must be addressed before approval.</p>
+<p><strong>Action Items</strong>: 1. Fix undefined component reference (C-1) 2. Mark external dependency correctly (C-2) 3. Add error handling to critical workflows (I-1) 4. Clarify interface protocols (I-2) 5. Define success metrics (I-1)</p>
+<p><strong>Timeline</strong>: Resubmit within 5 business days</p>
+</section>
+<section id="approval-criteria" class="level3" data-number="24.11.4">
+<h3 data-number="24.11.4" class="anchored" data-anchor-id="approval-criteria"><span class="header-section-number">24.11.4</span> Approval Criteria</h3>
+<p>Blueprint will be approved when: - All critical issues (C-1, C-2) are resolved - At least critical workflows have error handling defined - Success metrics are documented - Interface protocols are clarified</p>
+<hr>
+</section>
+</section>
+<section id="review-best-practices" class="level2" data-number="24.12">
+<h2 data-number="24.12" class="anchored" data-anchor-id="review-best-practices"><span class="header-section-number">24.12</span> Review Best Practices</h2>
+<section id="for-reviewers" class="level3" data-number="24.12.1">
+<h3 data-number="24.12.1" class="anchored" data-anchor-id="for-reviewers"><span class="header-section-number">24.12.1</span> For Reviewers</h3>
+<ol type="1">
+<li><strong>Be Constructive</strong>: Provide specific, actionable feedback</li>
+<li><strong>Explain Impact</strong>: Help authors understand why issues matter</li>
+<li><strong>Consider Context</strong>: Adjust expectations based on system complexity</li>
+<li><strong>Use Severity Judiciously</strong>: Reserve critical for truly blocking issues</li>
+<li><strong>Follow Up</strong>: Ensure revisions are reviewed promptly</li>
+</ol>
+</section>
+<section id="for-authors" class="level3" data-number="24.12.2">
+<h3 data-number="24.12.2" class="anchored" data-anchor-id="for-authors"><span class="header-section-number">24.12.2</span> For Authors</h3>
+<ol type="1">
+<li><strong>Self-Review First</strong>: Run through checklist before submission</li>
+<li><strong>Be Responsive</strong>: Address feedback quickly and thoroughly</li>
+<li><strong>Ask Questions</strong>: Seek clarification if feedback is unclear</li>
+<li><strong>Document Decisions</strong>: Explain why certain feedback is not accepted (if applicable)</li>
+<li><strong>Iterate</strong>: View review as collaborative improvement process</li>
+</ol>
+</section>
+<section id="for-organizations" class="level3" data-number="24.12.3">
+<h3 data-number="24.12.3" class="anchored" data-anchor-id="for-organizations"><span class="header-section-number">24.12.3</span> For Organizations</h3>
+<ol type="1">
+<li><strong>Standardize Process</strong>: Use consistent review criteria across projects</li>
+<li><strong>Track Metrics</strong>: Monitor review times, issue patterns, and quality trends</li>
+<li><strong>Provide Training</strong>: Train reviewers and authors on blueprint quality</li>
+<li><strong>Automate Checks</strong>: Use static analysis for validation checks (Dimension 1-2)</li>
+<li><strong>Build Library</strong>: Maintain collection of approved blueprints as examples</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="automation-opportunities" class="level2" data-number="24.13">
+<h2 data-number="24.13" class="anchored" data-anchor-id="automation-opportunities"><span class="header-section-number">24.13</span> Automation Opportunities</h2>
+<p>The review process can be partially automated using static analysis tools:</p>
+<section id="automated-checks" class="level3" data-number="24.13.1">
+<h3 data-number="24.13.1" class="anchored" data-anchor-id="automated-checks"><span class="header-section-number">24.13.1</span> Automated Checks</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Automated validation script</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate_blueprint_structure(blueprint):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    issues <span class="op">=</span> []</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check kernel sections</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    required_sections <span class="op">=</span> [<span class="st">'goal'</span>, <span class="st">'capabilities'</span>, <span class="st">'components'</span>, <span class="st">'interfaces'</span>, <span class="st">'data'</span>, <span class="st">'workflows'</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> section <span class="kw">in</span> required_sections:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> section <span class="kw">not</span> <span class="kw">in</span> blueprint:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            issues.append({</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'severity'</span>: <span class="st">'critical'</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">'dimension'</span>: <span class="dv">1</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">'message'</span>: <span class="ss">f'Missing required section: </span><span class="sc">{</span>section<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check for orphaned references</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    component_ids <span class="op">=</span> {c[<span class="st">'id'</span>] <span class="cf">for</span> c <span class="kw">in</span> blueprint.get(<span class="st">'components'</span>, [])}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check workflow references</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> workflow <span class="kw">in</span> blueprint.get(<span class="st">'workflows'</span>, []):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> step <span class="kw">in</span> workflow.get(<span class="st">'steps'</span>, []):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> step.get(<span class="st">'component'</span>) <span class="kw">not</span> <span class="kw">in</span> component_ids:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                issues.append({</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'severity'</span>: <span class="st">'critical'</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'dimension'</span>: <span class="dv">2</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'message'</span>: <span class="ss">f'Workflow </span><span class="sc">{</span>workflow[<span class="st">"id"</span>]<span class="sc">}</span><span class="ss"> references undefined component: </span><span class="sc">{</span>step<span class="sc">.</span>get(<span class="st">"component"</span>)<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check for duplicate IDs</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    all_ids <span class="op">=</span> []</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> section <span class="kw">in</span> [<span class="st">'components'</span>, <span class="st">'interfaces'</span>, <span class="st">'data'</span>, <span class="st">'workflows'</span>]:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        section_ids <span class="op">=</span> [item[<span class="st">'id'</span>] <span class="cf">for</span> item <span class="kw">in</span> blueprint.get(section, [])]</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        duplicates <span class="op">=</span> [<span class="bu">id</span> <span class="cf">for</span> <span class="bu">id</span> <span class="kw">in</span> section_ids <span class="cf">if</span> section_ids.count(<span class="bu">id</span>) <span class="op">&gt;</span> <span class="dv">1</span>]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> duplicates:</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            issues.append({</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                <span class="st">'severity'</span>: <span class="st">'critical'</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                <span class="st">'dimension'</span>: <span class="dv">2</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">'message'</span>: <span class="ss">f'Duplicate IDs in </span><span class="sc">{</span>section<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">set</span>(duplicates)<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> issues</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="semi-automated-review" class="level3" data-number="24.13.2">
+<h3 data-number="24.13.2" class="anchored" data-anchor-id="semi-automated-review"><span class="header-section-number">24.13.2</span> Semi-Automated Review</h3>
+<ol type="1">
+<li><strong>Run Automated Checks</strong>: Validate structure and consistency (Dimensions 1-2)</li>
+<li><strong>Human Review</strong>: Evaluate quality, clarity, and feasibility (Dimensions 3-7)</li>
+<li><strong>Combined Report</strong>: Merge automated findings with human assessment</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2" data-number="24.14">
+<h2 data-number="24.14" class="anchored" data-anchor-id="summary"><span class="header-section-number">24.14</span> Summary</h2>
+<p>The Blueprint Review Checklist provides:</p>
+<p>✓ <strong>7 Quality Dimensions</strong>: Completeness, Consistency, Interface Clarity, Data Ownership, Operational Behavior, Composability, Feasibility</p>
+<p>✓ <strong>Severity Indicators</strong>: Critical, Important, and Advisory classifications for prioritized fixes</p>
+<p>✓ <strong>Structured Process</strong>: Guidelines for review execution, documentation, and communication</p>
+<p>✓ <strong>Example Review</strong>: Demonstrates how checklist is applied in practice</p>
+<p>✓ <strong>Automation Support</strong>: Framework for automated validation checks</p>
+<p>By applying this checklist consistently, organizations can:</p>
+<ul>
+<li>Maintain high-quality blueprint repositories</li>
+<li>Ensure structural consistency across blueprints</li>
+<li>Enable reliable blueprint reuse and composition</li>
+<li>Support automated analysis and validation</li>
+<li>Build confidence in blueprint-based architecture practices</li>
+</ul>
+<p>This review discipline ensures that blueprints serve as reliable, actionable representations of system architecture suitable for reuse, composition, and computational analysis.</p>
 
 
 </section>
