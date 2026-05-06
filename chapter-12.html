@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>15&nbsp; Composition: How Systems Are Actually Built – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-11.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -572,7 +572,10 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#toward-rules-for-blueprint-composition" id="toc-toward-rules-for-blueprint-composition" class="nav-link" data-scroll-target="#toward-rules-for-blueprint-composition"><span class="header-section-number">15.4</span> Toward Rules for Blueprint Composition</a></li>
   <li><a href="#blueprint-as-the-minimal-composition-interface" id="toc-blueprint-as-the-minimal-composition-interface" class="nav-link" data-scroll-target="#blueprint-as-the-minimal-composition-interface"><span class="header-section-number">15.5</span> Blueprint as the Minimal Composition Interface</a></li>
-  <li><a href="#summary-composition-as-the-reality-of-system-building" id="toc-summary-composition-as-the-reality-of-system-building" class="nav-link" data-scroll-target="#summary-composition-as-the-reality-of-system-building"><span class="header-section-number">15.6</span> Summary: Composition as the Reality of System Building</a></li>
+  <li><a href="#summary-composition-as-the-reality-of-system-building" id="toc-summary-composition-as-the-reality-of-system-building" class="nav-link" data-scroll-target="#summary-composition-as-the-reality-of-system-building"><span class="header-section-number">15.6</span> Summary: Composition as the Reality of System Building</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">15.6.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1093,9 +1096,62 @@ Inventory Service ←→ Shipping Service</code></pre>
 <li>How can we discover optimal compositions?</li>
 </ul>
 <p>These questions will be addressed in future volumes of the series, particularly in the volume dedicated to <strong>System Composition</strong>.</p>
-<p>The next chapter examines how blueprint-based workflows reshape the engineering process itself, shifting the focus from writing code toward designing and composing architectural structures.</p>
+<section id="knowledge-summary" class="level3" data-number="15.6.1">
+<h3 data-number="15.6.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">15.6.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>Systems are built from patterns, not invented from scratch</strong>: Experienced engineers recognize problems and select appropriate patterns (layered, microservice, event-driven, pipeline, etc.). Large systems are architectural compositions — combinations of multiple patterns — not isolated inventions.</p></li>
+<li><p><strong>Three modes of composition</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 39%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Structure</th>
+<th>Dependency Flow</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Stacking</strong></td>
+<td>Hierarchical layers</td>
+<td>Downward (higher depends on lower)</td>
+<td>OS kernel → OS → Application</td>
+</tr>
+<tr class="even">
+<td><strong>Coupling</strong></td>
+<td>Peer-to-peer network</td>
+<td>Multi-directional</td>
+<td>Microservice architecture</td>
+</tr>
+<tr class="odd">
+<td><strong>Orchestration</strong></td>
+<td>Controller + workers</td>
+<td>Controller to workers</td>
+<td>CI/CD pipeline, workflow engine</td>
+</tr>
+</tbody>
+</table>
+<p>Most real systems use multiple modes simultaneously.</p></li>
+<li><p><strong>Three categories of composition conflicts</strong>:</p>
+<ul>
+<li><strong>Interface conflicts</strong>: Protocol mismatch, data format mismatch, operation mismatch, version mismatch, semantic mismatch</li>
+<li><strong>Data conflicts</strong>: Model mismatch, ownership conflicts, consistency mismatch, schema evolution, naming conflicts</li>
+<li><strong>Constraint conflicts</strong>: Performance, reliability, security, scalability, and resource conflicts</li>
+</ul>
+<p>Resolution strategies include adapter pattern, canonical data model, resource allocation, and architecture separation.</p></li>
+<li><p><strong>The composition contract</strong>: For blueprints to be composable, four conditions must be satisfied: (1) Interface Compatibility — interfaces are compatible or translatable, (2) Data Consistency — data models are aligned or transformable, (3) Constraint Satisfaction — combined constraints are satisfiable, (4) Semantic Alignment — intent and capabilities do not conflict.</p></li>
+<li><p><strong>Blueprint as the minimal composition interface</strong>: Because each blueprint describes its system using consistent structural elements (components, interfaces, data, workflows, constraints), blueprints function as a common representation for architectural composition. This enables systematic, predictable, and eventually automatable composition.</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>20&nbsp; The Minimal Blueprint Discipline (Process) – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,19 +72,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./chapter-16.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -298,9 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -609,7 +609,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#integration-with-version-control" id="toc-integration-with-version-control" class="nav-link" data-scroll-target="#integration-with-version-control"><span class="header-section-number">20.3</span> Integration with Version Control</a></li>
   <li><a href="#human-readable-knowledge-layers" id="toc-human-readable-knowledge-layers" class="nav-link" data-scroll-target="#human-readable-knowledge-layers"><span class="header-section-number">20.4</span> Human-Readable Knowledge Layers</a></li>
   <li><a href="#discipline-as-the-foundation-of-reuse" id="toc-discipline-as-the-foundation-of-reuse" class="nav-link" data-scroll-target="#discipline-as-the-foundation-of-reuse"><span class="header-section-number">20.5</span> Discipline as the Foundation of Reuse</a></li>
-  <li><a href="#summary-the-minimal-blueprint-discipline" id="toc-summary-the-minimal-blueprint-discipline" class="nav-link" data-scroll-target="#summary-the-minimal-blueprint-discipline"><span class="header-section-number">20.6</span> Summary: The Minimal Blueprint Discipline</a></li>
+  <li><a href="#summary-the-minimal-blueprint-discipline" id="toc-summary-the-minimal-blueprint-discipline" class="nav-link" data-scroll-target="#summary-the-minimal-blueprint-discipline"><span class="header-section-number">20.6</span> Summary: The Minimal Blueprint Discipline</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">20.6.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1270,48 +1273,92 @@ v2.0.0 - Microservice refactoring</code></pre>
 </section>
 <section id="summary-the-minimal-blueprint-discipline" class="level2" data-number="20.6">
 <h2 data-number="20.6" class="anchored" data-anchor-id="summary-the-minimal-blueprint-discipline"><span class="header-section-number">20.6</span> Summary: The Minimal Blueprint Discipline</h2>
-<p>This chapter has introduced a minimal process discipline for creating, maintaining, and evolving blueprints.</p>
-<p><strong>The Blueprint Lifecycle</strong>:</p>
-<p>Five stages ensure blueprints remain synchronized with systems:</p>
+<section id="knowledge-summary" class="level3" data-number="20.6.1">
+<h3 data-number="20.6.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">20.6.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
 <ol type="1">
-<li><strong>Draft</strong>: Create initial blueprint</li>
-<li><strong>Review</strong>: Verify quality and architectural soundness</li>
-<li><strong>Store</strong>: Archive in repository with metadata</li>
-<li><strong>Retrieve</strong>: Find and access when needed</li>
-<li><strong>Evolve</strong>: Update as systems change</li>
+<li><p><strong>The blueprint lifecycle — five stages</strong>: (1) <strong>Draft</strong> — create initial blueprint with all six kernel elements. (2) <strong>Review</strong> — verify quality (completeness, consistency, composability, feasibility) through both automated checks and human review. (3) <strong>Store</strong> — archive in repository with metadata, version control, and search indexing. (4) <strong>Retrieve</strong> — locate and access blueprints when designing new systems using classification coordinates. (5) <strong>Evolve</strong> — update blueprints as systems change, documenting what changed and why.</p></li>
+<li><p><strong>The minimal toolchain</strong>: Three elements suffice:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Purpose</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Markdown</strong></td>
+<td>Human-readable format for describing blueprint structures</td>
+<td>Plain markdown files</td>
+</tr>
+<tr class="even">
+<td><strong>Schema</strong></td>
+<td>Structural rules governing blueprint representations</td>
+<td>YAML/JSON schema</td>
+</tr>
+<tr class="odd">
+<td><strong>Index</strong></td>
+<td>Efficient retrieval of blueprints</td>
+<td>Directory, database, or search engine</td>
+</tr>
+</tbody>
+</table>
+<p>No specialized or expensive tools are required.</p></li>
+<li><p><strong>Blueprints as first-class version-controlled artifacts</strong>: Store blueprints in Git (or equivalent) alongside code. Use atomic commits, descriptive commit messages, branching for experimental designs, code review for blueprint changes, and tagging for releases. This ensures architectural knowledge is tracked, reviewed, and synchronized with implementation.</p></li>
+<li><p><strong>Human-readable knowledge layers complement structured data</strong>: Tools like Obsidian can represent blueprints as knowledge graphs with nodes (components, interfaces, workflows) and edges (relationships). Engineers can add annotations — design rationale, lessons learned, open issues — that complement the structured blueprint without breaking machine-usability.</p></li>
+<li><p><strong>Discipline is the foundation of reuse — four disciplines required</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 21%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Discipline</th>
+<th>Focus</th>
+<th>Key Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Creation</strong></td>
+<td>Consistent structure</td>
+<td>Follow kernel and schema conventions</td>
+</tr>
+<tr class="even">
+<td><strong>Quality</strong></td>
+<td>Reliable blueprints</td>
+<td>Apply the four quality criteria before storage</td>
+</tr>
+<tr class="odd">
+<td><strong>Storage</strong></td>
+<td>Accessibility</td>
+<td>Index and classify for search and retrieval</td>
+</tr>
+<tr class="even">
+<td><strong>Evolution</strong></td>
+<td>Currency</td>
+<td>Keep blueprints synchronized with implementations</td>
+</tr>
+</tbody>
+</table>
+<p>Without these disciplines, blueprint repositories become outdated, inconsistent, inaccessible, and useless. With them, knowledge accumulates, improves, scales, and supports organization-wide reuse.</p></li>
 </ol>
-<p><strong>The Minimal Toolchain</strong>:</p>
-<p>Three elements provide lightweight infrastructure:</p>
-<ol type="1">
-<li><strong>Markdown</strong>: Human-readable format for blueprints</li>
-<li><strong>Schema</strong>: Structural rules for consistency</li>
-<li><strong>Index</strong>: Efficient search and retrieval</li>
-</ol>
-<p><strong>Integration with Version Control</strong>:</p>
-<ul>
-<li>Treat blueprints as first-class artifacts</li>
-<li>Use version control for history and collaboration</li>
-<li>Maintain synchronization with code</li>
-</ul>
-<p><strong>Human-Readable Knowledge Layers</strong>:</p>
-<ul>
-<li>Use knowledge tools for exploration and understanding</li>
-<li>Add annotations and links for context</li>
-<li>Complement structural representation with human-accessible layers</li>
-</ul>
-<p><strong>Discipline Enables Reuse</strong>:</p>
-<ul>
-<li>Creation discipline ensures consistent structures</li>
-<li>Quality discipline ensures reliable blueprints</li>
-<li>Storage discipline ensures accessibility</li>
-<li>Evolution discipline ensures currency</li>
-</ul>
 <p><strong>The Ultimate Value</strong>:</p>
 <p>With disciplined practices, blueprint knowledge can accumulate across projects and organizations.</p>
 <p>Over time, this accumulation forms the foundation of an architectural knowledge system capable of supporting large-scale system design.</p>
 <p>The next chapter concludes this volume by summarizing the principles of blueprint-based engineering and outlining the broader vision for blueprint-driven system architecture.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

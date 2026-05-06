@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; The Knowledge Gap in Software Engineering – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-02.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -561,6 +561,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#why-stack-overflow-and-github-cannot-solve-system-design-reuse" id="toc-why-stack-overflow-and-github-cannot-solve-system-design-reuse" class="nav-link" data-scroll-target="#why-stack-overflow-and-github-cannot-solve-system-design-reuse"><span class="header-section-number">6.2</span> Why Stack Overflow and GitHub Cannot Solve System Design Reuse</a></li>
   <li><a href="#the-tacit-nature-of-architectural-knowledge" id="toc-the-tacit-nature-of-architectural-knowledge" class="nav-link" data-scroll-target="#the-tacit-nature-of-architectural-knowledge"><span class="header-section-number">6.3</span> The Tacit Nature of Architectural Knowledge</a></li>
   <li><a href="#making-implicit-structure-explicit" id="toc-making-implicit-structure-explicit" class="nav-link" data-scroll-target="#making-implicit-structure-explicit"><span class="header-section-number">6.4</span> Making Implicit Structure Explicit</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.5</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">6.5.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -641,10 +645,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Architectural decisions can be examined systematically rather than reconstructed from memory or inferred from code. Design rationale can be preserved alongside structural descriptions, ensuring that future architects understand not only what was built but also why it was built that way.</p>
 <p>This book proposes that <strong>system blueprints</strong> provide the representation framework required to achieve this transformation from implicit, person-dependent architectural knowledge to explicit, reusable structural models.</p>
 <p>A blueprint captures the structural essence of a system’s architecture in a form that is both human-readable and machine-usable. By introducing a minimal yet expressive model for describing systems in terms of their architectural components, relationships, and constraints, blueprints make it possible to externalize architectural knowledge and represent it explicitly rather than leaving it implicit and inaccessible.</p>
-<p>In doing so, they address the knowledge gap that currently exists between system intent and system implementation—the gap that forces teams to repeatedly rediscover architectural patterns and redesign systems from scratch rather than building upon proven architectural knowledge.</p>
+<p>In doing so, they address the knowledge gap that currently exists between system intent and system implementation—the gap that forces teams to repeatedly rediscover architectural patterns and redesign systems from scratch rather than building upon proven archaeological knowledge.</p>
 <p>The next part of this book introduces the fundamental definitions and conceptual framework required to establish this blueprint-based approach to representing and reusing system architectural knowledge.</p>
+</section>
+<section id="summary" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.5</span> Summary</h2>
+<section id="knowledge-summary" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">6.5.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>The problem is a representation deficit, not a knowledge deficit</strong>: The software industry has abundant technical knowledge. The real gap is the lack of appropriate structures for capturing, organizing, and reusing <em>system-level architectural knowledge</em>. We have plenty of <em>what</em> — we lack the <em>form</em>.</p></li>
+<li><p><strong>Stack Overflow and GitHub solve implementation knowledge, not architectural knowledge</strong>: These platforms excel at localized problem-solving — configuration errors, library usage, specific bugs. They cannot represent how a complete system is structured as a coherent whole. Architectural knowledge remains implicit inside codebases and individual minds.</p></li>
+<li><p><strong>Most architectural knowledge is tacit</strong>: Senior engineers possess deep architectural intuition — component decomposition, interface design, data ownership — but this expertise is rarely externalized in a structured form. When they leave, the architectural reasoning departs with them. Tacit knowledge cannot scale.</p></li>
+<li><p><strong>The solution is making implicit structure explicit</strong>: Architectural knowledge must be transformed from tacit, person-dependent understanding into explicit structural models — <strong>blueprints</strong> — that can be documented, shared, and analyzed independently of any specific implementation, technology stack, or programming language.</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

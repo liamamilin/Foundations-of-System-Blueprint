@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>14&nbsp; Why Blueprints Enable Reuse (Not Just Documentation) – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-10.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -563,7 +563,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-basic-operations-of-reuse" id="toc-the-basic-operations-of-reuse" class="nav-link" data-scroll-target="#the-basic-operations-of-reuse"><span class="header-section-number">14.4</span> The Basic Operations of Reuse</a></li>
   <li><a href="#from-one-system-to-many-architectural-leverage" id="toc-from-one-system-to-many-architectural-leverage" class="nav-link" data-scroll-target="#from-one-system-to-many-architectural-leverage"><span class="header-section-number">14.5</span> From One System to Many: Architectural Leverage</a></li>
   <li><a href="#blueprint-reuse-vs.-code-reuse-a-comparison" id="toc-blueprint-reuse-vs.-code-reuse-a-comparison" class="nav-link" data-scroll-target="#blueprint-reuse-vs.-code-reuse-a-comparison"><span class="header-section-number">14.6</span> Blueprint Reuse vs.&nbsp;Code Reuse: A Comparison</a></li>
-  <li><a href="#summary-the-value-of-architectural-reuse" id="toc-summary-the-value-of-architectural-reuse" class="nav-link" data-scroll-target="#summary-the-value-of-architectural-reuse"><span class="header-section-number">14.7</span> Summary: The Value of Architectural Reuse</a></li>
+  <li><a href="#summary-the-value-of-architectural-reuse" id="toc-summary-the-value-of-architectural-reuse" class="nav-link" data-scroll-target="#summary-the-value-of-architectural-reuse"><span class="header-section-number">14.7</span> Summary: The Value of Architectural Reuse</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">14.7.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -983,9 +986,29 @@ Implementation</code></pre>
 <li><strong>Organize for retrieval</strong>: Use the classification framework to make blueprints easy to find</li>
 <li><strong>Invest in quality</strong>: Well-designed blueprints become valuable reusable assets</li>
 </ul>
-<p>The next chapter explores how these reusable structures can be combined systematically, introducing the mechanisms of <strong>system composition</strong>.</p>
+<section id="knowledge-summary" class="level3" data-number="14.7.1">
+<h3 data-number="14.7.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">14.7.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>Structure is reusable, narrative is not</strong>: Narrative documents require interpretation and reconstruction to extract architectural knowledge. Structured representations (components, interfaces, workflows, data relationships) can be identified, extracted, adapted, and integrated without interpretation. This is the fundamental difference between documentation and blueprints.</p></li>
+<li><p><strong>The hierarchy of reuse</strong>: Blueprint reuse is the highest level:</p>
+<pre><code>Code Reuse (functions/classes)
+  → Module/Service Reuse (components)
+    → Architecture Reuse (patterns)
+      → Blueprint Reuse (complete structural models)</code></pre>
+<p>Each higher level provides broader leverage and operates at a higher abstraction level.</p></li>
+<li><p><strong>Three fundamental reuse operations</strong>:</p>
+<ul>
+<li><strong>Retrieve</strong>: Find relevant blueprints using classification coordinates (system type, view, complexity)</li>
+<li><strong>Adapt</strong>: Modify blueprints for specific requirements through extension, reduction, substitution, reconfiguration, or specialization</li>
+<li><strong>Compose</strong>: Combine multiple blueprints through stacking, coupling, or orchestration</li>
+</ul></li>
+<li><p><strong>Blueprint libraries accumulate architectural knowledge</strong>: Organizations build catalogs of proven designs. Benefits include: knowledge accumulation (centralized, structured repository), accelerated design (retrieve and adapt instead of invent), quality improvement (proven, validated architectures), consistency (shared patterns across projects), and organizational learning.</p></li>
+<li><p><strong>Architectural leverage transforms economics</strong>: A single well-designed blueprint can serve as the foundation for many systems, creating 10:1, 50:1, or even 100:1 leverage on design effort. The engineering activity shifts from <strong>system building</strong> (designing individual architectures for each system) to <strong>architecture building</strong> (designing reusable structures that enable many systems).</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

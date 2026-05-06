@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>17&nbsp; Blueprint as Computable Knowledge – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,19 +72,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./chapter-13.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -298,9 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -597,7 +597,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#blueprints-as-graph-structures" id="toc-blueprints-as-graph-structures" class="nav-link" data-scroll-target="#blueprints-as-graph-structures"><span class="header-section-number">17.3</span> Blueprints as Graph Structures</a></li>
   <li><a href="#versioning-and-architectural-evolution" id="toc-versioning-and-architectural-evolution" class="nav-link" data-scroll-target="#versioning-and-architectural-evolution"><span class="header-section-number">17.4</span> Versioning and Architectural Evolution</a></li>
   <li><a href="#building-knowledge-objects" id="toc-building-knowledge-objects" class="nav-link" data-scroll-target="#building-knowledge-objects"><span class="header-section-number">17.5</span> Building Knowledge Objects</a></li>
-  <li><a href="#summary-computable-architectural-knowledge" id="toc-summary-computable-architectural-knowledge" class="nav-link" data-scroll-target="#summary-computable-architectural-knowledge"><span class="header-section-number">17.6</span> Summary: Computable Architectural Knowledge</a></li>
+  <li><a href="#summary-computable-architectural-knowledge" id="toc-summary-computable-architectural-knowledge" class="nav-link" data-scroll-target="#summary-computable-architectural-knowledge"><span class="header-section-number">17.6</span> Summary: Computable Architectural Knowledge</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">17.6.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1037,14 +1040,49 @@ Changes:
 </section>
 <section id="summary-computable-architectural-knowledge" class="level2" data-number="17.6">
 <h2 data-number="17.6" class="anchored" data-anchor-id="summary-computable-architectural-knowledge"><span class="header-section-number">17.6</span> Summary: Computable Architectural Knowledge</h2>
-<p>This chapter has established that blueprints transform architectural knowledge into computable knowledge objects.</p>
-<p><strong>Key Insights</strong>:</p>
+<section id="knowledge-summary" class="level3" data-number="17.6.1">
+<h3 data-number="17.6.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">17.6.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
 <ol type="1">
-<li><p><strong>Computability requires structure</strong>: Structured fields, explicit relationships, and indexable elements make blueprints machine-processable</p></li>
-<li><p><strong>Natural language is insufficient</strong>: Narrative documents are ambiguous, inconsistent, and difficult for machines to process reliably</p></li>
-<li><p><strong>Blueprints are graphs</strong>: The graph representation enables powerful analytical operations including dependency analysis, path analysis, and cycle detection</p></li>
-<li><p><strong>Versioning preserves evolution</strong>: Blueprint version history captures architectural evolution, preserving decisions and enabling learning</p></li>
-<li><p><strong>Blueprints are knowledge objects</strong>: Blueprints are persistent, reusable assets that form the foundation of a structured knowledge system</p></li>
+<li><p><strong>Three properties make blueprints computable</strong>: (1) <strong>Structured fields</strong> — elements use well-defined attributes, not free-form text. (2) <strong>Explicit relationships</strong> — connections between elements (dependencies, interfaces, data flows) are explicitly stated. (3) <strong>Indexable elements</strong> — blueprints can be stored and searched by metadata, system type, complexity, and capabilities.</p></li>
+<li><p><strong>Natural language is insufficient for machine processing</strong>: Narrative documentation suffers from ambiguous terminology, implicit relationships, inconsistent structure, and contextual dependencies. Even advanced NLP cannot reliably extract architectural structure from prose. Structural representations eliminate these challenges entirely.</p></li>
+<li><p><strong>Blueprints as graph structures</strong>: A blueprint can be interpreted as a <strong>graph</strong> — nodes represent entities (goals, capabilities, components, interfaces, data, workflows) and edges represent relationships (depends-on, implements, exposes). This enables powerful analytical operations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Dependency analysis</strong></td>
+<td>Identify critical components, detect circular dependencies</td>
+</tr>
+<tr class="even">
+<td><strong>Path analysis</strong></td>
+<td>Trace request flow, identify bottlenecks</td>
+</tr>
+<tr class="odd">
+<td><strong>Subgraph extraction</strong></td>
+<td>Identify subsystems, extract reusable patterns</td>
+</tr>
+<tr class="even">
+<td><strong>Graph matching</strong></td>
+<td>Find similar architectures across blueprints</td>
+</tr>
+<tr class="odd">
+<td><strong>Cycle detection</strong></td>
+<td>Detect circular dependencies, potential deadlocks</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Versioning preserves architectural evolution</strong>: Each blueprint version captures a snapshot of the architecture at a point in time. Change tracking records what changed and why. Version history enables understanding of architectural decisions, identification of stable vs.&nbsp;frequently changing elements, rollback capability, and organizational learning from past designs.</p></li>
+<li><p><strong>Blueprints are knowledge objects, not documents</strong>: They are persistent, structured, versioned, and stored in repositories. They can be analyzed, reused, combined, and evolved — forming the foundation of a structured knowledge system that enables pattern discovery, automated reasoning, and eventually architecture intelligence.</p></li>
 </ol>
 <p><strong>Practical Benefits</strong>:</p>
 <ul>
@@ -1065,6 +1103,7 @@ Changes:
 <p>The next chapter outlines the long-term pathway toward architecture intelligence and explains how the remaining volumes in this series contribute to that goal.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

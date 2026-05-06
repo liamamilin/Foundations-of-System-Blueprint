@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>9&nbsp; Intent, Blueprint, Projections, Implementation: A Clear Separation – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-05.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -571,7 +571,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-design-means" id="toc-what-design-means" class="nav-link" data-scroll-target="#what-design-means"><span class="header-section-number">9.6</span> What Design Means</a></li>
   <li><a href="#a-unified-terminology" id="toc-a-unified-terminology" class="nav-link" data-scroll-target="#a-unified-terminology"><span class="header-section-number">9.7</span> A Unified Terminology</a></li>
   <li><a href="#the-four-layer-model-in-practice" id="toc-the-four-layer-model-in-practice" class="nav-link" data-scroll-target="#the-four-layer-model-in-practice"><span class="header-section-number">9.8</span> The Four-Layer Model in Practice</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9.9</span> Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9.9</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">9.9.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1004,9 +1007,56 @@ Constraints:
 <li>Consistency across different engineering artifacts</li>
 <li>Clear evolution paths as systems change</li>
 </ul>
+<section id="knowledge-summary" class="level3" data-number="9.9.1">
+<h3 data-number="9.9.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">9.9.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>The four-layer model</strong>: Intent → Blueprint → Projections → Implementation. Each layer answers a distinct question:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 38%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Question</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intent</strong></td>
+<td>Why?</td>
+<td>Goals, capabilities, constraints</td>
+</tr>
+<tr class="even">
+<td><strong>Blueprint</strong></td>
+<td>What?</td>
+<td>Structural model (components, interfaces, data, workflows)</td>
+</tr>
+<tr class="odd">
+<td><strong>Projections</strong></td>
+<td>How viewed?</td>
+<td>Derived views for different audiences</td>
+</tr>
+<tr class="even">
+<td><strong>Implementation</strong></td>
+<td>How realized?</td>
+<td>Code, configuration, infrastructure</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Architecture is a projection, not the whole system</strong>: Architecture = the <em>structural projection</em> of the blueprint. It focuses on component relationships and interfaces, not behavior or operations. Architecture diagrams alone do not fully describe a system.</p></li>
+<li><p><strong>Specification is also a projection</strong>: Specification = the <em>requirements and acceptance projection</em> of the blueprint. Architecture describes organization; specification describes behavioral expectations. Both originate from the same blueprint.</p></li>
+<li><p><strong>Design is the transformation from intent to blueprint</strong>: Design is the <em>process</em>, not the artifact. The blueprint is the output of the design process. Design operates at the architectural level (component relationships, interfaces); implementation operates at the technological level (frameworks, code).</p></li>
+<li><p><strong>Unified terminology for clear communication</strong>: The table of precise definitions (Intent, Blueprint, Projections, Implementation, Design, Architecture, Specification) provides a consistent vocabulary that enables unambiguous architectural reasoning and communication across teams.</p></li>
+</ol>
 <p>The next chapter builds on this terminology by examining the broader ecosystem of engineering artifacts and establishing a taxonomy of <strong>system knowledge artifacts</strong>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

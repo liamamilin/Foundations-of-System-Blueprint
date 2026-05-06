@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>8&nbsp; What Is a Blueprint (Formal Definition) – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-04.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -568,7 +568,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#blueprint-as-a-knowledge-object" id="toc-blueprint-as-a-knowledge-object" class="nav-link" data-scroll-target="#blueprint-as-a-knowledge-object"><span class="header-section-number">8.3</span> Blueprint as a Knowledge Object</a></li>
   <li><a href="#blueprints-and-projections" id="toc-blueprints-and-projections" class="nav-link" data-scroll-target="#blueprints-and-projections"><span class="header-section-number">8.4</span> Blueprints and Projections</a></li>
   <li><a href="#the-boundary-of-a-blueprint" id="toc-the-boundary-of-a-blueprint" class="nav-link" data-scroll-target="#the-boundary-of-a-blueprint"><span class="header-section-number">8.5</span> The Boundary of a Blueprint</a></li>
-  <li><a href="#summary-the-blueprint-definition" id="toc-summary-the-blueprint-definition" class="nav-link" data-scroll-target="#summary-the-blueprint-definition"><span class="header-section-number">8.6</span> Summary: The Blueprint Definition</a></li>
+  <li><a href="#summary-the-blueprint-definition" id="toc-summary-the-blueprint-definition" class="nav-link" data-scroll-target="#summary-the-blueprint-definition"><span class="header-section-number">8.6</span> Summary: The Blueprint Definition</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">8.6.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -803,9 +806,56 @@ ul.task-list li input[type="checkbox"] {
 <li>Implementation details such as specific algorithms or code syntax</li>
 <li>Framework or infrastructure choices that can vary without affecting architecture</li>
 </ul>
+<section id="knowledge-summary" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">8.6.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>A blueprint is not a document — it is a structured model</strong>: Blueprints are structural representations of systems that support both human understanding and machine processing. Documentation describes; blueprints model. The difference is the difference between a travel guide and a structural map.</p></li>
+<li><p><strong>Four essential properties of a blueprint</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 25%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Meaning</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Human-readable</strong></td>
+<td>Engineers can understand the architecture without consulting code</td>
+<td>Enables architectural communication across teams</td>
+</tr>
+<tr class="even">
+<td><strong>Machine-usable</strong></td>
+<td>Computational tools can parse and analyze the representation</td>
+<td>Enables automated validation, search, and composition</td>
+</tr>
+<tr class="odd">
+<td><strong>Composable</strong></td>
+<td>Multiple blueprints can be combined into larger systems</td>
+<td>Enables systematic reuse and integration</td>
+</tr>
+<tr class="even">
+<td><strong>Versionable</strong></td>
+<td>Structural changes can be tracked and compared over time</td>
+<td>Preserves architectural evolution and rationale</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Blueprint as a knowledge object</strong>: A blueprint is the smallest unit of structured system knowledge. It can be stored, retrieved, compared, composed, validated, and transformed — operations that are impossible with traditional narrative documentation.</p></li>
+<li><p><strong>Blueprints and Projections</strong>: The blueprint is the single source of structural truth. All other artifacts (architecture diagrams, API specs, runbooks) are <strong>projections</strong> — derived views that emphasize particular aspects while remaining consistent with the underlying model.</p></li>
+<li><p><strong>The architecture-implementation boundary</strong>: Blueprints capture what is structurally stable (component boundaries, interface contracts, data ownership, workflows). Implementation details (algorithms, frameworks, infrastructure configurations) belong to the code layer. This separation enables stability, reusability, and analysis.</p></li>
+</ol>
 <p>This definition establishes the foundation for the blueprint framework. The next chapter builds on this foundation by clarifying the relationship between <strong>intent, blueprint, projections, and implementation</strong>, establishing the layered model that underpins the blueprint framework.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

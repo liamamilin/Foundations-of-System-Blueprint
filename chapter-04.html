@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>7&nbsp; What Is a System (Operational Definition) – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-03.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -568,6 +568,10 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#system-boundaries-inside-outside-and-interface" id="toc-system-boundaries-inside-outside-and-interface" class="nav-link" data-scroll-target="#system-boundaries-inside-outside-and-interface"><span class="header-section-number">7.4</span> System Boundaries: Inside, Outside, and Interface</a></li>
   <li><a href="#determining-whether-a-system-exists" id="toc-determining-whether-a-system-exists" class="nav-link" data-scroll-target="#determining-whether-a-system-exists"><span class="header-section-number">7.5</span> Determining Whether a System Exists</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.6</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">7.6.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -704,8 +708,58 @@ ul.task-list li input[type="checkbox"] {
 <p>Finally, the entity operates under <strong>constraints</strong> that influence its design, behavior, and evolution. Systems that exist in reality always operate within some constraints—technical, operational, or otherwise.</p>
 <p>If these five elements—goal, boundary, structure, dynamics, and constraints—are present, the entity can be treated as a system for the purposes of architectural reasoning and blueprint creation.</p>
 <p>This operational definition provides the conceptual foundation required for the next chapter, which introduces the formal definition of <strong>system blueprints</strong>—the structured representations that capture system architecture according to the dimensions and principles defined here.</p>
+</section>
+<section id="summary" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.6</span> Summary</h2>
+<section id="knowledge-summary" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">7.6.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
+<ol type="1">
+<li><p><strong>Minimal definition of a system</strong>: A system is a bounded entity that maintains internal states, performs transformations on inputs, produces outputs, and interacts with its environment in order to achieve a defined goal. Four essential elements: <strong>boundary, goal, states, interaction</strong>.</p></li>
+<li><p><strong>System ≠ Software</strong>: Software is the <em>implementation artifact</em> — code, configuration, infrastructure. A system is the <em>abstract architectural structure</em> that exists independently of any particular implementation. The same system structure can be implemented in multiple ways. Blueprints describe <strong>systems</strong>, not software.</p></li>
+<li><p><strong>Four dimensions of a system</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 44%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Question Answered</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Goal</strong></td>
+<td>Why does this system exist?</td>
+<td>Purpose and intended outcome</td>
+</tr>
+<tr class="even">
+<td><strong>Structure</strong></td>
+<td>How is it organized?</td>
+<td>Components, interfaces, dependencies</td>
+</tr>
+<tr class="odd">
+<td><strong>Dynamics</strong></td>
+<td>How does it behave over time?</td>
+<td>Processes, flows, state transitions</td>
+</tr>
+<tr class="even">
+<td><strong>Constraints</strong></td>
+<td>What limits apply?</td>
+<td>Technical, operational, business limitations</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>System boundaries</strong>: Every system has an <strong>inside</strong> (internal components under its control), an <strong>outside</strong> (external entities it interacts with), and <strong>interfaces</strong> (the contracts that regulate cross-boundary interaction). Well-defined boundaries are essential for modularity, composability, and evolvability.</p></li>
+<li><p><strong>Five criteria for identifying a system</strong>: An entity qualifies as a system if it has: (1) a clearly defined <strong>goal</strong>, (2) an identifiable <strong>boundary</strong>, (3) <strong>internal structure</strong> with defined relationships, (4) <strong>dynamic behavior</strong> processing inputs and producing outputs, and (5) <strong>constraints</strong> that influence its design and evolution.</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>18&nbsp; The Road to Architecture Intelligence – Foundations of System Blueprint</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter-14.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -263,9 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Foundations of System Blueprint</a> 
         <div class="sidebar-tools-main">
@@ -563,7 +563,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-role-of-ontology" id="toc-the-role-of-ontology" class="nav-link" data-scroll-target="#the-role-of-ontology"><span class="header-section-number">18.4</span> The Role of Ontology</a></li>
   <li><a href="#the-importance-of-evaluation" id="toc-the-importance-of-evaluation" class="nav-link" data-scroll-target="#the-importance-of-evaluation"><span class="header-section-number">18.5</span> The Importance of Evaluation</a></li>
   <li><a href="#the-complete-blueprint-series-roadmap" id="toc-the-complete-blueprint-series-roadmap" class="nav-link" data-scroll-target="#the-complete-blueprint-series-roadmap"><span class="header-section-number">18.6</span> The Complete Blueprint Series Roadmap</a></li>
-  <li><a href="#summary-the-path-to-architecture-intelligence" id="toc-summary-the-path-to-architecture-intelligence" class="nav-link" data-scroll-target="#summary-the-path-to-architecture-intelligence"><span class="header-section-number">18.7</span> Summary: The Path to Architecture Intelligence</a></li>
+  <li><a href="#summary-the-path-to-architecture-intelligence" id="toc-summary-the-path-to-architecture-intelligence" class="nav-link" data-scroll-target="#summary-the-path-to-architecture-intelligence"><span class="header-section-number">18.7</span> Summary: The Path to Architecture Intelligence</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-summary" id="toc-knowledge-summary" class="nav-link" data-scroll-target="#knowledge-summary"><span class="header-section-number">18.7.1</span> Knowledge Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -946,32 +949,53 @@ Constraints:
 </section>
 <section id="summary-the-path-to-architecture-intelligence" class="level2" data-number="18.7">
 <h2 data-number="18.7" class="anchored" data-anchor-id="summary-the-path-to-architecture-intelligence"><span class="header-section-number">18.7</span> Summary: The Path to Architecture Intelligence</h2>
-<p>This chapter has outlined the long-term pathway toward architecture intelligence and explained how the blueprint framework enables this vision.</p>
-<p><strong>Key Insights</strong>:</p>
+<section id="knowledge-summary" class="level3" data-number="18.7.1">
+<h3 data-number="18.7.1" class="anchored" data-anchor-id="knowledge-summary"><span class="header-section-number">18.7.1</span> Knowledge Summary</h3>
+<p>The following concepts are the core of this chapter — you must understand and remember them:</p>
 <ol type="1">
-<li><strong>Four-stage progression</strong>: Architecture intelligence develops through dataset → search → composition → generation</li>
-<li><strong>Mining is essential</strong>: Architectural data must be collected through mining before it can be used</li>
-<li><strong>Ontology provides consistency</strong>: A shared ontology ensures consistent representation across blueprints</li>
-<li><strong>Evaluation ensures quality</strong>: Quality assessment prevents degradation of architectural knowledge</li>
-<li><strong>Multi-volume series</strong>: The complete vision spans multiple volumes, each building on the previous ones</li>
+<li><p><strong>Four-stage progression toward architecture intelligence</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 21%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Goal</th>
+<th>Key Challenge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Dataset</strong></td>
+<td>Collect structured blueprints representing diverse systems</td>
+<td>Scale, quality, diversity</td>
+</tr>
+<tr class="even">
+<td><strong>Search</strong></td>
+<td>Retrieve relevant blueprints by type, capabilities, or characteristics</td>
+<td>Expressiveness, relevance</td>
+</tr>
+<tr class="odd">
+<td><strong>Composition</strong></td>
+<td>Combine and adapt blueprints into new system designs</td>
+<td>Compatibility, conflict resolution</td>
+</tr>
+<tr class="even">
+<td><strong>Generation</strong></td>
+<td>Assist in generating blueprint designs for new systems</td>
+<td>Quality, creativity, constraint satisfaction</td>
+</tr>
+</tbody>
+</table>
+<p>Each stage builds on the previous one.</p></li>
+<li><p><strong>Mining comes first — there is no architecture intelligence without architectural data</strong>: Valuable architectural designs already exist in open-source projects, internal codebases, and legacy systems — but they are embedded in code, scattered across documents, and locked in individuals’ minds. Mining is the process of identifying, extracting, normalizing, and validating architectural elements to build the blueprint dataset.</p></li>
+<li><p><strong>Ontology provides the consistent language</strong>: An ontology defines the concepts, relationships, and categories used to describe architecture. Without a shared ontology, different teams use different terminology (service vs.&nbsp;module vs.&nbsp;component), tools cannot reliably interpret blueprints, and search becomes unreliable. Ontology is the conceptual foundation for all subsequent stages.</p></li>
+<li><p><strong>Evaluation ensures quality</strong>: Not all architectures are equal. Blueprint repositories need quality standards to distinguish strong designs from weak ones. The four criteria — completeness, consistency, composability, feasibility — provide the foundation, with automated checks and human review working together.</p></li>
+<li><p><strong>The multi-volume roadmap</strong>: This volume (Foundations) establishes the conceptual model. Subsequent volumes build on it: Ontology (language) → Mining (data) → Search (retrieval) → Composition (combination) → Generation (creation) → Evaluation (quality) → Dataset (scale) → Architecture Intelligence (integration). This is the complete pathway from concept to capability.</p></li>
 </ol>
-<p><strong>The Vision</strong>:</p>
-<p>Architecture intelligence augments human architects with:</p>
-<ul>
-<li>Vast libraries of proven architectural designs</li>
-<li>Intelligent search and recommendation</li>
-<li>Automated composition and validation</li>
-<li>Generative design assistance</li>
-</ul>
-<p><strong>The Reality</strong>:</p>
-<p>This vision requires:</p>
-<ul>
-<li>Structured blueprint representations (established in this volume)</li>
-<li>Consistent ontologies (Volume 2)</li>
-<li>Large-scale datasets (Volumes 3 and 8)</li>
-<li>Advanced algorithms (Volumes 4, 5, 6, and 7)</li>
-<li>Integrated tools and platforms (Volume 9)</li>
-</ul>
 <p><strong>The Immediate Value</strong>:</p>
 <p>Even without full architecture intelligence, the blueprint framework provides immediate benefits:</p>
 <ul>
@@ -983,6 +1007,7 @@ Constraints:
 <p>The next chapter concludes this volume by establishing the standards and quality principles required to maintain reliable blueprint representations.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
